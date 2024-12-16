@@ -12,7 +12,7 @@
 #include <vector>
 
 #include <GL/glew.h>
-#include <stb_image.h>
+#include "stb_image.h"
 
 #define GLM_FORCE_CTOR_INIT
 
