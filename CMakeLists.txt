@@ -13,6 +13,12 @@ if (NOT N EQUAL 0)
     set(CMAKE_BUILD_PARALLEL_LEVEL ${N})
 endif ()
 
+find_program(CCACHE_PROGRAM ccache)
+if (CCACHE_PROGRAM)
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+    message(STATUS "Using ccache")
+endif ()
+
 file(GLOB SOURCES src/*.cpp)
 file(GLOB HEADERS include/*.h)
 
@@ -23,6 +29,8 @@ if (SOURCES)
 else ()
     message(FATAL_ERROR "No source files found. Please check the 'src' directory.")
 endif ()
+
+target_precompile_headers(${PROJECT_NAME} PRIVATE include/pch.h)
 
 include(FetchContent)
 
