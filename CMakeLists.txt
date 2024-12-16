@@ -5,7 +5,14 @@ project(Tancodrom)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
+include(CheckCXXCompilerFlag)
+
+check_cxx_compiler_flag("-flto" COMPILER_SUPPORTS_FLTO)
+if (COMPILER_SUPPORTS_FLTO)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
+else ()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native")
+endif ()
 
 include(ProcessorCount)
 ProcessorCount(N)
@@ -50,6 +57,11 @@ else ()
     FetchContent_MakeAvailable(glew)
     set(GLEW_INCLUDE_DIRS ${glew_SOURCE_DIR}/include)
     set(GLEW_LIBRARIES ${glew_BINARY_DIR}/lib/libGLEW.so)
+    add_library(GLEW::GLEW UNKNOWN IMPORTED)
+    set_target_properties(GLEW::GLEW PROPERTIES
+            IMPORTED_LOCATION ${GLEW_LIBRARIES}
+            INTERFACE_INCLUDE_DIRECTORIES ${GLEW_INCLUDE_DIRS}
+    )
 endif ()
 
 find_package(glfw3 QUIET)
@@ -83,7 +95,7 @@ endif ()
 
 include_directories(${GLEW_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS})
 
-target_link_libraries(${PROJECT_NAME} OpenGL::GL ${GLEW_LIBRARIES} ${GLFW3_LIBRARIES} glm)
+target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW ${GLFW3_LIBRARIES} glm)
 
 if (WIN32)
     message(STATUS "Configuring for Windows")
