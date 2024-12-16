@@ -15,8 +15,8 @@ endif ()
 
 find_program(CCACHE_PROGRAM ccache)
 if (CCACHE_PROGRAM)
-    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
     message(STATUS "Using ccache")
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
 endif ()
 
 file(GLOB SOURCES src/*.cpp)
@@ -35,9 +35,12 @@ target_precompile_headers(${PROJECT_NAME} PRIVATE include/pch.h)
 include(FetchContent)
 
 find_package(OpenGL REQUIRED)
+message(STATUS "OpenGL found")
 
 find_package(GLEW QUIET)
-if (NOT GLEW_FOUND)
+if (GLEW_FOUND)
+    message(STATUS "GLEW found")
+else ()
     message(STATUS "Fetching GLEW...")
     FetchContent_Declare(
             glew
@@ -50,7 +53,9 @@ if (NOT GLEW_FOUND)
 endif ()
 
 find_package(glfw3 QUIET)
-if (NOT glfw3_FOUND)
+if (glfw3_FOUND)
+    message(STATUS "GLFW found")
+else ()
     message(STATUS "Fetching GLFW...")
     FetchContent_Declare(
             glfw
@@ -63,8 +68,10 @@ if (NOT glfw3_FOUND)
 endif ()
 
 find_package(glm QUIET)
-if (NOT glm_FOUND)
-    message(STATUS "Fetching glm...")
+if (glm_FOUND)
+    message(STATUS "GLM found")
+else ()
+    message(STATUS "Fetching GLM...")
     FetchContent_Declare(
             glm
             GIT_REPOSITORY https://github.com/g-truc/glm.git
