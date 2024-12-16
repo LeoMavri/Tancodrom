@@ -5,11 +5,11 @@
 #ifndef PCH_H
 #define PCH_H
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <map>
 #include <algorithm>
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
 
 #include <GL/glew.h>
 #include <stb_image.h>
@@ -18,14 +18,14 @@
 
 #ifdef _WIN32
 #include <GLM.hpp>
+#include <glfw3.h>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
-#include <glfw3.h>
 #else
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <GLFW/glfw3.h>
 #endif
 
-#endif //PCH_H
+#endif // PCH_H
