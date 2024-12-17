@@ -7,11 +7,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include(CheckCXXCompilerFlag)
 
-check_cxx_compiler_flag("-flto" COMPILER_SUPPORTS_FLTO)
-if (COMPILER_SUPPORTS_FLTO)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
+check_cxx_compiler_flag("-flto=auto" COMPILER_SUPPORTS_FLTO_AUTO)
+if (COMPILER_SUPPORTS_FLTO_AUTO)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto=auto")
 else ()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native")
+    check_cxx_compiler_flag("-flto" COMPILER_SUPPORTS_FLTO)
+    if (COMPILER_SUPPORTS_FLTO)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
+    else ()
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native")
+    endif ()
 endif ()
 
 include(ProcessorCount)
@@ -31,13 +36,17 @@ file(GLOB HEADERS include/*.h)
 
 include_directories(include)
 
-if (SOURCES)
-    add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
-else ()
+if (NOT SOURCES)
     message(FATAL_ERROR "No source files found. Please check the 'src' directory.")
 endif ()
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE include/pch.h)
+if (NOT HEADERS)
+    message(FATAL_ERROR "No header files found. Please check the 'include' directory.")
+endif ()
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+target_precompile_headers(${PROJECT_NAME} PRIVATE lib/pch.h)
 
 include(FetchContent)
 
@@ -49,24 +58,39 @@ if (GLEW_FOUND)
     message(STATUS "GLEW found")
 else ()
     message(STATUS "Fetching GLEW...")
-    FetchContent_Declare(
-            glew
-            GIT_REPOSITORY https://github.com/nigels-com/glew.git
-            GIT_TAG master
-    )
-    FetchContent_MakeAvailable(glew)
-    set(GLEW_INCLUDE_DIRS ${glew_SOURCE_DIR}/include)
-    set(GLEW_LIBRARIES ${glew_BINARY_DIR}/lib/libGLEW.so)
-    add_library(GLEW::GLEW UNKNOWN IMPORTED)
-    set_target_properties(GLEW::GLEW PROPERTIES
-            IMPORTED_LOCATION ${GLEW_LIBRARIES}
-            INTERFACE_INCLUDE_DIRECTORIES ${GLEW_INCLUDE_DIRS}
-    )
+    if (WIN32)
+        FetchContent_Declare(
+                glew
+                URL https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0-win32.zip
+        )
+        FetchContent_MakeAvailable(glew)
+        set(GLEW_INCLUDE_DIRS ${glew_SOURCE_DIR}/include)
+        set(GLEW_LIBRARIES ${glew_BINARY_DIR}/lib/Release/Win32/glew32.lib)
+        add_library(GLEW::GLEW UNKNOWN IMPORTED)
+        set_target_properties(GLEW::GLEW PROPERTIES
+                IMPORTED_LOCATION ${GLEW_LIBRARIES}
+                INTERFACE_INCLUDE_DIRECTORIES ${GLEW_INCLUDE_DIRS}
+        )
+    elseif (UNIX)
+        FetchContent_Declare(
+                glew
+                URL https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.tgz
+        )
+        FetchContent_MakeAvailable(glew)
+        set(GLEW_INCLUDE_DIRS ${glew_SOURCE_DIR}/include)
+        set(GLEW_LIBRARIES ${glew_BINARY_DIR}/lib/libGLEW.so)
+        add_library(GLEW::GLEW UNKNOWN IMPORTED)
+        set_target_properties(GLEW::GLEW PROPERTIES
+                IMPORTED_LOCATION ${GLEW_LIBRARIES}
+                INTERFACE_INCLUDE_DIRECTORIES ${GLEW_INCLUDE_DIRS}
+        )
+    endif ()
 endif ()
 
 find_package(glfw3 QUIET)
 if (glfw3_FOUND)
     message(STATUS "GLFW found")
+    set(GLFW3_LIBRARIES glfw)
 else ()
     message(STATUS "Fetching GLFW...")
     FetchContent_Declare(
@@ -76,7 +100,7 @@ else ()
     )
     FetchContent_MakeAvailable(glfw)
     set(GLFW3_INCLUDE_DIRS ${glfw_SOURCE_DIR}/include)
-    set(GLFW3_LIBRARIES ${glfw_BINARY_DIR}/src/libglfw3.a)
+    set(GLFW3_LIBRARIES glfw)
 endif ()
 
 find_package(glm QUIET)
@@ -104,5 +128,3 @@ elseif (UNIX)
     message(STATUS "Configuring for Linux")
     target_link_libraries(${PROJECT_NAME} pthread)
 endif ()
-
-add_definitions(-DSTB_IMAGE_IMPLEMENTATION)
