@@ -5,7 +5,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "../lib/pch.h"
+#include <pch.h>
 
 /**
  * @enum CameraMovementType

@@ -1,27 +1,54 @@
-#include "../include/Camera.h"
-#include "../include/Shader.h"
-#include "../lib/pch.h"
+#include <Camera.h>
+#include <Shader.h>
+#include <pch.h>
 
-constexpr int WIDTH  = 2560;
-constexpr int HEIGHT = 1440;
+constexpr int WIDTH  = 1920;
+constexpr int HEIGHT = 1080;
 
 constexpr float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
 
 std::unique_ptr<Camera> pCamera;
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+double deltaTime = 0.0f;
+double lastFrame = 0.0f;
+
+void FrameBufferCallback(GLFWwindow * /*window*/, const int width, const int height) {
     glViewport(0, 0, width, height);
     pCamera->Reshape(width, height);
 }
 
-void mouse_callback(GLFWwindow *window, const double xpos, const double ypos) {
-    std::cout << std::format("Mouse position: ({}, {})\n", xpos, ypos);
+void MouseCallback(GLFWwindow * /*window*/, const double xpos, const double ypos) {
     pCamera->MouseControl(static_cast<float>(xpos), static_cast<float>(ypos));
 }
 
-void scroll_callback(GLFWwindow *window, const double xoffset, const double yOffset) {
-    std::cout << std::format("Scroll offset: ({}, {})\n", xoffset, yOffset);
+void ScrollCallback(GLFWwindow * /*window*/, const double /*xoffset*/, const double yOffset) {
     pCamera->ProcessMouseScroll(static_cast<float>(yOffset));
+}
+
+void KeyboardCallback(GLFWwindow *window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, true);
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(FORWARD, deltaTime);
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(BACKWARD, deltaTime);
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(LEFT, deltaTime);
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(RIGHT, deltaTime);
+    }
 }
 
 int main() {
@@ -47,13 +74,13 @@ int main() {
 
     pCamera = std::make_unique<Camera>(WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 3.0f));
 
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, FrameBufferCallback);
 
-    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetCursorPosCallback(window, MouseCallback);
 
-    glfwSetScrollCallback(window, scroll_callback);
+    glfwSetScrollCallback(window, ScrollCallback);
 
-    // glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
@@ -63,7 +90,7 @@ int main() {
 
     glViewport(0, 0, WIDTH, HEIGHT);
 
-    Shader shader("../shaders/vertex_shader.glsl", "../shaders/fragment_shader.glsl");
+    const Shader shader("../shaders/vertex_shader.glsl", "../shaders/fragment_shader.glsl");
 
     // Generate and bind a Vertex Array Object
     unsigned int VAO;
@@ -85,9 +112,12 @@ int main() {
 
     // Main render loop
     while (!glfwWindowShouldClose(window)) {
-        // TODO: Implement camera movement + other stuff
-        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-            glfwSetWindowShouldClose(window, true);
+        const double currentFrame = glfwGetTime();
+        deltaTime                 = currentFrame - lastFrame;
+        lastFrame                 = currentFrame;
+
+        // This is a lot smoother than using the cb
+        KeyboardCallback(window);
 
         glClear(GL_COLOR_BUFFER_BIT);
 

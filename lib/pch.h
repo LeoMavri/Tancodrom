@@ -17,6 +17,9 @@
 #include <vector>
 
 #include <GL/glew.h>
+#include <assimp/Importer.hpp>
+#include <assimp/postprocess.h>
+#include <assimp/scene.h>
 #include "stb_image.h"
 
 #define GLM_FORCE_CTOR_INIT

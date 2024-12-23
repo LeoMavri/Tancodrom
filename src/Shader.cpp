@@ -2,7 +2,7 @@
 // Created by mavri on 17.12.2024.
 //
 
-#include "../include/Shader.h"
+#include <Shader.h>
 
 Shader::Shader(const std::string_view &vertexPath, const std::string_view &fragmentPath) {
     Init(vertexPath, fragmentPath);

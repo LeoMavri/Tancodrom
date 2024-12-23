@@ -1,7 +1,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include "../lib/pch.h"
+#include <pch.h>
 
 /**
  * @class Shader
@@ -73,6 +73,8 @@ public:
      */
     void SetMat4(const std::string &name, const glm::mat4 &mat) const;
 
+    // TODO: Make a getter / setter for this
+    unsigned int ID; ///< ID of the shader program
 private:
     /**
      * @brief Initialize the shader program.
@@ -87,8 +89,6 @@ private:
      * @param type Type of shader (VERTEX, FRAGMENT, PROGRAM).
      */
     static void CheckCompileErrors(unsigned int shader, const std::string &type);
-
-    unsigned int ID; ///< ID of the shader program
 };
 
 #endif // SHADER_H
