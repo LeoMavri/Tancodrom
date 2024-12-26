@@ -2,15 +2,17 @@
 #include <Shader.h>
 #include <pch.h>
 
+#include "Entity.h"
+
 constexpr int WIDTH  = 1920;
 constexpr int HEIGHT = 1080;
 
-constexpr float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
+constexpr float VERTICES[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
 
 std::unique_ptr<Camera> pCamera;
 
-double deltaTime = 0.0f;
-double lastFrame = 0.0f;
+double DeltaTime = 0.0f;
+double LastFrame = 0.0f;
 
 void FrameBufferCallback(GLFWwindow * /*window*/, const int width, const int height) {
     glViewport(0, 0, width, height);
@@ -32,22 +34,22 @@ void KeyboardCallback(GLFWwindow *window) {
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
         glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(FORWARD, deltaTime);
+        pCamera->ProcessKeyboard(FORWARD, static_cast<float>(DeltaTime));
     }
 
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS ||
         glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(BACKWARD, deltaTime);
+        pCamera->ProcessKeyboard(BACKWARD, static_cast<float>(DeltaTime));
     }
 
     if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS ||
         glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(LEFT, deltaTime);
+        pCamera->ProcessKeyboard(LEFT, static_cast<float>(DeltaTime));
     }
 
     if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS ||
         glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(RIGHT, deltaTime);
+        pCamera->ProcessKeyboard(RIGHT, static_cast<float>(DeltaTime));
     }
 }
 
@@ -101,7 +103,7 @@ int main() {
     unsigned int VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(VERTICES), VERTICES, GL_STATIC_DRAW);
 
     // Define vertex attributes
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
@@ -110,26 +112,49 @@ int main() {
     // Unbind the VAO
     glBindVertexArray(0);
 
+    // Enable depth testing
+    glEnable(GL_DEPTH_TEST);
+
+    // Enable face culling
+    glEnable(GL_CULL_FACE);
+
+    // Initialise a simple entity
+    Entity entity("../models/Moon/Moon.obj", "../shaders/moon-shaders/moon-vertex.glsl",
+                  "../shaders/moon-shaders/moon-fragment.glsl");
+
+    glm::vec3 modelPosition(0.0f, 110.0f, 0.0f);
+    glm::vec3 lightPosition(0.0f, 100.0f, 0.0f); // Light source above the moon
+
     // Main render loop
     while (!glfwWindowShouldClose(window)) {
         const double currentFrame = glfwGetTime();
-        deltaTime                 = currentFrame - lastFrame;
-        lastFrame                 = currentFrame;
+        DeltaTime                 = currentFrame - LastFrame;
+        LastFrame                 = currentFrame;
 
         // This is a lot smoother than using the cb
         KeyboardCallback(window);
 
-        glClear(GL_COLOR_BUFFER_BIT);
+        // Set the clear color (background color)
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-        shader.Use();
+        // Clear the color and depth buffers
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        // Create model matrix with translation
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), modelPosition);
+
+        shader.SetMat4("model", model);
 
         glm::mat4 view       = pCamera->GetViewMatrix();
         glm::mat4 projection = pCamera->GetProjectionMatrix();
         shader.SetMat4("view", view);
         shader.SetMat4("projection", projection);
 
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        shader.SetVec3("lightPos", lightPosition);
+
+        entity.SetPosition(modelPosition);
+        entity.SetMatrixes(model, view, projection);
+        entity.Draw();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -144,3 +169,4 @@ int main() {
 
     return 0;
 }
+

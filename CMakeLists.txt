@@ -34,8 +34,6 @@ endif ()
 file(GLOB SOURCES src/*.cpp)
 file(GLOB HEADERS include/*.h)
 
-include_directories(include lib)
-
 if (NOT SOURCES)
     message(FATAL_ERROR "No source files found. Please check the 'src' directory.")
 endif ()
@@ -117,9 +115,29 @@ else ()
     set(GLM_INCLUDE_DIRS ${glm_SOURCE_DIR})
 endif ()
 
-include_directories(${GLEW_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS})
+find_package(assimp QUIET)
+if (assimp_FOUND)
+    message(STATUS "Assimp found")
+else ()
+    message(STATUS "Fetching Assimp...")
+    FetchContent_Declare(
+            assimp
+            GIT_REPOSITORY https://github.com/assimp/assimp.git
+            GIT_TAG v5.4.3
+    )
+    FetchContent_MakeAvailable(assimp)
+    set(ASSIMP_INCLUDE_DIRS ${assimp_SOURCE_DIR}/include)
+    set(ASSIMP_LIBRARIES ${assimp_BINARY_DIR}/lib/libassimp.so)
+    add_library(assimp::assimp UNKNOWN IMPORTED)
+    set_target_properties(assimp::assimp PROPERTIES
+            IMPORTED_LOCATION ${ASSIMP_LIBRARIES}
+            INTERFACE_INCLUDE_DIRECTORIES ${ASSIMP_INCLUDE_DIRS}
+    )
+endif ()
 
-target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW ${GLFW3_LIBRARIES} glm)
+include_directories(${GLEW_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS} include lib)
+
+target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW ${GLFW3_LIBRARIES} glm assimp::assimp)
 
 if (WIN32)
     message(STATUS "Configuring for Windows")

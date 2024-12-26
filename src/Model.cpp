@@ -4,6 +4,9 @@
 
 #include <Model.h>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 Model::Model(const std::string &path, const bool bSmoothNormals, const bool gamma) :
     gammaCorrection(gamma) {
     loadModel(path, bSmoothNormals);
@@ -18,10 +21,10 @@ void Model::Draw(const Shader &shader) {
 void Model::loadModel(const std::string &path, const bool bSmoothNormals) {
     // read file via ASSIMP
     Assimp::Importer importer;
-    const aiScene   *scene = importer.ReadFile(
+    const aiScene *  scene = importer.ReadFile(
             path, aiProcess_Triangulate |
-                          (bSmoothNormals ? aiProcess_GenSmoothNormals : aiProcess_GenNormals) |
-                          aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+                  (bSmoothNormals ? aiProcess_GenSmoothNormals : aiProcess_GenNormals) |
+                  aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
     // check for errors
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
     {
@@ -138,7 +141,7 @@ Mesh Model::processMesh(const std::string &nodeName, const aiMesh *mesh, const a
     return {nodeName, vertices, indices, textures};
 }
 
-std::vector<Texture> Model::loadMaterialTextures(const aiMaterial *mat, const aiTextureType &type,
+std::vector<Texture> Model::loadMaterialTextures(const aiMaterial * mat, const aiTextureType &type,
                                                  const std::string &typeName) {
     std::vector<Texture> textures;
     for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
@@ -174,6 +177,8 @@ std::vector<Texture> Model::loadMaterialTextures(const aiMaterial *mat, const ai
 unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma) {
     auto filename = std::string(path);
     filename      = directory + '/' + filename;
+
+    std::cout << "Loading texture: " << filename << std::endl;
 
     unsigned int textureID;
     glGenTextures(1, &textureID);
