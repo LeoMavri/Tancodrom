@@ -1,13 +1,11 @@
 #include <Camera.h>
+#include <Entity.h>
 #include <Shader.h>
+#include <Skybox.h>
 #include <pch.h>
-
-#include "Entity.h"
 
 constexpr int WIDTH  = 1920;
 constexpr int HEIGHT = 1080;
-
-constexpr float VERTICES[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
 
 std::unique_ptr<Camera> pCamera;
 
@@ -31,6 +29,8 @@ void KeyboardCallback(GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
     }
+
+    // std::cout << "DeltaTime: " << DeltaTime << std::endl;
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
         glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
@@ -92,8 +92,6 @@ int main() {
 
     glViewport(0, 0, WIDTH, HEIGHT);
 
-    const Shader shader("../shaders/vertex_shader.glsl", "../shaders/fragment_shader.glsl");
-
     // Generate and bind a Vertex Array Object
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
@@ -103,7 +101,6 @@ int main() {
     unsigned int VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(VERTICES), VERTICES, GL_STATIC_DRAW);
 
     // Define vertex attributes
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
@@ -118,12 +115,22 @@ int main() {
     // Enable face culling
     glEnable(GL_CULL_FACE);
 
-    // Initialise a simple entity
     Entity entity("../models/Moon/Moon.obj", "../shaders/moon-shaders/moon-vertex.glsl",
                   "../shaders/moon-shaders/moon-fragment.glsl");
 
-    glm::vec3 modelPosition(0.0f, 110.0f, 0.0f);
-    glm::vec3 lightPosition(0.0f, 100.0f, 0.0f); // Light source above the moon
+    constexpr glm::vec3 modelPosition(0.0f, 0.0f, 0.0f);
+    constexpr glm::vec3 lightPosition(0.0f, 20.0f, 0.0f);
+
+    const Shader shader("../shaders/vertex_shader.glsl", "../shaders/fragment_shader.glsl");
+
+    const std::vector<std::string> faces{
+            "../textures/skybox/right.jpg", "../textures/skybox/left.jpg",
+            "../textures/skybox/top.jpg",   "../textures/skybox/bottom.jpg",
+            "../textures/skybox/front.jpg", "../textures/skybox/back.jpg"};
+
+    // shader.Use();
+
+    const Skybox skybox(faces);
 
     // Main render loop
     while (!glfwWindowShouldClose(window)) {
@@ -156,6 +163,9 @@ int main() {
         entity.SetMatrixes(model, view, projection);
         entity.Draw();
 
+        skybox.Draw(view, projection);
+        shader.Use();
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -169,4 +179,3 @@ int main() {
 
     return 0;
 }
-

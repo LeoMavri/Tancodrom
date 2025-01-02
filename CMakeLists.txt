@@ -128,11 +128,20 @@ else ()
     FetchContent_MakeAvailable(assimp)
     set(ASSIMP_INCLUDE_DIRS ${assimp_SOURCE_DIR}/include)
     set(ASSIMP_LIBRARIES ${assimp_BINARY_DIR}/lib/libassimp.so)
-    add_library(assimp::assimp UNKNOWN IMPORTED)
-    set_target_properties(assimp::assimp PROPERTIES
-            IMPORTED_LOCATION ${ASSIMP_LIBRARIES}
-            INTERFACE_INCLUDE_DIRECTORIES ${ASSIMP_INCLUDE_DIRS}
-    )
+    if (NOT TARGET assimp::assimp)
+        add_library(assimp::assimp UNKNOWN IMPORTED)
+        set_target_properties(assimp::assimp PROPERTIES
+                IMPORTED_LOCATION ${ASSIMP_LIBRARIES}
+                INTERFACE_INCLUDE_DIRECTORIES ${ASSIMP_INCLUDE_DIRS}
+        )
+    endif ()
+endif ()
+
+# Assimp "insists" on treating warnings as errors.
+if (TARGET assimp)
+    get_target_property(ASSIMP_COMPILE_OPTIONS assimp COMPILE_OPTIONS)
+    list(REMOVE_ITEM ASSIMP_COMPILE_OPTIONS -Werror)
+    set_target_properties(assimp PROPERTIES COMPILE_OPTIONS "${ASSIMP_COMPILE_OPTIONS}")
 endif ()
 
 include_directories(${GLEW_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS} include lib)

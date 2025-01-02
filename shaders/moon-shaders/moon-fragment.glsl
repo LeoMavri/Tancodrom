@@ -25,7 +25,7 @@ void main()
     float displacement = texture(displacementMap, TexCoords).r;
 
     // Ambient
-    vec3 ambient = 0.2 * texture(diffuseMap, TexCoords).rgb;
+    vec3 ambient = 0.7 * texture(diffuseMap, TexCoords).rgb;
 
     // Diffuse
     vec3 lightDir = normalize(lightPos - FragPos);
