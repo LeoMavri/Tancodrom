@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.25)
 
 project(Tancodrom)
 
@@ -7,17 +7,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include(CheckCXXCompilerFlag)
 
-check_cxx_compiler_flag("-flto=auto" COMPILER_SUPPORTS_FLTO_AUTO)
-if (COMPILER_SUPPORTS_FLTO_AUTO)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto=auto")
-else ()
-    check_cxx_compiler_flag("-flto" COMPILER_SUPPORTS_FLTO)
-    if (COMPILER_SUPPORTS_FLTO)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
-    else ()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native")
-    endif ()
-endif ()
+
+#check_cxx_compiler_flag("-flto=auto" COMPILER_SUPPORTS_FLTO_AUTO)
+#if (COMPILER_SUPPORTS_FLTO_AUTO)
+#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto=auto")
+#else ()
+#    check_cxx_compiler_flag("-flto" COMPILER_SUPPORTS_FLTO)
+#    if (COMPILER_SUPPORTS_FLTO)
+#        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
+#    else ()
+#        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native")
+#    endif ()
+#endif ()
 
 include(ProcessorCount)
 ProcessorCount(N)
@@ -63,7 +64,7 @@ else ()
         )
         FetchContent_MakeAvailable(glew)
         set(GLEW_INCLUDE_DIRS ${glew_SOURCE_DIR}/include)
-        set(GLEW_LIBRARIES ${glew_BINARY_DIR}/lib/Release/Win32/glew32.lib)
+        set(GLEW_LIBRARIES ${glew_SOURCE_DIR}/lib/Release/x64/glew32.lib)
         add_library(GLEW::GLEW UNKNOWN IMPORTED)
         set_target_properties(GLEW::GLEW PROPERTIES
                 IMPORTED_LOCATION ${GLEW_LIBRARIES}
@@ -150,8 +151,16 @@ target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW ${GLFW3_LIBRARIES} g
 
 if (WIN32)
     message(STATUS "Configuring for Windows")
-    target_link_libraries(${PROJECT_NAME} glfw3dll)
+    #target_link_libraries(${PROJECT_NAME} glfw3dll)
 elseif (UNIX)
     message(STATUS "Configuring for Linux")
     target_link_libraries(${PROJECT_NAME} pthread)
+endif ()
+
+if (WIN32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${glew_SOURCE_DIR}/bin/Release/x64/glew32.dll"
+            $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    )
 endif ()

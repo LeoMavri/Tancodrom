@@ -407,3 +407,5 @@ CMakeFiles/
 CMakeScripts/
 Testing/
 cmake-build-*/
+out/
+build/
