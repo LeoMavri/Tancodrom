@@ -21,10 +21,10 @@ void Model::Draw(const Shader &shader) {
 void Model::loadModel(const std::string &path, const bool bSmoothNormals) {
     // read file via ASSIMP
     Assimp::Importer importer;
-    const aiScene *  scene = importer.ReadFile(
+    const aiScene   *scene = importer.ReadFile(
             path, aiProcess_Triangulate |
-                  (bSmoothNormals ? aiProcess_GenSmoothNormals : aiProcess_GenNormals) |
-                  aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+                          (bSmoothNormals ? aiProcess_GenSmoothNormals : aiProcess_GenNormals) |
+                          aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
     // check for errors
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
     {
@@ -141,7 +141,7 @@ Mesh Model::processMesh(const std::string &nodeName, const aiMesh *mesh, const a
     return {nodeName, vertices, indices, textures};
 }
 
-std::vector<Texture> Model::loadMaterialTextures(const aiMaterial * mat, const aiTextureType &type,
+std::vector<Texture> Model::loadMaterialTextures(const aiMaterial *mat, const aiTextureType &type,
                                                  const std::string &typeName) {
     std::vector<Texture> textures;
     for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
@@ -198,16 +198,26 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+                        format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
+                        format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
+        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         stbi_image_free(data);
     } else {
         std::cout << "Texture failed to load at path: " << path << std::endl;
         stbi_image_free(data);
+        return 0; // Return 0 if texture loading failed
     }
 
     return textureID;
+}
+
+unsigned int Model::GetTextureID() const {
+    if (!textures_loaded.empty()) {
+        return textures_loaded[0].id;
+    }
+    return 0;
 }

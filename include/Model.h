@@ -50,6 +50,8 @@ public:
      */
     virtual void Draw(const Shader &shader);
 
+    [[nodiscard]] unsigned int GetTextureID() const;
+
 private:
     /**
      * @brief Loads a model with supported ASSIMP extensions from file and stores the resulting

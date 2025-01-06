@@ -77,11 +77,8 @@ int main() {
     pCamera = std::make_unique<Camera>(WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 3.0f));
 
     glfwSetFramebufferSizeCallback(window, FrameBufferCallback);
-
     glfwSetCursorPosCallback(window, MouseCallback);
-
     glfwSetScrollCallback(window, ScrollCallback);
-
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     glewExperimental = GL_TRUE;
@@ -93,33 +90,36 @@ int main() {
     glViewport(0, 0, WIDTH, HEIGHT);
 
     // Generate and bind a Vertex Array Object
-    unsigned int VAO;
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
+    // unsigned int VAO;
+    // glGenVertexArrays(1, &VAO);
+    // glBindVertexArray(VAO);
 
     // Generate and bind a Vertex Buffer Object
-    unsigned int VBO;
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    // unsigned int VBO;
+    // glGenBuffers(1, &VBO);
+    // glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     // Define vertex attributes
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-    glEnableVertexAttribArray(0);
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+    // glEnableVertexAttribArray(0);
 
     // Unbind the VAO
-    glBindVertexArray(0);
+    // glBindVertexArray(0);
 
     // Enable depth testing
     glEnable(GL_DEPTH_TEST);
 
     // Enable face culling
-    glEnable(GL_CULL_FACE);
+    // glEnable(GL_CULL_FACE);
 
-    Entity entity("../models/Moon/Moon.obj", "../shaders/moon-shaders/moon-vertex.glsl",
-                  "../shaders/moon-shaders/moon-fragment.glsl");
+    Entity moonEntity("../models/Moon/Moon.obj", "../shaders/moon-shaders/moon-vertex.glsl",
+                      "../shaders/moon-shaders/moon-fragment.glsl");
 
-    constexpr glm::vec3 modelPosition(0.0f, 0.0f, 0.0f);
-    constexpr glm::vec3 lightPosition(0.0f, 20.0f, 0.0f);
+    Entity terrain("../models/Terrain/Teren.obj", "../shaders/terrain/vertex.glsl",
+                   "../shaders/terrain/fragment.glsl");
+
+    constexpr glm::vec3 modelPosition(0.0f, 10.0f, 0.0f);
+    constexpr glm::vec3 lightPosition(0.0f, 2.0f, 0.0f);
 
     const Shader shader("../shaders/vertex_shader.glsl", "../shaders/fragment_shader.glsl");
 
@@ -128,9 +128,9 @@ int main() {
             "../textures/skybox/top.jpg",   "../textures/skybox/bottom.jpg",
             "../textures/skybox/front.jpg", "../textures/skybox/back.jpg"};
 
-    // shader.Use();
-
     const Skybox skybox(faces);
+
+    // shader.Use();
 
     // Main render loop
     while (!glfwWindowShouldClose(window)) {
@@ -142,15 +142,17 @@ int main() {
         KeyboardCallback(window);
 
         // Set the clear color (background color)
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
         // Clear the color and depth buffers
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Create model matrix with translation
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), modelPosition);
+        // Use the shader program for the moon
+        shader.Use();
 
-        shader.SetMat4("model", model);
+        // Create model matrix with translation for the moon
+        glm::mat4 moonPositionFinal = glm::translate(glm::mat4(1.0f), modelPosition);
+        shader.SetMat4("model", moonPositionFinal);
 
         glm::mat4 view       = pCamera->GetViewMatrix();
         glm::mat4 projection = pCamera->GetProjectionMatrix();
@@ -159,20 +161,31 @@ int main() {
 
         shader.SetVec3("lightPos", lightPosition);
 
-        entity.SetPosition(modelPosition);
-        entity.SetMatrixes(model, view, projection);
-        entity.Draw();
+        terrain.Draw();
 
+        glm::mat4 terrainPos = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -2.0f, 0.0f));
+        terrainPos           = glm::scale(terrainPos, glm::vec3(0.05f, 0.05f, 0.05f));
+        terrain.SetPosition(glm::vec3(0.0f, -2.0f, 0.0f));
+        terrain.SetMatrixes(terrainPos, view, projection);
+
+        terrain.GetShader().SetVec3("lightPos", lightPosition);
+        terrain.GetShader().SetVec3("viewPos", pCamera->GetPosition());
+        terrain.GetShader().SetVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+
+        moonEntity.Draw();
+        moonEntity.SetPosition(modelPosition);
+        moonEntity.SetMatrixes(moonPositionFinal, view, projection);
+
+        // Draw the skybox last
         skybox.Draw(view, projection);
-        shader.Use();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
     // Clean up
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
+    // glDeleteVertexArrays(1, &VAO);
+    // glDeleteBuffers(1, &VBO);
 
     glfwDestroyWindow(window);
     glfwTerminate();

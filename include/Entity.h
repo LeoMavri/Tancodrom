@@ -13,7 +13,6 @@ public:
     Entity(const std::string &modelPath, const std::string &vertexShaderPath,
            const std::string &fragmentShaderPath);
 
-
     ~Entity() = default;
 
     void Draw();
@@ -24,6 +23,7 @@ public:
     void SetPosition(const glm::vec3 &position);
 
     [[nodiscard]] glm::vec3 GetPosition() const;
+    [[nodiscard]] Shader   &GetShader();
 
 private:
     Model     m_Model;
@@ -31,5 +31,4 @@ private:
     glm::vec3 m_Position{0, 0, 0};
 };
 
-
-#endif //ENTITY_H
+#endif // ENTITY_H

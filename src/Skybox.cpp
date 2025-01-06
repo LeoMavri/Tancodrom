@@ -15,24 +15,37 @@ Skybox::Skybox(const std::vector<std::string> &faces) :
 }
 
 void Skybox::setupSkybox() {
+    constexpr float scale            = 50.0f;
     constexpr float skyboxVertices[] = {
-            -1.0f, 1.0f,  -1.0f, -1.0f, -1.0f, -1.0f, 1.0f,  -1.0f, -1.0f,
-            1.0f,  -1.0f, -1.0f, 1.0f,  1.0f,  -1.0f, -1.0f, 1.0f,  -1.0f,
+            -1.0f * scale, 1.0f * scale,  -1.0f * scale, -1.0f * scale, -1.0f * scale,
+            -1.0f * scale, 1.0f * scale,  -1.0f * scale, -1.0f * scale, 1.0f * scale,
+            -1.0f * scale, -1.0f * scale, 1.0f * scale,  1.0f * scale,  -1.0f * scale,
+            -1.0f * scale, 1.0f * scale,  -1.0f * scale,
 
-            -1.0f, -1.0f, 1.0f,  -1.0f, -1.0f, -1.0f, -1.0f, 1.0f,  -1.0f,
-            -1.0f, 1.0f,  -1.0f, -1.0f, 1.0f,  1.0f,  -1.0f, -1.0f, 1.0f,
+            -1.0f * scale, -1.0f * scale, 1.0f * scale,  -1.0f * scale, -1.0f * scale,
+            -1.0f * scale, -1.0f * scale, 1.0f * scale,  -1.0f * scale, -1.0f * scale,
+            1.0f * scale,  -1.0f * scale, -1.0f * scale, 1.0f * scale,  1.0f * scale,
+            -1.0f * scale, -1.0f * scale, 1.0f * scale,
 
-            1.0f,  -1.0f, -1.0f, 1.0f,  -1.0f, 1.0f,  1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,  1.0f,  1.0f,  -1.0f, 1.0f,  -1.0f, -1.0f,
+            1.0f * scale,  -1.0f * scale, -1.0f * scale, 1.0f * scale,  -1.0f * scale,
+            1.0f * scale,  1.0f * scale,  1.0f * scale,  1.0f * scale,  1.0f * scale,
+            1.0f * scale,  1.0f * scale,  1.0f * scale,  1.0f * scale,  -1.0f * scale,
+            1.0f * scale,  -1.0f * scale, -1.0f * scale,
 
-            -1.0f, -1.0f, 1.0f,  -1.0f, 1.0f,  1.0f,  1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,  1.0f,  -1.0f, 1.0f,  -1.0f, -1.0f, 1.0f,
+            -1.0f * scale, -1.0f * scale, 1.0f * scale,  -1.0f * scale, 1.0f * scale,
+            1.0f * scale,  1.0f * scale,  1.0f * scale,  1.0f * scale,  1.0f * scale,
+            1.0f * scale,  1.0f * scale,  1.0f * scale,  -1.0f * scale, 1.0f * scale,
+            -1.0f * scale, -1.0f * scale, 1.0f * scale,
 
-            -1.0f, 1.0f,  -1.0f, 1.0f,  1.0f,  -1.0f, 1.0f,  1.0f,  1.0f,
-            1.0f,  1.0f,  1.0f,  -1.0f, 1.0f,  1.0f,  -1.0f, 1.0f,  -1.0f,
+            -1.0f * scale, 1.0f * scale,  -1.0f * scale, 1.0f * scale,  1.0f * scale,
+            -1.0f * scale, 1.0f * scale,  1.0f * scale,  1.0f * scale,  1.0f * scale,
+            1.0f * scale,  1.0f * scale,  -1.0f * scale, 1.0f * scale,  1.0f * scale,
+            -1.0f * scale, 1.0f * scale,  -1.0f * scale,
 
-            -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, 1.0f,  1.0f,  -1.0f, -1.0f,
-            1.0f,  -1.0f, -1.0f, -1.0f, -1.0f, 1.0f,  1.0f,  -1.0f, 1.0f};
+            -1.0f * scale, -1.0f * scale, -1.0f * scale, -1.0f * scale, -1.0f * scale,
+            1.0f * scale,  1.0f * scale,  -1.0f * scale, -1.0f * scale, 1.0f * scale,
+            -1.0f * scale, -1.0f * scale, -1.0f * scale, -1.0f * scale, 1.0f * scale,
+            1.0f * scale,  -1.0f * scale, 1.0f * scale};
 
     glGenVertexArrays(1, &skyboxVAO);
     glGenBuffers(1, &skyboxVBO);
@@ -72,7 +85,7 @@ void Skybox::loadCubemap(const std::vector<std::string> &faces) {
 void Skybox::Draw(const glm::mat4 &view, const glm::mat4 &projection) const {
     glDepthFunc(GL_LEQUAL);
 
-    const auto viewMatrix = glm::mat4(glm::mat3(view)); // Remove translation from the view matrix
+    const auto viewMatrix = glm::mat4(glm::mat3(view));
 
     skyboxShader.Use();
     skyboxShader.SetMat4("view", viewMatrix);

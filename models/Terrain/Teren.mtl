@@ -1,0 +1,12 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl TerenMaterial
+Ka 0.000000 0.000000 0.000000
+Kd 0.294118 0.447059 0.278431
+Ks 0.330000 0.330000 0.330000
+illum 2
+
+map_Ka Teren_Diffuse.jpg
+map_Kd Teren_Diffuse.jpg
