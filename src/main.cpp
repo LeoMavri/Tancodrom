@@ -60,26 +60,26 @@ void KeyboardCallback(GLFWwindow *window) {
     //         return;
     //     }
     // }
-    //
-    // if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
-    //     glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-    //     pCamera->ProcessKeyboard(FORWARD, static_cast<float>(DeltaTime));
-    // }
-    //
-    // if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS ||
-    //     glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-    //     pCamera->ProcessKeyboard(BACKWARD, static_cast<float>(DeltaTime));
-    // }
-    //
-    // if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS ||
-    //     glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-    //     pCamera->ProcessKeyboard(LEFT, static_cast<float>(DeltaTime));
-    // }
-    //
-    // if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS ||
-    //     glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-    //     pCamera->ProcessKeyboard(RIGHT, static_cast<float>(DeltaTime));
-    // }
+
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(FORWARD, static_cast<float>(DeltaTime));
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(BACKWARD, static_cast<float>(DeltaTime));
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(LEFT, static_cast<float>(DeltaTime));
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS ||
+        glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        pCamera->ProcessKeyboard(RIGHT, static_cast<float>(DeltaTime));
+    }
 }
 
 int main() {
@@ -137,19 +137,19 @@ int main() {
 
     const Skybox skybox(faces);
 
-    // entities.push_back(std::make_unique<Tank>(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f),
-    //                                           window, pCamera.get()));
+    entities.push_back(std::make_unique<Tank>(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f),
+                                              window, pCamera.get()));
     entities.push_back(std::make_unique<Helicopter>(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f),
                                                     window, pCamera.get()));
 
     // auto tank = dynamic_cast<Tank *>(entities[0].get());
-    auto heli = dynamic_cast<Helicopter *>(entities[0].get());
+    // auto heli = dynamic_cast<Helicopter *>(entities[1].get());
 
     Terrain terrain(glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), "terrain",
                     window, pCamera.get());
 
-    auto rocket = std::make_unique<Rocket>(glm::vec3(0.0f, 0.0f, 0.0f),
-                                           glm::vec3(10.0f, 20.0f, 0.0f), window, pCamera.get());
+    auto rocket = std::make_unique<Rocket>(glm::vec3(40.0f, 30.0f, 0.0f),
+                                           glm::vec3(0.0f, -5.0f, 0.0f), window, pCamera.get());
 
     while (!glfwWindowShouldClose(window)) {
         const double currentFrame = glfwGetTime();
@@ -161,9 +161,9 @@ int main() {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glm::mat4  view       = pCamera->GetViewMatrix();
-        glm::mat4  projection = pCamera->GetProjectionMatrix();
-        const auto model      = glm::mat4(1.0f);
+        glm::mat4      view       = pCamera->GetViewMatrix();
+        glm::mat4      projection = pCamera->GetProjectionMatrix();
+        constexpr auto model      = glm::mat4(1.0f);
 
         // Use Phong lighting shader
         phongLightingShader.Use();
@@ -175,23 +175,9 @@ int main() {
         phongLightingShader.SetVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
         phongLightingShader.SetVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
 
-        // Render the tank with Phong lighting shader
-        // tank->Render(phongLightingShader);
-        //
-        // tank->Update();
-        //
-        // if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
-        //     tank->SetSelected(true);
-        //     tank->UpdateCameraPosition();
-        // }
-
-        heli->Update(DeltaTime);
-        heli->SetSelected(true);
-        heli->Render(phongLightingShader);
-
         terrain.Render(phongLightingShader);
 
-        rocket->Update(DeltaTime);
+        rocket->Update(static_cast<float>(DeltaTime));
         rocket->Render(phongLightingShader);
 
         // Render the skybox

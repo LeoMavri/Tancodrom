@@ -156,3 +156,16 @@ void Entity::Render(Shader &shader) {
 
     m_Model->Draw(shader, modelTransform);
 }
+
+glm::mat4 Entity::GetModelMatrix() const {
+    glm::mat4 modelTransform(1.0f);
+    modelTransform = glm::translate(modelTransform, m_Position);
+    modelTransform =
+            glm::rotate(modelTransform, glm::radians(m_Rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    modelTransform =
+            glm::rotate(modelTransform, glm::radians(m_Rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    modelTransform =
+            glm::rotate(modelTransform, glm::radians(m_Rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+    modelTransform = glm::scale(modelTransform, m_Size);
+    return modelTransform;
+}

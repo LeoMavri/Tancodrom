@@ -66,6 +66,10 @@ public:
      */
     void SetVec3(const std::string &name, float x, float y, float z) const;
 
+    void SetVec4(const std::string &name, const glm::vec4 &value) const;
+
+    void SetVec4(const std::string &name, float x, float y, float z, float w) const;
+
     /**
      * @brief Set a mat4 uniform in the shader.
      * @param name Name of the uniform.

@@ -23,8 +23,8 @@ void Helicopter::Update() {
 
 void Helicopter::Update(const float DeltaTime) {
     m_Model->SetMeshTransform(10, glm::rotate(m_Model->GetMeshTransform(10),
-                                              glm::radians(120 * DeltaTime), glm::vec3(0, 0, 1)));
-    m_Model->RotateMesh(19, 120 * DeltaTime, glm::vec3(1, 0, 0));
+                                              glm::radians(720 * DeltaTime), glm::vec3(0, 0, 1)));
+    m_Model->RotateMesh(19, 720 * DeltaTime, glm::vec3(1, 0, 0));
 
     if (!m_IsSelected)
         return;
@@ -117,11 +117,11 @@ void Helicopter::MoveAt(const MovementType &direction, const float DeltaTime) {
             break;
         case SpinLeft:
             Rotate({0, rotationSpeed, 0});
-            m_Model->RotateMesh(19, 120 * DeltaTime, glm::vec3(-1, 0, 0));
+            m_Model->RotateMesh(19, 720 * DeltaTime, glm::vec3(1, 0, 0));
             break;
         case SpinRight:
             Rotate({0, -rotationSpeed, 0});
-            m_Model->RotateMesh(19, 120 * DeltaTime, glm::vec3(2, 0, 0));
+            m_Model->RotateMesh(19, 720 * DeltaTime, glm::vec3(-1, 0, 0));
             break;
     }
 }

@@ -103,8 +103,10 @@ public:
     [[nodiscard]] glm::vec3 GetRight() const;
     [[nodiscard]] glm::vec3 GetUp() const;
 
-    void SetSelected(const bool isSelected) { m_IsSelected = isSelected; }
-    bool IsSelected() const { return m_IsSelected; }
+    void               SetSelected(const bool isSelected) { m_IsSelected = isSelected; }
+    [[nodiscard]] bool IsSelected() const { return m_IsSelected; }
+
+    [[nodiscard]] glm::mat4 GetModelMatrix() const;
 
     void NormalizeRotation();
 

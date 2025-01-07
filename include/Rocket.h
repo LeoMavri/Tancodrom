@@ -6,21 +6,21 @@
 #define ROCKET_H
 
 #include "Entity.h"
+#include "ParticleSystem.h"
 
 class Rocket final : public Entity {
 public:
     Rocket(const glm::vec3 &position, const glm::vec3 &target, GLFWwindow *window, Camera *pCamera);
+
     void Update() override;
-    void Update(const float DeltaTime);
+    void Update(float DeltaTime);
     void Render(Shader &shader) override;
 
 private:
-    glm::vec3              m_Target;
-    float                  m_Speed = 5.0f; // Reduced speed for slower movement
-    unsigned int           VAO, VBO, EBO;
-    void                   generateSphere(float radius, unsigned int rings, unsigned int sectors);
-    void                   generateTrail();
-    std::vector<glm::vec3> m_TrailParticles;
+    glm::vec3      m_Target;
+    float          m_Speed = 25.0f;
+    bool           m_Exploded{false};
+    ParticleSystem m_ParticleSystem{10000}; // Initialize with 100 m_Particles
 };
 
 #endif // ROCKET_H
