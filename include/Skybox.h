@@ -14,11 +14,11 @@ public:
     void Draw(const glm::mat4 &view, const glm::mat4 &projection) const;
 
 private:
-    void loadCubemap(const std::vector<std::string> &faces);
-    void setupSkybox();
+    void LoadCubemap(const std::vector<std::string> &faces);
+    void SetupSkybox();
 
-    GLuint skyboxVAO{}, skyboxVBO{}, cubemapTexture{};
-    Shader skyboxShader;
+    Shader m_Shader;
+    GLuint m_SkyboxVAO{}, m_SkyboxVBO{}, m_CubemapTexture{};
 };
 
 #endif // SKYBOX_H

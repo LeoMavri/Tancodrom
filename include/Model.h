@@ -27,9 +27,10 @@ class Model {
 public:
     std::vector<Texture> textures_loaded; ///< Stores all the textures loaded so far, optimization
                                           ///< to make sure textures aren't loaded more than once.
-    std::vector<Mesh> meshes; ///< Vector of meshes in the model.
-    std::string       directory; ///< Directory containing the model files.
-    bool              gammaCorrection; ///< Whether to apply gamma correction.
+    std::vector<Mesh>      meshes; ///< Vector of meshes in the model.
+    std::string            directory; ///< Directory containing the model files.
+    bool                   gammaCorrection; ///< Whether to apply gamma correction.
+    std::vector<glm::mat4> meshesTransform;
 
     /**
      * @brief Constructor for the Model class.
@@ -47,10 +48,15 @@ public:
     /**
      * @brief Draws the model, and thus all its meshes.
      * @param shader Shader to use for drawing.
+     * @param objectTransform
      */
-    virtual void Draw(const Shader &shader);
+    virtual void Draw(const Shader &shader, const glm::mat4 &objectTransform) const;
 
     [[nodiscard]] unsigned int GetTextureID() const;
+
+    glm::mat4 GetMeshTransform(int meshID);
+    void      SetMeshTransform(int meshID, const glm::mat4 &transform);
+    void      RotateMesh(int meshID, float degrees, const glm::vec3 &axis);
 
 private:
     /**

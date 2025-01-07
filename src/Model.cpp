@@ -5,6 +5,7 @@
 #include <Model.h>
 
 #define STB_IMAGE_IMPLEMENTATION
+#include "Camera.h"
 #include "stb_image.h"
 
 Model::Model(const std::string &path, const bool bSmoothNormals, const bool gamma) :
@@ -12,10 +13,24 @@ Model::Model(const std::string &path, const bool bSmoothNormals, const bool gamm
     loadModel(path, bSmoothNormals);
 }
 
-void Model::Draw(const Shader &shader) {
-    for (const auto &mesh : meshes) {
-        mesh.Draw(shader);
+void Model::Draw(const Shader &shader, const glm::mat4 &objectTransform) const {
+    for (int i = 0; i < meshes.size(); i++) {
+        meshes[i].Draw(shader, objectTransform * meshesTransform[i]);
     }
+}
+
+glm::mat4 Model::GetMeshTransform(const int meshID) { return meshesTransform[meshID]; }
+
+void Model::SetMeshTransform(const int meshID, const glm::mat4 &transform) {
+    meshesTransform[meshID] = transform;
+}
+
+void Model::RotateMesh(const int meshID, const float degrees, const glm::vec3 &axis) {
+    meshesTransform[meshID] =
+            glm::translate(meshesTransform[meshID], meshes[meshID].vertices->Position);
+    meshesTransform[meshID] = glm::rotate(meshesTransform[meshID], glm::radians(degrees), axis);
+    meshesTransform[meshID] =
+            glm::translate(meshesTransform[meshID], -meshes[meshID].vertices->Position);
 }
 
 void Model::loadModel(const std::string &path, const bool bSmoothNormals) {
@@ -46,6 +61,7 @@ void Model::processNode(const aiNode *node, const aiScene *scene) {
         // between nodes).
         const aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
         meshes.push_back(processMesh(node->mName.C_Str(), mesh, scene));
+        meshesTransform.push_back(glm::mat4(1));
     }
     // after we've processed all of the meshes (if any) we then recursively process each of the
     // children nodes

@@ -26,6 +26,17 @@ void Camera::Set(const int width, const int height, const glm::vec3 &position) {
     UpdateCameraVectors();
 }
 
+void Camera::SetPosition(const glm::vec3 &position) {
+    m_Position = position;
+    UpdateCameraVectors();
+}
+
+void Camera::LookAt(const glm::vec3 &targetPoint, const glm::vec3 &up) {
+    m_Forward = glm::normalize(targetPoint - m_Position);
+    m_Right   = glm::normalize(glm::cross(m_Forward, up));
+    m_Up      = glm::normalize(glm::cross(m_Right, m_Forward));
+}
+
 void Camera::Reset(const int width, const int height) { Set(width, height, m_StartPosition); }
 
 void Camera::Reshape(const int windowWidth, const int windowHeight) {

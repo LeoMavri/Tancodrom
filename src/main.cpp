@@ -4,10 +4,16 @@
 #include <Skybox.h>
 #include <pch.h>
 
+#include "Helicopter.h"
+#include "Rocket.h"
+#include "Tank.h"
+#include "Terrain.h"
+
 constexpr int WIDTH  = 1920;
 constexpr int HEIGHT = 1080;
 
-std::unique_ptr<Camera> pCamera;
+std::unique_ptr<Camera>              pCamera;
+std::vector<std::unique_ptr<Entity>> entities;
 
 double DeltaTime = 0.0f;
 double LastFrame = 0.0f;
@@ -18,6 +24,19 @@ void FrameBufferCallback(GLFWwindow * /*window*/, const int width, const int hei
 }
 
 void MouseCallback(GLFWwindow * /*window*/, const double xpos, const double ypos) {
+    for (const auto &entity : entities) {
+        if (!entity->IsSelected())
+            continue;
+        if (entity->GetName() == "tank") {
+            const auto tank = dynamic_cast<Tank *>(entity.get());
+            if (tank) {
+                std::cout << "MouseCallback: " << xpos << " " << ypos << std::endl;
+                tank->MouseControl(static_cast<float>(xpos), static_cast<float>(ypos));
+            }
+            return;
+        }
+    }
+
     pCamera->MouseControl(static_cast<float>(xpos), static_cast<float>(ypos));
 }
 
@@ -30,42 +49,49 @@ void KeyboardCallback(GLFWwindow *window) {
         glfwSetWindowShouldClose(window, true);
     }
 
-    // std::cout << "DeltaTime: " << DeltaTime << std::endl;
-
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
-        glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(FORWARD, static_cast<float>(DeltaTime));
-    }
-
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS ||
-        glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(BACKWARD, static_cast<float>(DeltaTime));
-    }
-
-    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS ||
-        glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(LEFT, static_cast<float>(DeltaTime));
-    }
-
-    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS ||
-        glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-        pCamera->ProcessKeyboard(RIGHT, static_cast<float>(DeltaTime));
-    }
+    // for (const auto &entity : entities) {
+    //     if (!entity->IsSelected())
+    //         continue;
+    //     if (entity->GetName() == "tank") {
+    //         const auto tank = dynamic_cast<Tank *>(entity.get());
+    //         if (tank) {
+    //             tank->ControlTank(window, static_cast<float>(DeltaTime));
+    //         }
+    //         return;
+    //     }
+    // }
+    //
+    // if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
+    //     glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+    //     pCamera->ProcessKeyboard(FORWARD, static_cast<float>(DeltaTime));
+    // }
+    //
+    // if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS ||
+    //     glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+    //     pCamera->ProcessKeyboard(BACKWARD, static_cast<float>(DeltaTime));
+    // }
+    //
+    // if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS ||
+    //     glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+    //     pCamera->ProcessKeyboard(LEFT, static_cast<float>(DeltaTime));
+    // }
+    //
+    // if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS ||
+    //     glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+    //     pCamera->ProcessKeyboard(RIGHT, static_cast<float>(DeltaTime));
+    // }
 }
 
 int main() {
-    // Initialize GLFW
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW" << std::endl;
         return -1;
     }
 
-    // Set GLFW context version and profile
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    // Create a GLFW window
     GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Tancodrom", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window" << std::endl;
@@ -89,39 +115,20 @@ int main() {
 
     glViewport(0, 0, WIDTH, HEIGHT);
 
-    // Generate and bind a Vertex Array Object
-    // unsigned int VAO;
-    // glGenVertexArrays(1, &VAO);
-    // glBindVertexArray(VAO);
-
-    // Generate and bind a Vertex Buffer Object
-    // unsigned int VBO;
-    // glGenBuffers(1, &VBO);
-    // glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-    // Define vertex attributes
-    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-    // glEnableVertexAttribArray(0);
-
-    // Unbind the VAO
-    // glBindVertexArray(0);
-
     // Enable depth testing
     glEnable(GL_DEPTH_TEST);
 
     // Enable face culling
     // glEnable(GL_CULL_FACE);
 
-    Entity moonEntity("../models/Moon/Moon.obj", "../shaders/moon-shaders/moon-vertex.glsl",
-                      "../shaders/moon-shaders/moon-fragment.glsl");
-
-    Entity terrain("../models/Terrain/Teren.obj", "../shaders/terrain/vertex.glsl",
-                   "../shaders/terrain/fragment.glsl");
-
     constexpr glm::vec3 modelPosition(0.0f, 10.0f, 0.0f);
-    constexpr glm::vec3 lightPosition(0.0f, 2.0f, 0.0f);
+    constexpr glm::vec3 lightPosition(0.0f, 20.0f, 0.0f);
 
-    const Shader shader("../shaders/vertex_shader.glsl", "../shaders/fragment_shader.glsl");
+    Shader phongLightingShader("../shaders/PhongVertex.glsl", "../shaders/PhongFragment.glsl");
+    Shader shadowMappingShader("../shaders/ShadowMapVertex.glsl",
+                               "../shaders/ShadowMapFragment.glsl");
+    Shader shadowMappingDepthShader("../shaders/ShadowMapDepthVertex.glsl",
+                                    "../shaders/ShadowMapDepthFragment.glsl");
 
     const std::vector<std::string> faces{
             "../textures/skybox/right.jpg", "../textures/skybox/left.jpg",
@@ -130,62 +137,69 @@ int main() {
 
     const Skybox skybox(faces);
 
-    // shader.Use();
+    // entities.push_back(std::make_unique<Tank>(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f),
+    //                                           window, pCamera.get()));
+    entities.push_back(std::make_unique<Helicopter>(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f),
+                                                    window, pCamera.get()));
 
-    // Main render loop
+    // auto tank = dynamic_cast<Tank *>(entities[0].get());
+    auto heli = dynamic_cast<Helicopter *>(entities[0].get());
+
+    Terrain terrain(glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), "terrain",
+                    window, pCamera.get());
+
+    auto rocket = std::make_unique<Rocket>(glm::vec3(0.0f, 0.0f, 0.0f),
+                                           glm::vec3(10.0f, 20.0f, 0.0f), window, pCamera.get());
+
     while (!glfwWindowShouldClose(window)) {
         const double currentFrame = glfwGetTime();
         DeltaTime                 = currentFrame - LastFrame;
         LastFrame                 = currentFrame;
 
-        // This is a lot smoother than using the cb
         KeyboardCallback(window);
 
-        // Set the clear color (background color)
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
-        // Clear the color and depth buffers
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Use the shader program for the moon
-        shader.Use();
+        glm::mat4  view       = pCamera->GetViewMatrix();
+        glm::mat4  projection = pCamera->GetProjectionMatrix();
+        const auto model      = glm::mat4(1.0f);
 
-        // Create model matrix with translation for the moon
-        glm::mat4 moonPositionFinal = glm::translate(glm::mat4(1.0f), modelPosition);
-        shader.SetMat4("model", moonPositionFinal);
+        // Use Phong lighting shader
+        phongLightingShader.Use();
+        phongLightingShader.SetMat4("view", view);
+        phongLightingShader.SetMat4("projection", projection);
+        phongLightingShader.SetMat4("model", model);
+        phongLightingShader.SetVec3("lightPos", lightPosition);
+        phongLightingShader.SetVec3("viewPos", pCamera->GetPosition());
+        phongLightingShader.SetVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+        phongLightingShader.SetVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
 
-        glm::mat4 view       = pCamera->GetViewMatrix();
-        glm::mat4 projection = pCamera->GetProjectionMatrix();
-        shader.SetMat4("view", view);
-        shader.SetMat4("projection", projection);
+        // Render the tank with Phong lighting shader
+        // tank->Render(phongLightingShader);
+        //
+        // tank->Update();
+        //
+        // if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+        //     tank->SetSelected(true);
+        //     tank->UpdateCameraPosition();
+        // }
 
-        shader.SetVec3("lightPos", lightPosition);
+        heli->Update(DeltaTime);
+        heli->SetSelected(true);
+        heli->Render(phongLightingShader);
 
-        terrain.Draw();
+        terrain.Render(phongLightingShader);
 
-        glm::mat4 terrainPos = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -2.0f, 0.0f));
-        terrainPos           = glm::scale(terrainPos, glm::vec3(0.05f, 0.05f, 0.05f));
-        terrain.SetPosition(glm::vec3(0.0f, -2.0f, 0.0f));
-        terrain.SetMatrixes(terrainPos, view, projection);
+        rocket->Update(DeltaTime);
+        rocket->Render(phongLightingShader);
 
-        terrain.GetShader().SetVec3("lightPos", lightPosition);
-        terrain.GetShader().SetVec3("viewPos", pCamera->GetPosition());
-        terrain.GetShader().SetVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-
-        moonEntity.Draw();
-        moonEntity.SetPosition(modelPosition);
-        moonEntity.SetMatrixes(moonPositionFinal, view, projection);
-
-        // Draw the skybox last
+        // Render the skybox
         skybox.Draw(view, projection);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    // Clean up
-    // glDeleteVertexArrays(1, &VAO);
-    // glDeleteBuffers(1, &VBO);
 
     glfwDestroyWindow(window);
     glfwTerminate();

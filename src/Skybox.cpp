@@ -7,15 +7,13 @@
 #include <stb_image.h>
 
 Skybox::Skybox(const std::vector<std::string> &faces) :
-    skyboxShader("../shaders/skybox/skybox_vertex.glsl", "../shaders/skybox/skybox_fragment.glsl") {
-    setupSkybox();
-    loadCubemap(faces);
-
-    skyboxShader.Use();
+    m_Shader("../shaders/skybox/vertex.glsl", "../shaders/skybox/fragment.glsl") {
+    SetupSkybox();
+    LoadCubemap(faces);
 }
 
-void Skybox::setupSkybox() {
-    constexpr float scale            = 50.0f;
+void Skybox::SetupSkybox() {
+    constexpr float scale            = 65.0f;
     constexpr float skyboxVertices[] = {
             -1.0f * scale, 1.0f * scale,  -1.0f * scale, -1.0f * scale, -1.0f * scale,
             -1.0f * scale, 1.0f * scale,  -1.0f * scale, -1.0f * scale, 1.0f * scale,
@@ -47,10 +45,10 @@ void Skybox::setupSkybox() {
             -1.0f * scale, -1.0f * scale, -1.0f * scale, -1.0f * scale, 1.0f * scale,
             1.0f * scale,  -1.0f * scale, 1.0f * scale};
 
-    glGenVertexArrays(1, &skyboxVAO);
-    glGenBuffers(1, &skyboxVBO);
-    glBindVertexArray(skyboxVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+    glGenVertexArrays(1, &m_SkyboxVAO);
+    glGenBuffers(1, &m_SkyboxVBO);
+    glBindVertexArray(m_SkyboxVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_SkyboxVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
@@ -58,9 +56,9 @@ void Skybox::setupSkybox() {
     glBindVertexArray(0);
 }
 
-void Skybox::loadCubemap(const std::vector<std::string> &faces) {
-    glGenTextures(1, &cubemapTexture);
-    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+void Skybox::LoadCubemap(const std::vector<std::string> &faces) {
+    glGenTextures(1, &m_CubemapTexture);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, m_CubemapTexture);
 
     int width, height, nrChannels;
     for (unsigned int i = 0; i < faces.size(); i++) {
@@ -83,19 +81,19 @@ void Skybox::loadCubemap(const std::vector<std::string> &faces) {
 }
 
 void Skybox::Draw(const glm::mat4 &view, const glm::mat4 &projection) const {
+    glDepthMask(GL_FALSE);
     glDepthFunc(GL_LEQUAL);
 
-    const auto viewMatrix = glm::mat4(glm::mat3(view));
+    m_Shader.Use();
+    const auto viewNoTranslation = glm::mat4(glm::mat3(view));
+    m_Shader.SetMat4("view", viewNoTranslation);
+    m_Shader.SetMat4("projection", projection);
 
-    skyboxShader.Use();
-    skyboxShader.SetMat4("view", viewMatrix);
-    skyboxShader.SetMat4("projection", projection);
-
-    glBindVertexArray(skyboxVAO);
+    glBindVertexArray(m_SkyboxVAO);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, m_CubemapTexture);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glBindVertexArray(0);
-
     glDepthFunc(GL_LESS);
+    glDepthMask(GL_TRUE);
 }
