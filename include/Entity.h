@@ -74,11 +74,13 @@ public:
     Entity(const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &rotation,
            std::string name, GLFWwindow *window, Camera *pCamera);
 
+    Entity(const Entity &other); // Copy constructor
+    Entity &operator=(const Entity &other); // Copy assignment operator
     virtual ~Entity() = default;
 
     std::string GetName();
 
-    virtual void Update() = 0;
+    virtual void Update(float DeltaTime) = 0;
 
     void                 SetModel(const std::string &path, bool bSmoothNormals, int modelId);
     void                 SetModel(Model *model);

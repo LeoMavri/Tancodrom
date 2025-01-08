@@ -22,4 +22,4 @@ glm::mat4 LightEmitter::GetLightView() {
     return glm::lookAt(m_Position, GetForward(), {0, 1.0f, 0});
 }
 
-void LightEmitter::Update() {}
+void LightEmitter::Update(float DeltaTime) {}

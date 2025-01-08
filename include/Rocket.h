@@ -11,16 +11,19 @@
 class Rocket final : public Entity {
 public:
     Rocket(const glm::vec3 &position, const glm::vec3 &target, GLFWwindow *window, Camera *pCamera);
+    Rocket(const Rocket &other);
+    Rocket &operator=(const Rocket &other);
+    ~Rocket() override = default;
 
-    void Update() override;
-    void Update(float DeltaTime);
+    void Update(float DeltaTime) override;
     void Render(Shader &shader) override;
 
-private:
-    glm::vec3      m_Target;
-    float          m_Speed = 25.0f;
     bool           m_Exploded{false};
-    ParticleSystem m_ParticleSystem{30000}; // Initialize with 100 m_Particles
+    ParticleSystem m_ParticleSystem{10000};
+
+private:
+    glm::vec3 m_Target;
+    float     m_Speed = 25.0f;
 };
 
 #endif // ROCKET_H

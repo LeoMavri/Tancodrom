@@ -13,9 +13,7 @@ public:
         const std::string &name);
     ~Sun() override = default;
 
-    void Update() override;
-
-    Sun *Update(float DeltaTime);
+    void Update(float DeltaTime) override;
 
 private:
     static constexpr float m_InitialSpeed = 0.1f;

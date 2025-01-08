@@ -17,17 +17,29 @@ Helicopter::Helicopter(const glm::vec3 &position, const glm::vec3 &size, const g
     }
 }
 
-void Helicopter::Update() {
-    // nothing
-}
-
 void Helicopter::Update(const float DeltaTime) {
     m_Model->SetMeshTransform(10, glm::rotate(m_Model->GetMeshTransform(10),
                                               glm::radians(720 * DeltaTime), glm::vec3(0, 0, 1)));
     m_Model->RotateMesh(19, 720 * DeltaTime, glm::vec3(1, 0, 0));
 
+    for (auto &rocket : m_Rockets) {
+        if (rocket.m_Exploded) {
+            if (!rocket.m_ParticleSystem.m_Particles.empty()) {
+                rocket.Update(DeltaTime);
+            } else {
+                m_Rockets.clear();
+            }
+        } else {
+            rocket.Update(DeltaTime);
+        }
+    }
+
+    // std::erase_if(m_Rockets, [](const Rocket &rocket) { return rocket.m_Exploded; });
+
     if (!m_IsSelected)
         return;
+
+    UpdateCameraPosition();
 
     bool isMoving = false;
 
@@ -62,6 +74,11 @@ void Helicopter::Update(const float DeltaTime) {
     if (glfwGetKey(m_pWindow, GLFW_KEY_C) == GLFW_PRESS) {
         MoveAt(SpinRight, DeltaTime);
         isMoving = true;
+    }
+
+    if (glfwGetMouseButton(m_pWindow, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS) {
+        if (m_Rockets.empty())
+            LaunchRocket();
     }
 
     if (!isMoving) {
@@ -142,4 +159,41 @@ void Helicopter::Render(Shader &shader) {
     modelTransform = glm::rotate(modelTransform, glm::radians(m_Yaw), glm::vec3(0.0f, 0.0f, 1.0f));
     modelTransform = glm::scale(modelTransform, m_Size);
     m_Model->Draw(shader, modelTransform);
+
+    for (auto &rocket : m_Rockets) {
+        if (rocket.m_Exploded) {
+            if (!rocket.m_ParticleSystem.m_Particles.empty()) {
+                rocket.Render(shader);
+            } else {
+                m_Rockets.clear();
+            }
+        } else {
+            rocket.Render(shader);
+        }
+    }
+}
+
+void Helicopter::UpdateCameraPosition() const {
+    constexpr float distance = 20.0f;
+    const auto      offset   = glm::vec3(
+            distance * cos(glm::radians(m_pCamera->m_Yaw)) * cos(glm::radians(m_pCamera->m_Pitch)),
+            -distance * sin(glm::radians(m_pCamera->m_Pitch)),
+            distance * sin(glm::radians(m_pCamera->m_Yaw)) * cos(glm::radians(m_pCamera->m_Pitch)));
+
+    m_pCamera->SetPosition(GetPosition() + offset);
+    m_pCamera->LookAt(GetPosition(), GetUp());
+}
+
+void Helicopter::LaunchRocket() {
+    // Adjust the offset to the side where the rocket launches are
+    glm::vec3 sideOffset  = GetRight() * (m_Size.x / 2.0f + 1.0f); // Adjust the offset as needed
+    glm::vec3 frontOffset = GetForward() * (m_Size.z / 2.0f + 2.0f); // Adjust the offset as needed
+    glm::vec3 rocketPosition = m_Position + sideOffset + frontOffset;
+
+    // Set the target to land at y = -5 somewhere in front of the helicopter
+    glm::vec3 rocketTarget =
+            m_Position + GetForward() * 2.0f; // Adjust the target distance as needed
+    rocketTarget.y = -3.0f;
+
+    m_Rockets.emplace_back(rocketPosition, rocketTarget, m_pWindow, m_pCamera);
 }

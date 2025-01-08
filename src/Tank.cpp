@@ -14,7 +14,7 @@ Tank::Tank(const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &ro
     SetModel(m_TankModel);
 }
 
-void Tank::Update() {
+void Tank::Update(float DeltaTime) {
     if (!m_IsSelected)
         return;
 

@@ -10,15 +10,11 @@ Sun::Sun(const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &rota
 
     m_RotationSpeed    = 5.729f;
     m_Color            = glm::vec3(0.6f);
-    m_Intensity        = 25.f;
+    m_Intensity        = 12.f;
     m_InitialIntensity = m_Intensity;
 }
 
-void Sun::Update() {
-    // nothing
-}
-
-Sun *Sun::Update(const float DeltaTime) {
+void Sun::Update(const float DeltaTime) {
     // RotateAround(glm::vec3(0), 300, glm::vec3(0, 0, 1), m_RotationSpeed * DeltaTime * 5);
 
     // if (m_Position.y <= -2)
@@ -30,8 +26,8 @@ Sun *Sun::Update(const float DeltaTime) {
         m_Intensity = m_InitialIntensity;
 
     if (m_Position.y >= 1) {
-        return this;
+        // return this;
     }
 
-    return nullptr;
+    // return nullptr;
 }

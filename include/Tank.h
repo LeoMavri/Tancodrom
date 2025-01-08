@@ -13,7 +13,7 @@ public:
          GLFWwindow *window, Camera *pCamera);
     ~Tank() override = default;
 
-    void Update() override;
+    void Update(float DeltaTime) override;
     void UpdateCameraPosition() const;
 
     void ControlTank(GLFWwindow *window, float DeltaTime);

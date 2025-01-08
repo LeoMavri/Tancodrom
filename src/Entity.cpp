@@ -15,6 +15,24 @@ void Entity::SetModel(std::string const &path, const bool bSmoothNormals, const 
     m_Model = std::make_unique<Model>(path, bSmoothNormals, modelId);
 }
 
+Entity::Entity(const Entity &other) :
+    m_Name(other.m_Name), m_Model(std::make_unique<Model>(*other.m_Model)),
+    m_Position(other.m_Position), m_Rotation(other.m_Rotation), m_Size(other.m_Size),
+    m_pWindow(other.m_pWindow), m_pCamera(other.m_pCamera) {}
+
+Entity &Entity::operator=(const Entity &other) {
+    if (this != &other) {
+        m_Name     = other.m_Name;
+        m_Model    = std::make_unique<Model>(*other.m_Model);
+        m_Position = other.m_Position;
+        m_Rotation = other.m_Rotation;
+        m_Size     = other.m_Size;
+        m_pWindow  = other.m_pWindow;
+        m_pCamera  = other.m_pCamera;
+    }
+    return *this;
+}
+
 void Entity::SetModel(Model *model) { m_Model = std::make_unique<Model>(*model); }
 
 Model *Entity::GetModel() const { return m_Model.get(); }

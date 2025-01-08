@@ -9,6 +9,6 @@ Terrain::Terrain(const glm::vec3 &position, const glm::vec3 &size, const glm::ve
     m_Model = std::make_unique<Model>("../models/Terrain/Grass.obj", true);
 }
 
-void Terrain::Update() {
+void Terrain::Update(const float DeltaTime) {
     // todo
 }

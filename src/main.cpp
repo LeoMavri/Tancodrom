@@ -165,20 +165,21 @@ int main() {
     // auto rocket = std::make_unique<Rocket>(glm::vec3(40.0f, 30.0f, 0.0f),
     //                                        glm::vec3(0.0f, -5.0f, 0.0f), window, pCamera.get());
 
-    Sun sun(glm::vec3(5, 20, 0), glm::vec3(0.005), glm::vec3(0, 0, 0), "sun");
+    Sun sun(glm::vec3(5, 160, 0), glm::vec3(0.005), glm::vec3(0, 0, 0), "sun");
 
-    // glEnable(GL_CULL_FACE);
-    // glEnable(GL_DEPTH_TEST);
-    // glEnable(GL_COLOR_MATERIAL);
-    // glDisable(GL_LIGHTING);
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glDisable(GL_LIGHTING);
 
-    // glFrontFace(GL_CCW);
-    // glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
+    glCullFace(GL_BACK);
 
     // Shadow map setup
-    constexpr unsigned int SHADOW_WIDTH = 8192, SHADOW_HEIGHT = 8192;
-    unsigned int           depthMapFBO, depthMap;
+    unsigned int depthMapFBO;
     glGenFramebuffers(1, &depthMapFBO);
+    const unsigned int SHADOW_WIDTH = 8192, SHADOW_HEIGHT = 8192;
+    unsigned int       depthMap;
     glGenTextures(1, &depthMap);
     glBindTexture(GL_TEXTURE_2D, depthMap);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0,
@@ -187,18 +188,19 @@ int main() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    float borderColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    float borderColor[] = {1.0, 1.0, 1.0, 1.0};
     glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
     glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
     glDrawBuffer(GL_NONE);
     glReadBuffer(GL_NONE);
-    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        std::cerr << "Framebuffer not complete!" << std::endl;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    Rocket rocket = Rocket(glm::vec3(40.0f, 30.0f, 0.0f), glm::vec3(0.0f, 5.0f, 0.0f), window,
-                           pCamera.get());
+    shadowShader.Use();
+    shadowShader.SetInt("diffuseTexture", 0);
+    shadowShader.SetInt("shadowMap", 1);
+
+    heli.SetSelected(true);
 
     // Game loop
     while (!glfwWindowShouldClose(window)) {
@@ -211,9 +213,8 @@ int main() {
         KeyboardCallback(window);
 
         // tank.Update();
-        // heli.Update(static_cast<float>(DeltaTime));
-        // sun.Update(static_cast<float>(DeltaTime));
-        // rocket.Update(static_cast<float>(DeltaTime));
+        heli.Update(static_cast<float>(DeltaTime));
+        sun.Update(static_cast<float>(DeltaTime));
 
         shadowDepthShader.Use();
         shadowDepthShader.SetMat4("lightSpaceMatrix", sun.GetLightSpaceMatrix());
@@ -222,11 +223,10 @@ int main() {
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
 
-        // sun.Render(shadowDepthShader);
-        // tank.Render(shadowDepthShader);
-        // heli.Render(shadowDepthShader);
-        // terrain.Render(shadowDepthShader);
-        // rocket.Render(shadowDepthShader);
+        terrain.Render(shadowDepthShader);
+        sun.Render(shadowDepthShader);
+        tank.Render(shadowDepthShader);
+        heli.Render(shadowDepthShader);
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glActiveTexture(GL_TEXTURE0);
@@ -251,14 +251,16 @@ int main() {
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, depthMap);
 
+        terrain.Render(shadowShader);
         sun.Render(shadowShader);
         tank.Render(shadowShader);
         heli.Render(shadowShader);
-        terrain.Render(shadowShader);
-        rocket.Render(shadowShader);
+        // rocket.Render(shadowShader);
 
-        heli.SetSelected(true);
+        float timeOfDay = fmod(glfwGetTime(), 0.01f); // Simulate a 24-hour cycle
+        float hueShift  = (timeOfDay < 12.0f) ? timeOfDay / 12.0f : (24.0f - timeOfDay) / 12.0f;
 
+        skybox.SetSkyboxHue(hueShift);
         skybox.Draw(pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 
         glfwSwapBuffers(window);

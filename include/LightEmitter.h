@@ -16,7 +16,7 @@ public:
     glm::mat4 GetLightProjection();
     glm::mat4 GetLightView();
 
-    void Update() override;
+    void Update(float DeltaTime) override;
 
     glm::vec3 m_Color;
     float     m_Intensity;

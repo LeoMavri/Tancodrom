@@ -12,7 +12,7 @@ public:
             const std::string &name, GLFWwindow *window, Camera *pCamera);
     ~Terrain() override = default;
 
-    void Update() override;
+    void Update(float DeltaTime) override;
 };
 
 #endif // TERRAIN_H

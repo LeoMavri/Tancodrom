@@ -17,12 +17,13 @@ public:
 
     void Explode(const glm::vec3 &position);
 
-private:
     std::vector<Particle> m_Particles;
-    Shader                m_Shader{"../shaders/particles/particle_vertex.glsl",
+
+private:
+    Shader       m_Shader{"../shaders/particles/particle_vertex.glsl",
                     "../shaders/particles/particle_fragment.glsl"};
-    unsigned int          maxParticles;
-    unsigned int          lastUsedParticle;
+    unsigned int maxParticles;
+    unsigned int lastUsedParticle;
 
     unsigned int FindUnusedParticle();
     static void  RespawnParticle(Particle &particle, const glm::vec3 &position);

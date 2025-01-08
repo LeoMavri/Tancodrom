@@ -14,8 +14,8 @@ ParticleSystem::ParticleSystem(const unsigned int maxParticles) :
     maxParticles(maxParticles), lastUsedParticle(0) {
     m_Particles.resize(maxParticles);
 
-    float particleQuad[] = {-0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, 1.0f, 0.0f,
-                            0.5f,  0.5f,  1.0f, 1.0f, -0.5f, 0.5f,  0.0f, 1.0f};
+    constexpr float particleQuad[] = {-0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, 1.0f, 0.0f,
+                                      0.5f,  0.5f,  1.0f, 1.0f, -0.5f, 0.5f,  0.0f, 1.0f};
 
     glGenVertexArrays(1, &quadVAO);
     glGenBuffers(1, &quadVBO);
@@ -23,7 +23,8 @@ ParticleSystem::ParticleSystem(const unsigned int maxParticles) :
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(particleQuad), particleQuad, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *) 0);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float),
+                          static_cast<void *>(nullptr));
     glBindVertexArray(0);
 }
 
@@ -60,12 +61,16 @@ void ParticleSystem::Render(const glm::mat4 &view, const glm::mat4 &projection) 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
+    // std::cout << std::format("Rendering {} particles\n", m_Particles.size());
+
     glBindVertexArray(quadVAO);
     for (const auto &particle : m_Particles) {
         if (particle.Life > 0.0f) {
             m_Shader.SetVec3("offset", particle.Position);
             m_Shader.SetVec4("color", particle.Color);
             glDrawArrays(GL_POINTS, 0, 1);
+            // std::cout << std::format("Particle rendered at ({}, {}, {})\n", particle.Position.x,
+            //                          particle.Position.y, particle.Position.z);
         }
     }
     glBindVertexArray(0);

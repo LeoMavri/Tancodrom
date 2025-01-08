@@ -11,9 +11,17 @@ Rocket::Rocket(const glm::vec3 &position, const glm::vec3 &target, GLFWwindow *w
     m_Target(target) {
     m_Model = std::make_unique<Model>("../models/Rocket/rocket.obj", false);
 }
+Rocket::Rocket(const Rocket &other) = default;
 
-void Rocket::Update() {
-    // nothing
+Rocket &Rocket::operator=(const Rocket &other) {
+    if (this != &other) {
+        Entity::operator=(other);
+        m_Target         = other.m_Target;
+        m_Exploded       = other.m_Exploded;
+        m_Speed          = other.m_Speed;
+        m_ParticleSystem = other.m_ParticleSystem;
+    }
+    return *this;
 }
 
 void Rocket::Update(const float DeltaTime) {
