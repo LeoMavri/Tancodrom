@@ -1,0 +1,32 @@
+\doxysection{Moon.\+h}
+\hypertarget{Moon_8h_source}{}\label{Moon_8h_source}\index{include/Moon.h@{include/Moon.h}}
+\mbox{\hyperlink{Moon_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 08\ Jan\ 2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ MOON\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MOON\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{LightEmitter_8h}{LightEmitter.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMoon_a2a2b7905255514c2af2e5053eebc3f7a}{Moon}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classLightEmitter_ab50d915b0102a0b76d256482253f4ea9}{LightEmitter}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classMoon_a2a2b7905255514c2af2e5053eebc3f7a}{Moon}}(\textcolor{keyword}{const}\ glm::vec3\ \&position,\ \textcolor{keyword}{const}\ glm::vec3\ \&size,\ \textcolor{keyword}{const}\ glm::vec3\ \&rotation,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classMoon_a1bcd336a14eabdc025c5338de1c09a79}{\string~Moon}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMoon_a4c139798a7a08da87179037ca0795584}{Update}}(\textcolor{keywordtype}{float}\ DeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classMoon_aa65e34e53ee1c4865a1a16a05d7aca43}{m\_InitialSpeed}}\ =\ 0.1f;\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMoon_a6bfb3d87d80ec816ae9c07158a585625}{m\_RotationSpeed}};\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMoon_a3944c1c438c2f01c7d7e218f570b9067}{m\_InitialIntensity}};\ }
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MOON\_H}}
+
+\end{DoxyCode}

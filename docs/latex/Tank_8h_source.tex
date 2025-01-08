@@ -1,0 +1,52 @@
+\doxysection{Tank.\+h}
+\hypertarget{Tank_8h_source}{}\label{Tank_8h_source}\index{include/Tank.h@{include/Tank.h}}
+\mbox{\hyperlink{Tank_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 06\ Jan\ 2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ TANK\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ TANK\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Camera_8h}{Camera.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Rocket_8h}{Rocket.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTank_ae1fe2a8efff3be3159777858d18edf2b}{Tank}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classTank_ae1fe2a8efff3be3159777858d18edf2b}{Tank}}(\textcolor{keyword}{const}\ glm::vec3\ \&position,\ \textcolor{keyword}{const}\ glm::vec3\ \&size,\ \textcolor{keyword}{const}\ glm::vec3\ \&rotation,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ GLFWwindow\ *window,\ \mbox{\hyperlink{classCamera}{Camera}}\ *pCamera);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classTank_a9efab5b947b184c43ed1e5de58a96234}{\string~Tank}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTank_aa22e9219cab317d416c4742a6a04c772}{Update}}(\textcolor{keywordtype}{float}\ DeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTank_abd0114dfeb74b57ecee6bb79f9bb3b45}{UpdateCameraPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTank_ab6a31951b9e7b806d1c48e9e19ee71e4}{ControlTank}}(GLFWwindow\ *window,\ \textcolor{keywordtype}{float}\ DeltaTime);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTank_a7e864d1d4cdce926047789e139220128}{MouseControl}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTank_ae0d270f0693b95ffc542251dd2002090}{SetEntities}}(\textcolor{keyword}{const}\ std::vector<Entity\ *>\ \&entities);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTank_a2baddca89d18f4fd7f84531fa800d5ff}{Render}}(\mbox{\hyperlink{classShader}{Shader}}\ \&shader)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTank_a7388b1b2820ab69760406234d81f9026}{Fire}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classCamera}{Camera}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{classTank_ad93527e17ca9a7411c95caabbcdf9bf2}{m\_pCamera}};\ }
+\DoxyCodeLine{00076\ \ \ \ \ std::vector<Entity\ *>\ \mbox{\hyperlink{classTank_a776f0f7153b418bee7662b1114f44d22}{m\_Entities}};\ }
+\DoxyCodeLine{00077\ \ \ \ \ std::vector<Rocket>\ \ \ \mbox{\hyperlink{classTank_ac4b6245c61e26b79d86a5f10a243309b}{m\_Rockets}};\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{classTank_a6c821e1a911c61866cd38134cf2849ea}{m\_pNearestEntity}}\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classTank_a0b17fbef9c9de033426297cdb4d4a767}{m\_TurretRotationSpeed}}\ =\ 1.0f;\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classTank_a97315e409d102c77db76844006d277f2}{m\_Speed}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 5.0f;\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classTank_ad907a977d1ebc599e7e5a9c81940399d}{m\_MouseSensitivity}}\ =}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ 0.1f;\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classTank_ac108d2436e258aaa61ff5e32cd6da6af}{m\_TurretRotation}}\ =\ 0.0f;\ }
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TANK\_H}}
+
+\end{DoxyCode}

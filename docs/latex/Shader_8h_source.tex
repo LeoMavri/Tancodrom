@@ -1,0 +1,52 @@
+\doxysection{Shader.\+h}
+\hypertarget{Shader_8h_source}{}\label{Shader_8h_source}\index{include/Shader.h@{include/Shader.h}}
+\mbox{\hyperlink{Shader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SHADER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SHADER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <pch.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classShader_a3ad68a2caa88d9b3dfa9e16325dddbbf}{Shader}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{classShader_a3ad68a2caa88d9b3dfa9e16325dddbbf}{Shader}}(\textcolor{keyword}{const}\ std::string\_view\ \&vertexPath,\ \textcolor{keyword}{const}\ std::string\_view\ \&fragmentPath);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classShader_aff01df87e8a102f270b5b135a295e59d}{\string~Shader}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a11a2de17d1d077ec34acd4f7cd57f6b1}{Use}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classShader_a9c12bedaaa026e0fe6e7ce5cb1eb2d60}{GetID}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classShader_a58b2160ee2bd491a751eff738e3819ca}{loc\_model\_matrix}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classShader_a294b1e7e86266040a9aeb1fc8f311f7b}{loc\_view\_matrix}};\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classShader_af2f11e3dcfbfb669910bc3c244e1cfe2}{loc\_projection\_matrix}};\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a645ef3753b1fc09a30dbb26f817d88e5}{SetInt}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{int}\ value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a4ae0d05dad5a25a15ef2909b68c2edfd}{SetFloat}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a8d1456b390875e5a99e70a658a4dfdd3}{SetVec3}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ glm::vec3\ \&value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a685cbffc1eec6ae40fe103a8fcc2aaaf}{SetVec3}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a12c2843859a8c0f26d8342ef17b4355c}{SetVec4}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ glm::vec4\ \&value)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a9b0618bb9742629d5e0777f41ceaa062}{SetVec4}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z,\ \textcolor{keywordtype}{float}\ w)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a073aaba20478e601d18d761ef187d9aa}{SetMat4}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ glm::mat4\ \&mat)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a3e017925d57fcf8181b705ec09a3df73}{SetLightsVec3}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ std::vector<glm::vec3>\ \&vec)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_a2f85f91ced223188d32f72a13f78c5f4}{SetLightsFloat}}(\textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ std::vector<float>\ \&vec)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Make\ a\ getter\ /\ setter\ for\ this}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classShader_a142a08b6fbdfc982d82ca10ee0b0f38d}{ID}};\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_aa774b89b7c33be01b38333c2619582e0}{Init}}(\textcolor{keyword}{const}\ std::string\_view\ \&vertexPath,\ \textcolor{keyword}{const}\ std::string\_view\ \&fragmentPath);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classShader_ae398266f210a37e11553222d4266733d}{CheckCompileErrors}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ shader,\ \textcolor{keyword}{const}\ std::string\ \&type);}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SHADER\_H}}
+
+\end{DoxyCode}

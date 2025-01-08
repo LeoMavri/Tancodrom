@@ -1,0 +1,365 @@
+\doxysection{Helicopter Class Reference}
+\hypertarget{classHelicopter}{}\label{classHelicopter}\index{Helicopter@{Helicopter}}
+
+
+A class representing a helicopter entity in the game.  
+
+
+
+
+{\ttfamily \#include $<$Helicopter.\+h$>$}
+
+Inheritance diagram for Helicopter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classHelicopter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHelicopter_adb817b3da31e87196bc739bf5db99110}{Helicopter}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, GLFWwindow \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}p\+Camera)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classHelicopter}{Helicopter} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHelicopter_afee08ea55129fc344c9374d70f673708}{\texorpdfstring{$\sim$}{\string~}\+Helicopter}} () override=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classHelicopter}{Helicopter} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHelicopter_a8501ae503552b52245be56596fa3c727}{Update}} (float Delta\+Time) override
+\begin{DoxyCompactList}\small\item\em Updates the state of the helicopter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHelicopter_aef19bc1269396d197decb67188ca9ec4}{Render}} (\mbox{\hyperlink{classShader}{Shader}} \&shader) override
+\begin{DoxyCompactList}\small\item\em Renders the helicopter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHelicopter_a3ee85698d38e1a28398eb2a888d52454}{Update\+Camera\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Updates the position of the camera relative to the helicopter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHelicopter_a60531bfd61136b2ea9263423bf61a7f0}{Launch\+Rocket}} (const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Launches a rocket from the helicopter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHelicopter_a0b025b13f2aca5e602a015cd1ed5dbe5}{Move\+At}} (const \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} \&direction, float Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Moves the helicopter in a specified direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHelicopter_a260f7c1f8fced3e0ae44de4dfd2f81fb}{Set\+Entities}} (const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&entities)
+\begin{DoxyCompactList}\small\item\em Sets the entities that the helicopter interacts with. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, std\+::string name, GLFWwindow \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}p\+Camera)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity_a8cee18c049f0c60ed610ca825aecd53d}{Entity}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a32c3d1b7e4029970647fa03b804e3a6b}{operator=}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEntity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEntity_a87d3f4fcf10297e08d86f69c627b26a9}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_af0ad47262e35350b2751bd3d9175ae4c}{Set\+Model}} (const std\+::string \&path, bool b\+Smooth\+Normals, int model\+Id)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ac101508c5799d48d7bd03814f2640c85}{Set\+Model}} (\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*}model)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_acc8fdd453f0357acf9325c2c7d256de2}{Get\+Model}} () const
+\begin{DoxyCompactList}\small\item\em Get the model of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a860571917682a3a64c799be1218f4073}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa7ae2557dab53a3a45468761b734f755}{Set\+Position}} (const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Set the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a12c6b6fef4a48e28db5246e94d4901b3}{Move}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Move the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ae9b5ef1f81fa295bcc926b6703534723}{Move\+Towards}} (const glm\+::vec3 \&point, float speed)
+\begin{DoxyCompactList}\small\item\em Move the entity towards a point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a96c28f0b78bfbfcc19d2789116c07693}{Get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em Get the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a2af8db2160a71fc0e89041ee203babf0}{Set\+Rotation}} (const glm\+::vec3 \&rotation)
+\begin{DoxyCompactList}\small\item\em Set the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aefef11f4380b27498e6a3d85e2f13f99}{Look\+At}} (const glm\+::vec3 \&target\+Point, const glm\+::vec3 \&up)
+\begin{DoxyCompactList}\small\item\em Make the entity look at a target point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa2c7d13484912d24880aad5f488c640b}{Rotate\+Around}} (const glm\+::vec3 \&point, float distance, const glm\+::vec3 \&axis, float speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity around a point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a53518142fb4401a3d69d43cf8dd2fa42}{Rotate}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Rotate the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aca935e9d4ebb77fad4e7d16a9f3bfd1b}{Rotate\+Towards}} (const glm\+::vec3 \&target\+Point, float rotation\+Speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity towards a target point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a4c9f9dcfdda8976bbd623ba219e89e67}{Get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the size of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ace27110281909734dcf6d28f026bb8bc}{Set\+Size}} (const glm\+::vec3 \&size)
+\begin{DoxyCompactList}\small\item\em Set the size of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a373568be202c11d9fa5cc62efbb123f4}{Get\+Forward}} () const
+\begin{DoxyCompactList}\small\item\em Get the forward vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_ab615e480330add399615a060f74cc520}{Get\+Right}} () const
+\begin{DoxyCompactList}\small\item\em Get the right vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_afe0956076d06fbda027eda0bf724fd7f}{Get\+Up}} () const
+\begin{DoxyCompactList}\small\item\em Get the up vector of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a62bdc58dee00fb544ffcbffce0c5cd64}{Set\+Selected}} (bool is\+Selected)
+\begin{DoxyCompactList}\small\item\em Set the selected state of the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a877246ea4b63ab6dc49069afbc2784ce}{Is\+Selected}} () const
+\begin{DoxyCompactList}\small\item\em Check if the entity is selected. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classEntity_a44ccd287aa36aa32586e926dd6ac4cfd}{Get\+Model\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the model matrix of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aac1d44e590422c3205ef2544702ac0d1}{Normalize\+Rotation}} ()
+\begin{DoxyCompactList}\small\item\em Normalize the rotation of the entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classHelicopter_a5c89a9bc02b56d187247067f1e7b9a9d}{m\+\_\+\+Pitch}} = 0
+\begin{DoxyCompactList}\small\item\em The pitch of the helicopter. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classHelicopter_a4a0a76ae2515fb49b5c58f6dfe950bb8}{m\+\_\+\+Yaw}} = 0
+\begin{DoxyCompactList}\small\item\em The yaw of the helicopter. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRocket}{Rocket}} $>$ \mbox{\hyperlink{classHelicopter_aec5ffaf279b892941435f58de2053d8f}{m\+\_\+\+Rockets}}
+\begin{DoxyCompactList}\small\item\em The rockets launched by the helicopter. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classHelicopter_aa119b736f0be4170de8aa3a3b1888c3c}{m\+\_\+\+Entities}}
+\begin{DoxyCompactList}\small\item\em The entities that the helicopter interacts with. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr float \mbox{\hyperlink{classHelicopter_ad2162cadd5168eef7ee03703491a69f7}{m\+\_\+\+Rotation\+Speed}} = 30.\+0f
+\begin{DoxyCompactList}\small\item\em The rotation speed of the helicopter. \end{DoxyCompactList}\item 
+static constexpr float \mbox{\hyperlink{classHelicopter_a3ed137b589d80d339e05c604f95e19fe}{m\+\_\+\+Move\+Speed}} = 6.\+0f
+\begin{DoxyCompactList}\small\item\em The movement speed of the helicopter. \end{DoxyCompactList}\item 
+static constexpr float \mbox{\hyperlink{classHelicopter_a23406e2fc96c291c5efee507b6ed8837}{m\+\_\+\+Max\+Tilt}} = 30.\+0f
+\begin{DoxyCompactList}\small\item\em The maximum tilt angle of the helicopter. \end{DoxyCompactList}\item 
+static constexpr float \mbox{\hyperlink{classHelicopter_a15b9089cce4bfdfeb4871181ffc57772}{m\+\_\+\+Tilt\+Speed}} = 15.\+0f
+\begin{DoxyCompactList}\small\item\em The tilt speed of the helicopter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEntity_a51b8088b7655752e60eaa8418ca7133d}{m\+\_\+\+Should\+Render}} \{true\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEntity_a1404c544fe70c6f03451b2a593b226c6}{m\+\_\+\+Name}}
+\begin{DoxyCompactList}\small\item\em Name of the entity. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classModel}{Model}} $>$ \mbox{\hyperlink{classEntity_ac109c27dbb064b45593e141be14bc76b}{m\+\_\+\+Model}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classModel}{Model} of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_abfbc158802fe16e28f3841e08b5eaf00}{m\+\_\+\+Position}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Position of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_acd8b0537426a4920e4345679b384b337}{m\+\_\+\+Rotation}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Rotation of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a9bb2bbfb957ae72b0e2ddfe4d5ef546f}{m\+\_\+\+Size}} \{1, 1, 1\}
+\begin{DoxyCompactList}\small\item\em Size of the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_aee372f0118becb845fbecc08e7887f0b}{m\+\_\+p\+Camera}}
+\begin{DoxyCompactList}\small\item\em Pointer to the camera. \end{DoxyCompactList}\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_a2ad897cd1be3afe3189a6afd944b2bb8}{m\+\_\+p\+Window}}
+\begin{DoxyCompactList}\small\item\em Pointer to the GLFW window. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a7e5fe600930c10fa22489b7a7eababe1}{m\+\_\+\+Is\+Selected}} \{false\}
+\begin{DoxyCompactList}\small\item\em Whether the entity is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class representing a helicopter entity in the game. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classHelicopter_adb817b3da31e87196bc739bf5db99110}\index{Helicopter@{Helicopter}!Helicopter@{Helicopter}}
+\index{Helicopter@{Helicopter}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{Helicopter()}{Helicopter()}}
+{\footnotesize\ttfamily \label{classHelicopter_adb817b3da31e87196bc739bf5db99110} 
+Helicopter\+::\+Helicopter (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position}{, }\item[{const glm\+::vec3 \&}]{size}{, }\item[{const glm\+::vec3 \&}]{rotation}{, }\item[{GLFWwindow \texorpdfstring{$\ast$}{*}}]{window}{, }\item[{\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}}]{p\+Camera}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{classHelicopter}{Helicopter} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The initial position of the helicopter. \\
+\hline
+{\em size} & The size of the helicopter. \\
+\hline
+{\em rotation} & The initial rotation of the helicopter. \\
+\hline
+{\em window} & Pointer to the GLFW window. \\
+\hline
+{\em p\+Camera} & Pointer to the camera. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHelicopter_afee08ea55129fc344c9374d70f673708}\index{Helicopter@{Helicopter}!````~Helicopter@{\texorpdfstring{$\sim$}{\string~}Helicopter}}
+\index{````~Helicopter@{\texorpdfstring{$\sim$}{\string~}Helicopter}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Helicopter()}{\string~Helicopter()}}
+{\footnotesize\ttfamily \label{classHelicopter_afee08ea55129fc344c9374d70f673708} 
+Helicopter\+::\texorpdfstring{$\sim$}{\string~}\+Helicopter (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{classHelicopter}{Helicopter} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classHelicopter_a60531bfd61136b2ea9263423bf61a7f0}\index{Helicopter@{Helicopter}!LaunchRocket@{LaunchRocket}}
+\index{LaunchRocket@{LaunchRocket}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{LaunchRocket()}{LaunchRocket()}}
+{\footnotesize\ttfamily \label{classHelicopter_a60531bfd61136b2ea9263423bf61a7f0} 
+void Helicopter\+::\+Launch\+Rocket (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position}{}\end{DoxyParamCaption})}
+
+
+
+Launches a rocket from the helicopter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The initial position of the rocket. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHelicopter_a0b025b13f2aca5e602a015cd1ed5dbe5}\index{Helicopter@{Helicopter}!MoveAt@{MoveAt}}
+\index{MoveAt@{MoveAt}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{MoveAt()}{MoveAt()}}
+{\footnotesize\ttfamily \label{classHelicopter_a0b025b13f2aca5e602a015cd1ed5dbe5} 
+void Helicopter\+::\+Move\+At (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} \&}]{direction}{, }\item[{float}]{Delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Moves the helicopter in a specified direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & The direction to move the helicopter. \\
+\hline
+{\em Delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHelicopter_aef19bc1269396d197decb67188ca9ec4}\index{Helicopter@{Helicopter}!Render@{Render}}
+\index{Render@{Render}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily \label{classHelicopter_aef19bc1269396d197decb67188ca9ec4} 
+void Helicopter\+::\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classShader}{Shader}} \&}]{shader}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Renders the helicopter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader used for rendering. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classEntity_af0bf9c60dca103badde4a488a90f2f84}{Entity}}.
+
+\Hypertarget{classHelicopter_a260f7c1f8fced3e0ae44de4dfd2f81fb}\index{Helicopter@{Helicopter}!SetEntities@{SetEntities}}
+\index{SetEntities@{SetEntities}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{SetEntities()}{SetEntities()}}
+{\footnotesize\ttfamily \label{classHelicopter_a260f7c1f8fced3e0ae44de4dfd2f81fb} 
+void Helicopter\+::\+Set\+Entities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&}]{entities}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the entities that the helicopter interacts with. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entities} & A vector of pointers to the entities. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHelicopter_a8501ae503552b52245be56596fa3c727}\index{Helicopter@{Helicopter}!Update@{Update}}
+\index{Update@{Update}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classHelicopter_a8501ae503552b52245be56596fa3c727} 
+void Helicopter\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the state of the helicopter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEntity_a966bf9fb7ec06b0151e7eee0db43571a}{Entity}}.
+
+\Hypertarget{classHelicopter_a3ee85698d38e1a28398eb2a888d52454}\index{Helicopter@{Helicopter}!UpdateCameraPosition@{UpdateCameraPosition}}
+\index{UpdateCameraPosition@{UpdateCameraPosition}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{UpdateCameraPosition()}{UpdateCameraPosition()}}
+{\footnotesize\ttfamily \label{classHelicopter_a3ee85698d38e1a28398eb2a888d52454} 
+void Helicopter\+::\+Update\+Camera\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Updates the position of the camera relative to the helicopter. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classHelicopter_aa119b736f0be4170de8aa3a3b1888c3c}\index{Helicopter@{Helicopter}!m\_Entities@{m\_Entities}}
+\index{m\_Entities@{m\_Entities}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_Entities}{m\_Entities}}
+{\footnotesize\ttfamily \label{classHelicopter_aa119b736f0be4170de8aa3a3b1888c3c} 
+std\+::vector$<$\mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*}$>$ Helicopter\+::m\+\_\+\+Entities\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The entities that the helicopter interacts with. 
+
+\Hypertarget{classHelicopter_a23406e2fc96c291c5efee507b6ed8837}\index{Helicopter@{Helicopter}!m\_MaxTilt@{m\_MaxTilt}}
+\index{m\_MaxTilt@{m\_MaxTilt}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_MaxTilt}{m\_MaxTilt}}
+{\footnotesize\ttfamily \label{classHelicopter_a23406e2fc96c291c5efee507b6ed8837} 
+float Helicopter\+::m\+\_\+\+Max\+Tilt = 30.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The maximum tilt angle of the helicopter. 
+
+\Hypertarget{classHelicopter_a3ed137b589d80d339e05c604f95e19fe}\index{Helicopter@{Helicopter}!m\_MoveSpeed@{m\_MoveSpeed}}
+\index{m\_MoveSpeed@{m\_MoveSpeed}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_MoveSpeed}{m\_MoveSpeed}}
+{\footnotesize\ttfamily \label{classHelicopter_a3ed137b589d80d339e05c604f95e19fe} 
+float Helicopter\+::m\+\_\+\+Move\+Speed = 6.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The movement speed of the helicopter. 
+
+\Hypertarget{classHelicopter_a5c89a9bc02b56d187247067f1e7b9a9d}\index{Helicopter@{Helicopter}!m\_Pitch@{m\_Pitch}}
+\index{m\_Pitch@{m\_Pitch}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_Pitch}{m\_Pitch}}
+{\footnotesize\ttfamily \label{classHelicopter_a5c89a9bc02b56d187247067f1e7b9a9d} 
+float Helicopter\+::m\+\_\+\+Pitch = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The pitch of the helicopter. 
+
+\Hypertarget{classHelicopter_aec5ffaf279b892941435f58de2053d8f}\index{Helicopter@{Helicopter}!m\_Rockets@{m\_Rockets}}
+\index{m\_Rockets@{m\_Rockets}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_Rockets}{m\_Rockets}}
+{\footnotesize\ttfamily \label{classHelicopter_aec5ffaf279b892941435f58de2053d8f} 
+std\+::vector$<$\mbox{\hyperlink{classRocket}{Rocket}}$>$ Helicopter\+::m\+\_\+\+Rockets\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The rockets launched by the helicopter. 
+
+\Hypertarget{classHelicopter_ad2162cadd5168eef7ee03703491a69f7}\index{Helicopter@{Helicopter}!m\_RotationSpeed@{m\_RotationSpeed}}
+\index{m\_RotationSpeed@{m\_RotationSpeed}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_RotationSpeed}{m\_RotationSpeed}}
+{\footnotesize\ttfamily \label{classHelicopter_ad2162cadd5168eef7ee03703491a69f7} 
+float Helicopter\+::m\+\_\+\+Rotation\+Speed = 30.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The rotation speed of the helicopter. 
+
+\Hypertarget{classHelicopter_a15b9089cce4bfdfeb4871181ffc57772}\index{Helicopter@{Helicopter}!m\_TiltSpeed@{m\_TiltSpeed}}
+\index{m\_TiltSpeed@{m\_TiltSpeed}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_TiltSpeed}{m\_TiltSpeed}}
+{\footnotesize\ttfamily \label{classHelicopter_a15b9089cce4bfdfeb4871181ffc57772} 
+float Helicopter\+::m\+\_\+\+Tilt\+Speed = 15.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The tilt speed of the helicopter. 
+
+\Hypertarget{classHelicopter_a4a0a76ae2515fb49b5c58f6dfe950bb8}\index{Helicopter@{Helicopter}!m\_Yaw@{m\_Yaw}}
+\index{m\_Yaw@{m\_Yaw}!Helicopter@{Helicopter}}
+\doxysubsubsection{\texorpdfstring{m\_Yaw}{m\_Yaw}}
+{\footnotesize\ttfamily \label{classHelicopter_a4a0a76ae2515fb49b5c58f6dfe950bb8} 
+float Helicopter\+::m\+\_\+\+Yaw = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The yaw of the helicopter. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Helicopter_8h}{Helicopter.\+h}}\end{DoxyCompactItemize}

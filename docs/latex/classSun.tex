@@ -1,0 +1,240 @@
+\doxysection{Sun Class Reference}
+\hypertarget{classSun}{}\label{classSun}\index{Sun@{Sun}}
+
+
+Represents a sun entity in the scene, inheriting from \doxylink{classLightEmitter}{Light\+Emitter}.  
+
+
+
+
+{\ttfamily \#include $<$Sun.\+h$>$}
+
+Inheritance diagram for Sun\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classSun}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSun_a81659024bfae0faff774af29da18cef4}{Sun}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSun}{Sun} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSun_a20a0ec461846030d0f01dce93a7957ae}{\texorpdfstring{$\sim$}{\string~}\+Sun}} () override=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSun_a1368243372713bfef47d85b8770b048a}{Update}} (float Delta\+Time) override
+\begin{DoxyCompactList}\small\item\em Updates the sun\textquotesingle{}s state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classLightEmitter}{Light\+Emitter}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLightEmitter_ab50d915b0102a0b76d256482253f4ea9}{Light\+Emitter}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classLightEmitter}{Light\+Emitter} class. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classLightEmitter_a5a5b0c050bbad6682580c443c3a5fdb9}{Get\+Light\+Space\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the light space matrix of the light emitter. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classLightEmitter_a5fcbf493b6487bc9d0d7c0a5c8765d6a}{Get\+Light\+View}} () const
+\begin{DoxyCompactList}\small\item\em Get the light view matrix of the light emitter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, std\+::string name, GLFWwindow \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}p\+Camera)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity_a8cee18c049f0c60ed610ca825aecd53d}{Entity}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a32c3d1b7e4029970647fa03b804e3a6b}{operator=}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEntity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEntity_a87d3f4fcf10297e08d86f69c627b26a9}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_af0ad47262e35350b2751bd3d9175ae4c}{Set\+Model}} (const std\+::string \&path, bool b\+Smooth\+Normals, int model\+Id)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ac101508c5799d48d7bd03814f2640c85}{Set\+Model}} (\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*}model)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_acc8fdd453f0357acf9325c2c7d256de2}{Get\+Model}} () const
+\begin{DoxyCompactList}\small\item\em Get the model of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a860571917682a3a64c799be1218f4073}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa7ae2557dab53a3a45468761b734f755}{Set\+Position}} (const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Set the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a12c6b6fef4a48e28db5246e94d4901b3}{Move}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Move the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ae9b5ef1f81fa295bcc926b6703534723}{Move\+Towards}} (const glm\+::vec3 \&point, float speed)
+\begin{DoxyCompactList}\small\item\em Move the entity towards a point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a96c28f0b78bfbfcc19d2789116c07693}{Get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em Get the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a2af8db2160a71fc0e89041ee203babf0}{Set\+Rotation}} (const glm\+::vec3 \&rotation)
+\begin{DoxyCompactList}\small\item\em Set the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aefef11f4380b27498e6a3d85e2f13f99}{Look\+At}} (const glm\+::vec3 \&target\+Point, const glm\+::vec3 \&up)
+\begin{DoxyCompactList}\small\item\em Make the entity look at a target point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa2c7d13484912d24880aad5f488c640b}{Rotate\+Around}} (const glm\+::vec3 \&point, float distance, const glm\+::vec3 \&axis, float speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity around a point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a53518142fb4401a3d69d43cf8dd2fa42}{Rotate}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Rotate the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aca935e9d4ebb77fad4e7d16a9f3bfd1b}{Rotate\+Towards}} (const glm\+::vec3 \&target\+Point, float rotation\+Speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity towards a target point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a4c9f9dcfdda8976bbd623ba219e89e67}{Get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the size of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ace27110281909734dcf6d28f026bb8bc}{Set\+Size}} (const glm\+::vec3 \&size)
+\begin{DoxyCompactList}\small\item\em Set the size of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a373568be202c11d9fa5cc62efbb123f4}{Get\+Forward}} () const
+\begin{DoxyCompactList}\small\item\em Get the forward vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_ab615e480330add399615a060f74cc520}{Get\+Right}} () const
+\begin{DoxyCompactList}\small\item\em Get the right vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_afe0956076d06fbda027eda0bf724fd7f}{Get\+Up}} () const
+\begin{DoxyCompactList}\small\item\em Get the up vector of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a62bdc58dee00fb544ffcbffce0c5cd64}{Set\+Selected}} (bool is\+Selected)
+\begin{DoxyCompactList}\small\item\em Set the selected state of the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a877246ea4b63ab6dc49069afbc2784ce}{Is\+Selected}} () const
+\begin{DoxyCompactList}\small\item\em Check if the entity is selected. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classEntity_a44ccd287aa36aa32586e926dd6ac4cfd}{Get\+Model\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the model matrix of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aac1d44e590422c3205ef2544702ac0d1}{Normalize\+Rotation}} ()
+\begin{DoxyCompactList}\small\item\em Normalize the rotation of the entity. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classEntity_af0bf9c60dca103badde4a488a90f2f84}{Render}} (\mbox{\hyperlink{classShader}{Shader}} \&shader)
+\begin{DoxyCompactList}\small\item\em Render the entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classSun_a933116231267427ae482d79dcd66f8eb}{m\+\_\+\+Rotation\+Speed}}
+\begin{DoxyCompactList}\small\item\em The rotation speed of the sun. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classSun_a9c1eb8ea1ab9e18ed3c131ae46d33572}{m\+\_\+\+Initial\+Intensity}}
+\begin{DoxyCompactList}\small\item\em The initial intensity of the sun\textquotesingle{}s light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr float \mbox{\hyperlink{classSun_a372729b0969b25f480f38379b56ea5fe}{m\+\_\+\+Initial\+Speed}} = 0.\+1f
+\begin{DoxyCompactList}\small\item\em The initial speed of the sun. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classLightEmitter}{Light\+Emitter}}}
+\begin{DoxyCompactItemize}
+\item 
+static glm\+::mat4 \mbox{\hyperlink{classLightEmitter_a26e4cfe04586a5fd10c7db2c025b6a1b}{Get\+Light\+Projection}} ()
+\begin{DoxyCompactList}\small\item\em Get the light projection matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classLightEmitter}{Light\+Emitter}}}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{classLightEmitter_a85905757a58cc2cd01e58538d8f3bd52}{m\+\_\+\+Color}}
+\begin{DoxyCompactList}\small\item\em Color of the light emitted. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classLightEmitter_a5d73c2bfa00e1bd7689d9dd27a20c7b8}{m\+\_\+\+Intensity}}
+\begin{DoxyCompactList}\small\item\em Intensity of the light emitted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEntity_a51b8088b7655752e60eaa8418ca7133d}{m\+\_\+\+Should\+Render}} \{true\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEntity_a1404c544fe70c6f03451b2a593b226c6}{m\+\_\+\+Name}}
+\begin{DoxyCompactList}\small\item\em Name of the entity. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classModel}{Model}} $>$ \mbox{\hyperlink{classEntity_ac109c27dbb064b45593e141be14bc76b}{m\+\_\+\+Model}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classModel}{Model} of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_abfbc158802fe16e28f3841e08b5eaf00}{m\+\_\+\+Position}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Position of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_acd8b0537426a4920e4345679b384b337}{m\+\_\+\+Rotation}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Rotation of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a9bb2bbfb957ae72b0e2ddfe4d5ef546f}{m\+\_\+\+Size}} \{1, 1, 1\}
+\begin{DoxyCompactList}\small\item\em Size of the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_aee372f0118becb845fbecc08e7887f0b}{m\+\_\+p\+Camera}}
+\begin{DoxyCompactList}\small\item\em Pointer to the camera. \end{DoxyCompactList}\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_a2ad897cd1be3afe3189a6afd944b2bb8}{m\+\_\+p\+Window}}
+\begin{DoxyCompactList}\small\item\em Pointer to the GLFW window. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a7e5fe600930c10fa22489b7a7eababe1}{m\+\_\+\+Is\+Selected}} \{false\}
+\begin{DoxyCompactList}\small\item\em Whether the entity is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a sun entity in the scene, inheriting from \doxylink{classLightEmitter}{Light\+Emitter}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSun_a81659024bfae0faff774af29da18cef4}\index{Sun@{Sun}!Sun@{Sun}}
+\index{Sun@{Sun}!Sun@{Sun}}
+\doxysubsubsection{\texorpdfstring{Sun()}{Sun()}}
+{\footnotesize\ttfamily \label{classSun_a81659024bfae0faff774af29da18cef4} 
+Sun\+::\+Sun (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position}{, }\item[{const glm\+::vec3 \&}]{size}{, }\item[{const glm\+::vec3 \&}]{rotation}{, }\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classSun}{Sun} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The initial position of the sun. \\
+\hline
+{\em size} & The size of the sun. \\
+\hline
+{\em rotation} & The rotation of the sun. \\
+\hline
+{\em name} & The name of the sun entity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSun_a20a0ec461846030d0f01dce93a7957ae}\index{Sun@{Sun}!````~Sun@{\texorpdfstring{$\sim$}{\string~}Sun}}
+\index{````~Sun@{\texorpdfstring{$\sim$}{\string~}Sun}!Sun@{Sun}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Sun()}{\string~Sun()}}
+{\footnotesize\ttfamily \label{classSun_a20a0ec461846030d0f01dce93a7957ae} 
+Sun\+::\texorpdfstring{$\sim$}{\string~}\+Sun (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSun_a1368243372713bfef47d85b8770b048a}\index{Sun@{Sun}!Update@{Update}}
+\index{Update@{Update}!Sun@{Sun}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classSun_a1368243372713bfef47d85b8770b048a} 
+void Sun\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the sun\textquotesingle{}s state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classLightEmitter_a92e5410c47d247329753bd5037759dd0}{Light\+Emitter}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSun_a9c1eb8ea1ab9e18ed3c131ae46d33572}\index{Sun@{Sun}!m\_InitialIntensity@{m\_InitialIntensity}}
+\index{m\_InitialIntensity@{m\_InitialIntensity}!Sun@{Sun}}
+\doxysubsubsection{\texorpdfstring{m\_InitialIntensity}{m\_InitialIntensity}}
+{\footnotesize\ttfamily \label{classSun_a9c1eb8ea1ab9e18ed3c131ae46d33572} 
+float Sun\+::m\+\_\+\+Initial\+Intensity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The initial intensity of the sun\textquotesingle{}s light. 
+
+\Hypertarget{classSun_a372729b0969b25f480f38379b56ea5fe}\index{Sun@{Sun}!m\_InitialSpeed@{m\_InitialSpeed}}
+\index{m\_InitialSpeed@{m\_InitialSpeed}!Sun@{Sun}}
+\doxysubsubsection{\texorpdfstring{m\_InitialSpeed}{m\_InitialSpeed}}
+{\footnotesize\ttfamily \label{classSun_a372729b0969b25f480f38379b56ea5fe} 
+float Sun\+::m\+\_\+\+Initial\+Speed = 0.\+1f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The initial speed of the sun. 
+
+\Hypertarget{classSun_a933116231267427ae482d79dcd66f8eb}\index{Sun@{Sun}!m\_RotationSpeed@{m\_RotationSpeed}}
+\index{m\_RotationSpeed@{m\_RotationSpeed}!Sun@{Sun}}
+\doxysubsubsection{\texorpdfstring{m\_RotationSpeed}{m\_RotationSpeed}}
+{\footnotesize\ttfamily \label{classSun_a933116231267427ae482d79dcd66f8eb} 
+float Sun\+::m\+\_\+\+Rotation\+Speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The rotation speed of the sun. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Sun_8h}{Sun.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,39 @@
+\doxysection{Rocket.\+h}
+\hypertarget{Rocket_8h_source}{}\label{Rocket_8h_source}\index{include/Rocket.h@{include/Rocket.h}}
+\mbox{\hyperlink{Rocket_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 07\ Jan\ 2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ ROCKET\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ROCKET\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ParticleSystem_8h}{ParticleSystem.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2}{Rocket}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2}{Rocket}}(\textcolor{keyword}{const}\ glm::vec3\ \&position,\ \textcolor{keyword}{const}\ glm::vec3\ \&target,\ GLFWwindow\ *window,\ \mbox{\hyperlink{classCamera}{Camera}}\ *pCamera);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classRocket_a7a7dc5bf65e4905b39cc43cf95e64328}{Rocket}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2}{Rocket}}\ \&other);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2}{Rocket}}\ \&\mbox{\hyperlink{classRocket_a53fef240a94cdd5ab38fb24fd814f522}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2}{Rocket}}\ \&other);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classRocket_abe8c1ec3fadd4dae02732325a16847ee}{\string~Rocket}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRocket_a352148808cd5a068d36dce7629c14366}{Update}}(\textcolor{keywordtype}{float}\ DeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRocket_ac5b37cd897258b079aca9aed152dce71}{Render}}(\mbox{\hyperlink{classShader}{Shader}}\ \&shader)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classRocket_a15a11d15bb002edf651d1f04b6b2d9f4}{m\_Exploded}}\{\textcolor{keyword}{false}\};\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classParticleSystem}{ParticleSystem}}\ \mbox{\hyperlink{classRocket_a0995f67972244b9ee8f9d7fa1371d62f}{m\_ParticleSystem}}\{10000\};\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{classRocket_a7af56aa65251b99459c4a90256d5f668}{m\_Target}};\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \mbox{\hyperlink{classRocket_a360ff09ef9924c0eedc13d4f371af9ec}{m\_Speed}}\ =\ 100.0f;\ }
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ROCKET\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,39 @@
+\doxysection{Particle\+System.\+h}
+\hypertarget{ParticleSystem_8h_source}{}\label{ParticleSystem_8h_source}\index{include/ParticleSystem.h@{include/ParticleSystem.h}}
+\mbox{\hyperlink{ParticleSystem_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 07\ Jan\ 2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ PARTICLESYSTEM\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ PARTICLESYSTEM\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Particle_8h}{Particle.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Shader_8h}{Shader.h}}>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classParticleSystem_ab4a3e40beefc7b90599daecc38ba90bf}{ParticleSystem}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classParticleSystem_ab4a3e40beefc7b90599daecc38ba90bf}{ParticleSystem}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classParticleSystem_a0479bac8c74d45c073531bfc3078bf82}{maxParticles}});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_ad9bce46a570fbf3d33678fc6567a3f35}{Update}}(\textcolor{keywordtype}{float}\ deltaTime);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a04cae16f91ac56dbbff8b2c60465b12b}{Render}}(\textcolor{keyword}{const}\ glm::mat4\ \&view,\ \textcolor{keyword}{const}\ glm::mat4\ \&projection);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_aa3cd5dd4633964739d6bb514926fa8db}{Explode}}(\textcolor{keyword}{const}\ glm::vec3\ \&position);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ std::vector<Particle>\ \mbox{\hyperlink{classParticleSystem_a1cd9269ae87449c643597a4146686ce0}{m\_Particles}};\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classShader}{Shader}}\ \ \ \ \ \ \ \mbox{\hyperlink{classParticleSystem_a240c1737019423297bc273c41412fe1a}{m\_Shader}};\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classParticleSystem_a0479bac8c74d45c073531bfc3078bf82}{maxParticles}};\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classParticleSystem_aa72bb4adcb420cbbac42c18bf2e9f9df}{lastUsedParticle}};\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classParticleSystem_a5fc8cad42af53b797f270cd944ae7a28}{FindUnusedParticle}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParticleSystem_a9f5fe53fb60ddd008d0229257b9f9c92}{RespawnParticle}}(\mbox{\hyperlink{structParticle}{Particle}}\ \&particle,\ \textcolor{keyword}{const}\ glm::vec3\ \&position);}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PARTICLESYSTEM\_H}}
+
+\end{DoxyCode}

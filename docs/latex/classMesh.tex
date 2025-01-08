@@ -1,0 +1,229 @@
+\doxysection{Mesh Class Reference}
+\hypertarget{classMesh}{}\label{classMesh}\index{Mesh@{Mesh}}
+
+
+A class representing a mesh in a 3D model.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMesh_a84de95fe009a22f0b09d7868f69e2488}{Mesh}} (const std\+::string \&\mbox{\hyperlink{classMesh_ac687e9dcfc7cc60b046fc2ec634200be}{name}}, const std\+::vector$<$ \mbox{\hyperlink{structVertex}{Vertex}} $>$ \&\mbox{\hyperlink{classMesh_a4cb9965ce709668455845e2df9f723fc}{vertices}}, const std\+::vector$<$ unsigned int $>$ \&\mbox{\hyperlink{classMesh_a57ab7a6253cea92abfaaf71ac2f15936}{indices}}, const std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ \&\mbox{\hyperlink{classMesh_abf1e672703bf4f8e104f3b076faaf958}{textures}})
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classMesh}{Mesh} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMesh_a72742dadb66127b1c360703c04cfe50e}{Mesh}} (const std\+::string \&\mbox{\hyperlink{classMesh_ac687e9dcfc7cc60b046fc2ec634200be}{name}}, unsigned int \mbox{\hyperlink{classMesh_a4ce357c1afc5829c42412dec1dcd78fe}{num\+Vertices}}, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structVertex}{Vertex}} $>$ \&\mbox{\hyperlink{classMesh_a4cb9965ce709668455845e2df9f723fc}{vertices}}, unsigned int \mbox{\hyperlink{classMesh_ac763974de1dfa164ad325a4fb6cd946d}{num\+Indexes}}, const std\+::shared\+\_\+ptr$<$ unsigned int $>$ \&\mbox{\hyperlink{classMesh_a57ab7a6253cea92abfaaf71ac2f15936}{indices}}, const std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ \&\mbox{\hyperlink{classMesh_abf1e672703bf4f8e104f3b076faaf958}{textures}})
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classMesh}{Mesh} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMesh_af692a59403433544f88ae9892a7048f7}{Draw}} (const \mbox{\hyperlink{classShader}{Shader}} \&shader, const glm\+::mat4 \&model) const
+\begin{DoxyCompactList}\small\item\em Draw the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{classMesh_a4ce357c1afc5829c42412dec1dcd78fe}{num\+Vertices}}
+\begin{DoxyCompactList}\small\item\em Number of vertices in the mesh. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structVertex}{Vertex}} $>$ \mbox{\hyperlink{classMesh_a4cb9965ce709668455845e2df9f723fc}{vertices}}
+\begin{DoxyCompactList}\small\item\em Pointer to the vertices of the mesh. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classMesh_ac687e9dcfc7cc60b046fc2ec634200be}{name}}
+\begin{DoxyCompactList}\small\item\em Name of the mesh. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classMesh_ac763974de1dfa164ad325a4fb6cd946d}{num\+Indexes}}
+\begin{DoxyCompactList}\small\item\em Number of indices in the mesh. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ unsigned int $>$ \mbox{\hyperlink{classMesh_a57ab7a6253cea92abfaaf71ac2f15936}{indices}}
+\begin{DoxyCompactList}\small\item\em Pointer to the indices of the mesh. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ \mbox{\hyperlink{classMesh_abf1e672703bf4f8e104f3b076faaf958}{textures}}
+\begin{DoxyCompactList}\small\item\em Textures associated with the mesh. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classMesh_a79afa055e485fb65b1a7aa5b8eda2940}{VAO}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structVertex}{Vertex} Array Object for the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classMesh_aafa4e21067a9b0c4407daf5e3c9ea991}{setup\+Mesh}} ()
+\begin{DoxyCompactList}\small\item\em Set up the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{classMesh_af08e5f92b0cf587817841104c16fa803}{VBO}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structVertex}{Vertex} Buffer Object for the mesh. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classMesh_a25262f446aea3107da7c23f126a81faa}{EBO}}
+\begin{DoxyCompactList}\small\item\em Element Buffer Object for the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class representing a mesh in a 3D model. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMesh_a84de95fe009a22f0b09d7868f69e2488}\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classMesh_a84de95fe009a22f0b09d7868f69e2488} 
+Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{structVertex}{Vertex}} $>$ \&}]{vertices}{, }\item[{const std\+::vector$<$ unsigned int $>$ \&}]{indices}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ \&}]{textures}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{classMesh}{Mesh} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the mesh. \\
+\hline
+{\em vertices} & Vector of vertices. \\
+\hline
+{\em indices} & Vector of indices. \\
+\hline
+{\em textures} & Vector of textures. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMesh_a72742dadb66127b1c360703c04cfe50e}\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classMesh_a72742dadb66127b1c360703c04cfe50e} 
+Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{, }\item[{unsigned int}]{num\+Vertices}{, }\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structVertex}{Vertex}} $>$ \&}]{vertices}{, }\item[{unsigned int}]{num\+Indexes}{, }\item[{const std\+::shared\+\_\+ptr$<$ unsigned int $>$ \&}]{indices}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ \&}]{textures}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{classMesh}{Mesh} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the mesh. \\
+\hline
+{\em num\+Vertices} & Number of vertices. \\
+\hline
+{\em vertices} & Shared pointer to the vertices. \\
+\hline
+{\em num\+Indexes} & Number of indices. \\
+\hline
+{\em indices} & Shared pointer to the indices. \\
+\hline
+{\em textures} & Vector of textures. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMesh_af692a59403433544f88ae9892a7048f7}\index{Mesh@{Mesh}!Draw@{Draw}}
+\index{Draw@{Draw}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \label{classMesh_af692a59403433544f88ae9892a7048f7} 
+void Mesh\+::\+Draw (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classShader}{Shader}} \&}]{shader}{, }\item[{const glm\+::mat4 \&}]{model}{}\end{DoxyParamCaption}) const}
+
+
+
+Draw the mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & \doxylink{classShader}{Shader} to use for drawing. \\
+\hline
+{\em model} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMesh_aafa4e21067a9b0c4407daf5e3c9ea991}\index{Mesh@{Mesh}!setupMesh@{setupMesh}}
+\index{setupMesh@{setupMesh}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{setupMesh()}{setupMesh()}}
+{\footnotesize\ttfamily \label{classMesh_aafa4e21067a9b0c4407daf5e3c9ea991} 
+void Mesh\+::setup\+Mesh (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Set up the mesh. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classMesh_a25262f446aea3107da7c23f126a81faa}\index{Mesh@{Mesh}!EBO@{EBO}}
+\index{EBO@{EBO}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{EBO}{EBO}}
+{\footnotesize\ttfamily \label{classMesh_a25262f446aea3107da7c23f126a81faa} 
+unsigned int Mesh\+::\+EBO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Element Buffer Object for the mesh. 
+
+\Hypertarget{classMesh_a57ab7a6253cea92abfaaf71ac2f15936}\index{Mesh@{Mesh}!indices@{indices}}
+\index{indices@{indices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{indices}{indices}}
+{\footnotesize\ttfamily \label{classMesh_a57ab7a6253cea92abfaaf71ac2f15936} 
+std\+::shared\+\_\+ptr$<$unsigned int$>$ Mesh\+::indices}
+
+
+
+Pointer to the indices of the mesh. 
+
+\Hypertarget{classMesh_ac687e9dcfc7cc60b046fc2ec634200be}\index{Mesh@{Mesh}!name@{name}}
+\index{name@{name}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classMesh_ac687e9dcfc7cc60b046fc2ec634200be} 
+std\+::string Mesh\+::name}
+
+
+
+Name of the mesh. 
+
+\Hypertarget{classMesh_ac763974de1dfa164ad325a4fb6cd946d}\index{Mesh@{Mesh}!numIndexes@{numIndexes}}
+\index{numIndexes@{numIndexes}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{numIndexes}{numIndexes}}
+{\footnotesize\ttfamily \label{classMesh_ac763974de1dfa164ad325a4fb6cd946d} 
+unsigned int Mesh\+::num\+Indexes}
+
+
+
+Number of indices in the mesh. 
+
+\Hypertarget{classMesh_a4ce357c1afc5829c42412dec1dcd78fe}\index{Mesh@{Mesh}!numVertices@{numVertices}}
+\index{numVertices@{numVertices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{numVertices}{numVertices}}
+{\footnotesize\ttfamily \label{classMesh_a4ce357c1afc5829c42412dec1dcd78fe} 
+unsigned int Mesh\+::num\+Vertices}
+
+
+
+Number of vertices in the mesh. 
+
+\Hypertarget{classMesh_abf1e672703bf4f8e104f3b076faaf958}\index{Mesh@{Mesh}!textures@{textures}}
+\index{textures@{textures}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{textures}{textures}}
+{\footnotesize\ttfamily \label{classMesh_abf1e672703bf4f8e104f3b076faaf958} 
+std\+::vector$<$\mbox{\hyperlink{structTexture}{Texture}}$>$ Mesh\+::textures}
+
+
+
+Textures associated with the mesh. 
+
+\Hypertarget{classMesh_a79afa055e485fb65b1a7aa5b8eda2940}\index{Mesh@{Mesh}!VAO@{VAO}}
+\index{VAO@{VAO}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{VAO}{VAO}}
+{\footnotesize\ttfamily \label{classMesh_a79afa055e485fb65b1a7aa5b8eda2940} 
+unsigned int Mesh\+::\+VAO}
+
+
+
+\doxylink{structVertex}{Vertex} Array Object for the mesh. 
+
+\Hypertarget{classMesh_af08e5f92b0cf587817841104c16fa803}\index{Mesh@{Mesh}!VBO@{VBO}}
+\index{VBO@{VBO}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{VBO}{VBO}}
+{\footnotesize\ttfamily \label{classMesh_af08e5f92b0cf587817841104c16fa803} 
+unsigned int Mesh\+::\+VBO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{structVertex}{Vertex} Buffer Object for the mesh. 
+
+\Hypertarget{classMesh_a4cb9965ce709668455845e2df9f723fc}\index{Mesh@{Mesh}!vertices@{vertices}}
+\index{vertices@{vertices}!Mesh@{Mesh}}
+\doxysubsubsection{\texorpdfstring{vertices}{vertices}}
+{\footnotesize\ttfamily \label{classMesh_a4cb9965ce709668455845e2df9f723fc} 
+std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{structVertex}{Vertex}}$>$ Mesh\+::vertices}
+
+
+
+Pointer to the vertices of the mesh. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Mesh_8h}{Mesh.\+h}}\end{DoxyCompactItemize}

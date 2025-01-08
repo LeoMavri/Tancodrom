@@ -1,0 +1,95 @@
+\doxysection{Entity.\+h}
+\hypertarget{Entity_8h_source}{}\label{Entity_8h_source}\index{include/Entity.h@{include/Entity.h}}
+\mbox{\hyperlink{Entity_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 24.12.2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ ENTITY\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ENTITY\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Model_8h}{Model.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Texture_8h}{Texture.h}}>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Camera_8h}{Camera.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }\mbox{\hyperlink{Entity_8h_a7fde4036c0c7582e69cc8dd848931bdc}{ModelUPtr}}\ =\ std::unique\_ptr<Model>;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}(\textcolor{keyword}{const}\ glm::vec3\ \&position,\ \textcolor{keyword}{const}\ glm::vec3\ \&size,\ \textcolor{keyword}{const}\ glm::vec3\ \&rotation,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ std::string\ name,\ GLFWwindow\ *window,\ \mbox{\hyperlink{classCamera}{Camera}}\ *pCamera);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classEntity_a8cee18c049f0c60ed610ca825aecd53d}{Entity}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \&other);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \&\mbox{\hyperlink{classEntity_a32c3d1b7e4029970647fa03b804e3a6b}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \&other);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classEntity_ac479d009ddde62dfb378ca0a70d81307}{\string~Entity}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ std::string\ \mbox{\hyperlink{classEntity_a87d3f4fcf10297e08d86f69c627b26a9}{GetName}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_a966bf9fb7ec06b0151e7eee0db43571a}{Update}}(\textcolor{keywordtype}{float}\ DeltaTime)\ =\ 0;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_af0ad47262e35350b2751bd3d9175ae4c}{SetModel}}(\textcolor{keyword}{const}\ std::string\ \&path,\ \textcolor{keywordtype}{bool}\ bSmoothNormals,\ \textcolor{keywordtype}{int}\ modelId);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_ac101508c5799d48d7bd03814f2640c85}{SetModel}}(\mbox{\hyperlink{classModel}{Model}}\ *model);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{classModel}{Model}}\ *\mbox{\hyperlink{classEntity_acc8fdd453f0357acf9325c2c7d256de2}{GetModel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00087\ \ \ \ \ [[nodiscard]]\ glm::vec3\ \mbox{\hyperlink{classEntity_a860571917682a3a64c799be1218f4073}{GetPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_aa7ae2557dab53a3a45468761b734f755}{SetPosition}}(\textcolor{keyword}{const}\ glm::vec3\ \&position);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_a12c6b6fef4a48e28db5246e94d4901b3}{Move}}(\textcolor{keyword}{const}\ glm::vec3\ \&direction);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_ae9b5ef1f81fa295bcc926b6703534723}{MoveTowards}}(\textcolor{keyword}{const}\ glm::vec3\ \&point,\ \textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ [[nodiscard]]\ glm::vec3\ \mbox{\hyperlink{classEntity_a96c28f0b78bfbfcc19d2789116c07693}{GetRotation}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_a2af8db2160a71fc0e89041ee203babf0}{SetRotation}}(\textcolor{keyword}{const}\ glm::vec3\ \&rotation);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_aefef11f4380b27498e6a3d85e2f13f99}{LookAt}}(\textcolor{keyword}{const}\ glm::vec3\ \&targetPoint,\ \textcolor{keyword}{const}\ glm::vec3\ \&up);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_aa2c7d13484912d24880aad5f488c640b}{RotateAround}}(\textcolor{keyword}{const}\ glm::vec3\ \&point,\ \textcolor{keywordtype}{float}\ distance,\ \textcolor{keyword}{const}\ glm::vec3\ \&axis,\ \textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_a53518142fb4401a3d69d43cf8dd2fa42}{Rotate}}(\textcolor{keyword}{const}\ glm::vec3\ \&direction);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_aca935e9d4ebb77fad4e7d16a9f3bfd1b}{RotateTowards}}(\textcolor{keyword}{const}\ glm::vec3\ \&targetPoint,\ \textcolor{keywordtype}{float}\ rotationSpeed);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00153\ \ \ \ \ [[nodiscard]]\ glm::vec3\ \mbox{\hyperlink{classEntity_a4c9f9dcfdda8976bbd623ba219e89e67}{GetSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_ace27110281909734dcf6d28f026bb8bc}{SetSize}}(\textcolor{keyword}{const}\ glm::vec3\ \&size);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00165\ \ \ \ \ [[nodiscard]]\ glm::vec3\ \mbox{\hyperlink{classEntity_a373568be202c11d9fa5cc62efbb123f4}{GetForward}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00171\ \ \ \ \ [[nodiscard]]\ glm::vec3\ \mbox{\hyperlink{classEntity_ab615e480330add399615a060f74cc520}{GetRight}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00177\ \ \ \ \ [[nodiscard]]\ glm::vec3\ \mbox{\hyperlink{classEntity_afe0956076d06fbda027eda0bf724fd7f}{GetUp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_a62bdc58dee00fb544ffcbffce0c5cd64}{SetSelected}}(\textcolor{keywordtype}{bool}\ isSelected);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00189\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEntity_a877246ea4b63ab6dc49069afbc2784ce}{IsSelected}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00195\ \ \ \ \ [[nodiscard]]\ glm::mat4\ \mbox{\hyperlink{classEntity_a44ccd287aa36aa32586e926dd6ac4cfd}{GetModelMatrix}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_aac1d44e590422c3205ef2544702ac0d1}{NormalizeRotation}}();}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEntity_af0bf9c60dca103badde4a488a90f2f84}{Render}}(\mbox{\hyperlink{classShader}{Shader}}\ \&shader);}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classEntity_a51b8088b7655752e60eaa8418ca7133d}{m\_ShouldRender}}\{\textcolor{keyword}{true}\};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00211\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity_a1404c544fe70c6f03451b2a593b226c6}{m\_Name}};\ }
+\DoxyCodeLine{00212\ \ \ \ \ std::unique\_ptr<Model>\ \mbox{\hyperlink{classEntity_ac109c27dbb064b45593e141be14bc76b}{m\_Model}};\ }
+\DoxyCodeLine{00213\ \ \ \ \ glm::vec3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity_abfbc158802fe16e28f3841e08b5eaf00}{m\_Position}}\{0,\ 0,\ 0\};\ }
+\DoxyCodeLine{00214\ \ \ \ \ glm::vec3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity_acd8b0537426a4920e4345679b384b337}{m\_Rotation}}\{0,\ 0,\ 0\};\ }
+\DoxyCodeLine{00215\ \ \ \ \ glm::vec3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity_a9bb2bbfb957ae72b0e2ddfe4d5ef546f}{m\_Size}}\{1,\ 1,\ 1\};\ }
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{classCamera}{Camera}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{classEntity_aee372f0118becb845fbecc08e7887f0b}{m\_pCamera}};\ }
+\DoxyCodeLine{00217\ \ \ \ \ GLFWwindow\ \ \ \ \ \ \ \ \ \ \ \ *\mbox{\hyperlink{classEntity_a2ad897cd1be3afe3189a6afd944b2bb8}{m\_pWindow}};\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity_a7e5fe600930c10fa22489b7a7eababe1}{m\_IsSelected}}\{\textcolor{keyword}{false}\};\ }
+\DoxyCodeLine{00219\ \};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ENTITY\_H}}
+
+\end{DoxyCode}

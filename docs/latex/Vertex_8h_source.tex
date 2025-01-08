@@ -1,0 +1,28 @@
+\doxysection{Vertex.\+h}
+\hypertarget{Vertex_8h_source}{}\label{Vertex_8h_source}\index{include/Vertex.h@{include/Vertex.h}}
+\mbox{\hyperlink{Vertex_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 23.12.2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ VERTEX\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ VERTEX\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <pch.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Vertex_8h_af998315cebd1392598dc1ccf0101b30a}{MAX\_BONE\_INFLUENCE}}\ =\ 4;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structVertex}{Vertex}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structVertex_abb3cfacd96b5955b0cec9359840ee49f}{Position}};\ }
+\DoxyCodeLine{00018\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structVertex_a9ab4dc431b41509f0b1bb1a4bf09d4e2}{Normal}};\ }
+\DoxyCodeLine{00019\ \ \ \ \ glm::vec2\ \mbox{\hyperlink{structVertex_a921a513c1e6d1e63e99d477fa837a317}{TexCoords}};\ }
+\DoxyCodeLine{00020\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structVertex_abfd8917796f41a3bd16441b2626e8212}{Tangent}};\ }
+\DoxyCodeLine{00021\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{structVertex_af65a7edcbe784e73e9fb29fdf6368615}{Bitangent}};\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \mbox{\hyperlink{structVertex_a1d625998ccd962f00ddbb78cf5dcafa9}{m\_BoneIDs}}[\mbox{\hyperlink{Vertex_8h_af998315cebd1392598dc1ccf0101b30a}{MAX\_BONE\_INFLUENCE}}];\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \mbox{\hyperlink{structVertex_ad219e034733b1abb465ce2ee700e7144}{m\_Weights}}[\mbox{\hyperlink{Vertex_8h_af998315cebd1392598dc1ccf0101b30a}{MAX\_BONE\_INFLUENCE}}];\ }
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VERTEX\_H}}
+
+\end{DoxyCode}

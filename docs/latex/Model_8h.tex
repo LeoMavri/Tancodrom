@@ -1,0 +1,41 @@
+\doxysection{include/\+Model.h File Reference}
+\hypertarget{Model_8h}{}\label{Model_8h}\index{include/Model.h@{include/Model.h}}
+{\ttfamily \#include $<$Mesh.\+h$>$}\newline
+{\ttfamily \#include $<$Shader.\+h$>$}\newline
+{\ttfamily \#include $<$Texture.\+h$>$}\newline
+{\ttfamily \#include $<$pch.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classModel}{Model}}
+\begin{DoxyCompactList}\small\item\em A class that handles loading the model, the textures, and the shaders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{Model_8h_a97bcae3cda2d77ad1707c455803e711c}{Texture\+From\+File}} (const char \texorpdfstring{$\ast$}{*}path, const std\+::string \&directory, bool gamma=false)
+\begin{DoxyCompactList}\small\item\em Loads a texture from file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Model_8h_a97bcae3cda2d77ad1707c455803e711c}\index{Model.h@{Model.h}!TextureFromFile@{TextureFromFile}}
+\index{TextureFromFile@{TextureFromFile}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{TextureFromFile()}{TextureFromFile()}}
+{\footnotesize\ttfamily \label{Model_8h_a97bcae3cda2d77ad1707c455803e711c} 
+unsigned int Texture\+From\+File (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{, }\item[{const std\+::string \&}]{directory}{, }\item[{bool}]{gamma}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Loads a texture from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to the texture file. \\
+\hline
+{\em directory} & Directory containing the texture file. \\
+\hline
+{\em gamma} & Whether to apply gamma correction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The ID of the loaded texture. 
+\end{DoxyReturn}

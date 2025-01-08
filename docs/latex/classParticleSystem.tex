@@ -1,0 +1,207 @@
+\doxysection{Particle\+System Class Reference}
+\hypertarget{classParticleSystem}{}\label{classParticleSystem}\index{ParticleSystem@{ParticleSystem}}
+
+
+A class representing a particle system.  
+
+
+
+
+{\ttfamily \#include $<$Particle\+System.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classParticleSystem_ab4a3e40beefc7b90599daecc38ba90bf}{Particle\+System}} (unsigned int \mbox{\hyperlink{classParticleSystem_a0479bac8c74d45c073531bfc3078bf82}{max\+Particles}})
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxylink{classParticleSystem}{Particle\+System} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParticleSystem_ad9bce46a570fbf3d33678fc6567a3f35}{Update}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the state of the particle system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParticleSystem_a04cae16f91ac56dbbff8b2c60465b12b}{Render}} (const glm\+::mat4 \&view, const glm\+::mat4 \&projection)
+\begin{DoxyCompactList}\small\item\em Renders the particles in the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classParticleSystem_aa3cd5dd4633964739d6bb514926fa8db}{Explode}} (const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Triggers an explosion of particles at a given position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structParticle}{Particle}} $>$ \mbox{\hyperlink{classParticleSystem_a1cd9269ae87449c643597a4146686ce0}{m\+\_\+\+Particles}}
+\begin{DoxyCompactList}\small\item\em The collection of particles in the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{classParticleSystem_a5fc8cad42af53b797f270cd944ae7a28}{Find\+Unused\+Particle}} ()
+\begin{DoxyCompactList}\small\item\em Finds an unused particle in the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classParticleSystem_a9f5fe53fb60ddd008d0229257b9f9c92}{Respawn\+Particle}} (\mbox{\hyperlink{structParticle}{Particle}} \&particle, const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Respawns a particle at a given position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classShader}{Shader}} \mbox{\hyperlink{classParticleSystem_a240c1737019423297bc273c41412fe1a}{m\+\_\+\+Shader}}
+\begin{DoxyCompactList}\small\item\em The shader used for rendering particles. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classParticleSystem_a0479bac8c74d45c073531bfc3078bf82}{max\+Particles}}
+\begin{DoxyCompactList}\small\item\em The maximum number of particles in the system. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classParticleSystem_aa72bb4adcb420cbbac42c18bf2e9f9df}{last\+Used\+Particle}}
+\begin{DoxyCompactList}\small\item\em The index of the last used particle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class representing a particle system. 
+
+The \doxylink{classParticleSystem}{Particle\+System} class manages a collection of particles, updating their states and rendering them. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classParticleSystem_ab4a3e40beefc7b90599daecc38ba90bf}\index{ParticleSystem@{ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\index{ParticleSystem@{ParticleSystem}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{ParticleSystem()}{ParticleSystem()}}
+{\footnotesize\ttfamily \label{classParticleSystem_ab4a3e40beefc7b90599daecc38ba90bf} 
+Particle\+System\+::\+Particle\+System (\begin{DoxyParamCaption}\item[{unsigned int}]{max\+Particles}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a new \doxylink{classParticleSystem}{Particle\+System} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Particles} & The maximum number of particles in the system. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classParticleSystem_aa3cd5dd4633964739d6bb514926fa8db}\index{ParticleSystem@{ParticleSystem}!Explode@{Explode}}
+\index{Explode@{Explode}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{Explode()}{Explode()}}
+{\footnotesize\ttfamily \label{classParticleSystem_aa3cd5dd4633964739d6bb514926fa8db} 
+void Particle\+System\+::\+Explode (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position}{}\end{DoxyParamCaption})}
+
+
+
+Triggers an explosion of particles at a given position. 
+
+This function respawns all particles at the specified position, simulating an explosion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the explosion. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classParticleSystem_a5fc8cad42af53b797f270cd944ae7a28}\index{ParticleSystem@{ParticleSystem}!FindUnusedParticle@{FindUnusedParticle}}
+\index{FindUnusedParticle@{FindUnusedParticle}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{FindUnusedParticle()}{FindUnusedParticle()}}
+{\footnotesize\ttfamily \label{classParticleSystem_a5fc8cad42af53b797f270cd944ae7a28} 
+unsigned int Particle\+System\+::\+Find\+Unused\+Particle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds an unused particle in the system. 
+
+This function searches for a particle with no remaining life and returns its index.
+
+\begin{DoxyReturn}{Returns}
+The index of an unused particle. 
+\end{DoxyReturn}
+\Hypertarget{classParticleSystem_a04cae16f91ac56dbbff8b2c60465b12b}\index{ParticleSystem@{ParticleSystem}!Render@{Render}}
+\index{Render@{Render}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily \label{classParticleSystem_a04cae16f91ac56dbbff8b2c60465b12b} 
+void Particle\+System\+::\+Render (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{view}{, }\item[{const glm\+::mat4 \&}]{projection}{}\end{DoxyParamCaption})}
+
+
+
+Renders the particles in the system. 
+
+This function renders all active particles using the provided view and projection matrices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & The view matrix. \\
+\hline
+{\em projection} & The projection matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classParticleSystem_a9f5fe53fb60ddd008d0229257b9f9c92}\index{ParticleSystem@{ParticleSystem}!RespawnParticle@{RespawnParticle}}
+\index{RespawnParticle@{RespawnParticle}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{RespawnParticle()}{RespawnParticle()}}
+{\footnotesize\ttfamily \label{classParticleSystem_a9f5fe53fb60ddd008d0229257b9f9c92} 
+static void Particle\+System\+::\+Respawn\+Particle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structParticle}{Particle}} \&}]{particle}{, }\item[{const glm\+::vec3 \&}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Respawns a particle at a given position. 
+
+This function initializes a particle\textquotesingle{}s properties, such as position, color, life, and velocity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em particle} & The particle to respawn. \\
+\hline
+{\em position} & The position to respawn the particle at. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classParticleSystem_ad9bce46a570fbf3d33678fc6567a3f35}\index{ParticleSystem@{ParticleSystem}!Update@{Update}}
+\index{Update@{Update}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classParticleSystem_ad9bce46a570fbf3d33678fc6567a3f35} 
+void Particle\+System\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Updates the state of the particle system. 
+
+This function updates the position, color, and life of each particle based on the elapsed time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classParticleSystem_aa72bb4adcb420cbbac42c18bf2e9f9df}\index{ParticleSystem@{ParticleSystem}!lastUsedParticle@{lastUsedParticle}}
+\index{lastUsedParticle@{lastUsedParticle}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{lastUsedParticle}{lastUsedParticle}}
+{\footnotesize\ttfamily \label{classParticleSystem_aa72bb4adcb420cbbac42c18bf2e9f9df} 
+unsigned int Particle\+System\+::last\+Used\+Particle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The index of the last used particle. 
+
+\Hypertarget{classParticleSystem_a1cd9269ae87449c643597a4146686ce0}\index{ParticleSystem@{ParticleSystem}!m\_Particles@{m\_Particles}}
+\index{m\_Particles@{m\_Particles}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{m\_Particles}{m\_Particles}}
+{\footnotesize\ttfamily \label{classParticleSystem_a1cd9269ae87449c643597a4146686ce0} 
+std\+::vector$<$\mbox{\hyperlink{structParticle}{Particle}}$>$ Particle\+System\+::m\+\_\+\+Particles}
+
+
+
+The collection of particles in the system. 
+
+\Hypertarget{classParticleSystem_a240c1737019423297bc273c41412fe1a}\index{ParticleSystem@{ParticleSystem}!m\_Shader@{m\_Shader}}
+\index{m\_Shader@{m\_Shader}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{m\_Shader}{m\_Shader}}
+{\footnotesize\ttfamily \label{classParticleSystem_a240c1737019423297bc273c41412fe1a} 
+\mbox{\hyperlink{classShader}{Shader}} Particle\+System\+::m\+\_\+\+Shader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The shader used for rendering particles. 
+
+\Hypertarget{classParticleSystem_a0479bac8c74d45c073531bfc3078bf82}\index{ParticleSystem@{ParticleSystem}!maxParticles@{maxParticles}}
+\index{maxParticles@{maxParticles}!ParticleSystem@{ParticleSystem}}
+\doxysubsubsection{\texorpdfstring{maxParticles}{maxParticles}}
+{\footnotesize\ttfamily \label{classParticleSystem_a0479bac8c74d45c073531bfc3078bf82} 
+unsigned int Particle\+System\+::max\+Particles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The maximum number of particles in the system. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{ParticleSystem_8h}{Particle\+System.\+h}}\end{DoxyCompactItemize}

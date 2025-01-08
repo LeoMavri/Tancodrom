@@ -1,0 +1,167 @@
+\doxysection{Skybox Class Reference}
+\hypertarget{classSkybox}{}\label{classSkybox}\index{Skybox@{Skybox}}
+
+
+Class representing a skybox in a 3D scene.  
+
+
+
+
+{\ttfamily \#include $<$Skybox.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSkybox_a926219629a74e37c5286aab16f434f36}{Skybox}} (const std\+::vector$<$ std\+::string $>$ \&faces)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classSkybox}{Skybox} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSkybox_a21d490d4559938dac7cc5b59ac44ab5c}{Draw}} (const glm\+::mat4 \&view, const glm\+::mat4 \&projection) const
+\begin{DoxyCompactList}\small\item\em Draw the skybox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSkybox_a3bcf859e6c52567c0cc00876935b0feb}{Set\+Skybox\+Hue}} (float hue) const
+\begin{DoxyCompactList}\small\item\em Set the hue of the skybox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSkybox_af00f5427faa041481e204f838727707a}{Load\+Cubemap}} (const std\+::vector$<$ std\+::string $>$ \&faces)
+\begin{DoxyCompactList}\small\item\em Load the cubemap texture from the given faces. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSkybox_ac161353e749fed7e3200cab379d38368}{Setup\+Skybox}} ()
+\begin{DoxyCompactList}\small\item\em Setup the skybox vertex data and buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classShader}{Shader}} \mbox{\hyperlink{classSkybox_a9651b54b3aed407b564eb9e972149076}{m\+\_\+\+Shader}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classShader}{Shader} used to render the skybox. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{classSkybox_a435e685e3746fb20e417fcca19bc7370}{m\+\_\+\+Skybox\+VAO}} \{\}
+\begin{DoxyCompactList}\small\item\em \doxylink{structVertex}{Vertex} Array Object for the skybox. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{classSkybox_af5976c25ba158b0cb0249e4bc964c8a4}{m\+\_\+\+Skybox\+VBO}} \{\}
+\begin{DoxyCompactList}\small\item\em \doxylink{structVertex}{Vertex} Buffer Object for the skybox. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{classSkybox_a7e1d965be911726277903748d7480bc6}{m\+\_\+\+Cubemap\+Texture}} \{\}
+\begin{DoxyCompactList}\small\item\em \doxylink{structTexture}{Texture} ID for the cubemap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing a skybox in a 3D scene. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSkybox_a926219629a74e37c5286aab16f434f36}\index{Skybox@{Skybox}!Skybox@{Skybox}}
+\index{Skybox@{Skybox}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{Skybox()}{Skybox()}}
+{\footnotesize\ttfamily \label{classSkybox_a926219629a74e37c5286aab16f434f36} 
+Skybox\+::\+Skybox (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{faces}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new \doxylink{classSkybox}{Skybox} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em faces} & Vector of file paths to the six faces of the cubemap texture. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSkybox_a21d490d4559938dac7cc5b59ac44ab5c}\index{Skybox@{Skybox}!Draw@{Draw}}
+\index{Draw@{Draw}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \label{classSkybox_a21d490d4559938dac7cc5b59ac44ab5c} 
+void Skybox\+::\+Draw (\begin{DoxyParamCaption}\item[{const glm\+::mat4 \&}]{view}{, }\item[{const glm\+::mat4 \&}]{projection}{}\end{DoxyParamCaption}) const}
+
+
+
+Draw the skybox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em view} & View matrix. \\
+\hline
+{\em projection} & Projection matrix. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSkybox_af00f5427faa041481e204f838727707a}\index{Skybox@{Skybox}!LoadCubemap@{LoadCubemap}}
+\index{LoadCubemap@{LoadCubemap}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{LoadCubemap()}{LoadCubemap()}}
+{\footnotesize\ttfamily \label{classSkybox_af00f5427faa041481e204f838727707a} 
+void Skybox\+::\+Load\+Cubemap (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{faces}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Load the cubemap texture from the given faces. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em faces} & Vector of file paths to the six faces of the cubemap texture. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSkybox_a3bcf859e6c52567c0cc00876935b0feb}\index{Skybox@{Skybox}!SetSkyboxHue@{SetSkyboxHue}}
+\index{SetSkyboxHue@{SetSkyboxHue}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{SetSkyboxHue()}{SetSkyboxHue()}}
+{\footnotesize\ttfamily \label{classSkybox_a3bcf859e6c52567c0cc00876935b0feb} 
+void Skybox\+::\+Set\+Skybox\+Hue (\begin{DoxyParamCaption}\item[{float}]{hue}{}\end{DoxyParamCaption}) const}
+
+
+
+Set the hue of the skybox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hue} & Hue value to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSkybox_ac161353e749fed7e3200cab379d38368}\index{Skybox@{Skybox}!SetupSkybox@{SetupSkybox}}
+\index{SetupSkybox@{SetupSkybox}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{SetupSkybox()}{SetupSkybox()}}
+{\footnotesize\ttfamily \label{classSkybox_ac161353e749fed7e3200cab379d38368} 
+void Skybox\+::\+Setup\+Skybox (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Setup the skybox vertex data and buffers. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSkybox_a7e1d965be911726277903748d7480bc6}\index{Skybox@{Skybox}!m\_CubemapTexture@{m\_CubemapTexture}}
+\index{m\_CubemapTexture@{m\_CubemapTexture}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{m\_CubemapTexture}{m\_CubemapTexture}}
+{\footnotesize\ttfamily \label{classSkybox_a7e1d965be911726277903748d7480bc6} 
+GLuint Skybox\+::m\+\_\+\+Cubemap\+Texture \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{structTexture}{Texture} ID for the cubemap. 
+
+\Hypertarget{classSkybox_a9651b54b3aed407b564eb9e972149076}\index{Skybox@{Skybox}!m\_Shader@{m\_Shader}}
+\index{m\_Shader@{m\_Shader}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{m\_Shader}{m\_Shader}}
+{\footnotesize\ttfamily \label{classSkybox_a9651b54b3aed407b564eb9e972149076} 
+\mbox{\hyperlink{classShader}{Shader}} Skybox\+::m\+\_\+\+Shader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classShader}{Shader} used to render the skybox. 
+
+\Hypertarget{classSkybox_a435e685e3746fb20e417fcca19bc7370}\index{Skybox@{Skybox}!m\_SkyboxVAO@{m\_SkyboxVAO}}
+\index{m\_SkyboxVAO@{m\_SkyboxVAO}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{m\_SkyboxVAO}{m\_SkyboxVAO}}
+{\footnotesize\ttfamily \label{classSkybox_a435e685e3746fb20e417fcca19bc7370} 
+GLuint Skybox\+::m\+\_\+\+Skybox\+VAO \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{structVertex}{Vertex} Array Object for the skybox. 
+
+\Hypertarget{classSkybox_af5976c25ba158b0cb0249e4bc964c8a4}\index{Skybox@{Skybox}!m\_SkyboxVBO@{m\_SkyboxVBO}}
+\index{m\_SkyboxVBO@{m\_SkyboxVBO}!Skybox@{Skybox}}
+\doxysubsubsection{\texorpdfstring{m\_SkyboxVBO}{m\_SkyboxVBO}}
+{\footnotesize\ttfamily \label{classSkybox_af5976c25ba158b0cb0249e4bc964c8a4} 
+GLuint Skybox\+::m\+\_\+\+Skybox\+VBO \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{structVertex}{Vertex} Buffer Object for the skybox. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Skybox_8h}{Skybox.\+h}}\end{DoxyCompactItemize}

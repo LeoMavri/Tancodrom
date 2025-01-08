@@ -1,0 +1,33 @@
+\doxysection{Light\+Emitter.\+h}
+\hypertarget{LightEmitter_8h_source}{}\label{LightEmitter_8h_source}\index{include/LightEmitter.h@{include/LightEmitter.h}}
+\mbox{\hyperlink{LightEmitter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 07\ Jan\ 2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ LIGHTEMITTER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ LIGHTEMITTER\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLightEmitter_ab50d915b0102a0b76d256482253f4ea9}{LightEmitter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classLightEmitter_ab50d915b0102a0b76d256482253f4ea9}{LightEmitter}}(\textcolor{keyword}{const}\ glm::vec3\ \&position,\ \textcolor{keyword}{const}\ glm::vec3\ \&size,\ \textcolor{keyword}{const}\ glm::vec3\ \&rotation,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \ \ [[nodiscard]]\ glm::mat4\ \mbox{\hyperlink{classLightEmitter_a5a5b0c050bbad6682580c443c3a5fdb9}{GetLightSpaceMatrix}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ glm::mat4\ \mbox{\hyperlink{classLightEmitter_a26e4cfe04586a5fd10c7db2c025b6a1b}{GetLightProjection}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ [[nodiscard]]\ glm::mat4\ \mbox{\hyperlink{classLightEmitter_a5fcbf493b6487bc9d0d7c0a5c8765d6a}{GetLightView}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classLightEmitter_a92e5410c47d247329753bd5037759dd0}{Update}}(\textcolor{keywordtype}{float}\ DeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ glm::vec3\ \mbox{\hyperlink{classLightEmitter_a85905757a58cc2cd01e58538d8f3bd52}{m\_Color}};\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \mbox{\hyperlink{classLightEmitter_a5d73c2bfa00e1bd7689d9dd27a20c7b8}{m\_Intensity}};\ }
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LIGHTEMITTER\_H}}
+
+\end{DoxyCode}

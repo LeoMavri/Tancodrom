@@ -1,0 +1,52 @@
+\doxysection{Helicopter.\+h}
+\hypertarget{Helicopter_8h_source}{}\label{Helicopter_8h_source}\index{include/Helicopter.h@{include/Helicopter.h}}
+\mbox{\hyperlink{Helicopter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 06\ Jan\ 2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ HELICOPTER\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ HELICOPTER\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Camera_8h}{Camera.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Rocket_8h}{Rocket.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493}{MovementType}}\ \{\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ac9d3e887722f2bc482bcca9d41c512af}{None}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ae204c9c3e62b1e9a6b60e40cd05256c5}{Forward}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a67e19347f85332c3bbfd61266cecbe4e}{Backward}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a9d4d8b0b72fc2659da772d761a3c5ecb}{Left}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ad48f7af8c070184f3774c8e85854eb66}{Right}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a57a7edcbc04d6175683383cad5c3e0a2}{Up}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493abcf8c79e9a5f5f9d606fb35645a0fb27}{Down}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a497d2557bc0b4abfc659f58b5bc10d80}{SpinLeft}},\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a99317c4c1f672c21f7e9873ff6e38dcc}{SpinRight}}\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classHelicopter_adb817b3da31e87196bc739bf5db99110}{Helicopter}}\ final\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classHelicopter_adb817b3da31e87196bc739bf5db99110}{Helicopter}}(\textcolor{keyword}{const}\ glm::vec3\ \&position,\ \textcolor{keyword}{const}\ glm::vec3\ \&size,\ \textcolor{keyword}{const}\ glm::vec3\ \&rotation,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GLFWwindow\ *window,\ \mbox{\hyperlink{classCamera}{Camera}}\ *pCamera);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classHelicopter_afee08ea55129fc344c9374d70f673708}{\string~Helicopter}}()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHelicopter_a8501ae503552b52245be56596fa3c727}{Update}}(\textcolor{keywordtype}{float}\ DeltaTime)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHelicopter_aef19bc1269396d197decb67188ca9ec4}{Render}}(\mbox{\hyperlink{classShader}{Shader}}\ \&shader)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHelicopter_a3ee85698d38e1a28398eb2a888d52454}{UpdateCameraPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHelicopter_a60531bfd61136b2ea9263423bf61a7f0}{LaunchRocket}}(\textcolor{keyword}{const}\ glm::vec3\ \&position);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHelicopter_a0b025b13f2aca5e602a015cd1ed5dbe5}{MoveAt}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493}{MovementType}}\ \&direction,\ \textcolor{keywordtype}{float}\ DeltaTime);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHelicopter_a260f7c1f8fced3e0ae44de4dfd2f81fb}{SetEntities}}(\textcolor{keyword}{const}\ std::vector<Entity\ *>\ \&entities)\ \{\ \mbox{\hyperlink{classHelicopter_aa119b736f0be4170de8aa3a3b1888c3c}{m\_Entities}}\ =\ entities;\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classHelicopter_a5c89a9bc02b56d187247067f1e7b9a9d}{m\_Pitch}}\ =\ 0;\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classHelicopter_a4a0a76ae2515fb49b5c58f6dfe950bb8}{m\_Yaw}}\ \ \ =\ 0;\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ std::vector<Rocket>\ \ \ \mbox{\hyperlink{classHelicopter_aec5ffaf279b892941435f58de2053d8f}{m\_Rockets}};\ }
+\DoxyCodeLine{00081\ \ \ \ \ std::vector<Entity\ *>\ \mbox{\hyperlink{classHelicopter_aa119b736f0be4170de8aa3a3b1888c3c}{m\_Entities}};\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classHelicopter_ad2162cadd5168eef7ee03703491a69f7}{m\_RotationSpeed}}\ =\ 30.0f;\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classHelicopter_a3ed137b589d80d339e05c604f95e19fe}{m\_MoveSpeed}}\ \ \ \ \ =\ 6.0f;\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classHelicopter_a23406e2fc96c291c5efee507b6ed8837}{m\_MaxTilt}}\ \ \ \ \ \ \ =\ 30.0f;\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classHelicopter_a15b9089cce4bfdfeb4871181ffc57772}{m\_TiltSpeed}}\ \ \ \ \ =\ 15.0f;\ }
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ HELICOPTER\_H}}
+
+\end{DoxyCode}

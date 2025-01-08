@@ -1,0 +1,306 @@
+\doxysection{Model Class Reference}
+\hypertarget{classModel}{}\label{classModel}\index{Model@{Model}}
+
+
+A class that handles loading the model, the textures, and the shaders.  
+
+
+
+
+{\ttfamily \#include $<$Model.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classModel_a1a4a4afcaa0e8df369f99ae3c5a94ed6}{Model}} (std\+::string const \&path, bool b\+Smooth\+Normals, bool gamma=false)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classModel}{Model} class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classModel_a2efbe4ec768191fa70ad86f260ec2fd6}{\texorpdfstring{$\sim$}{\string~}\+Model}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classModel}{Model} class. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classModel_aada6752247aed94b18aaaa1808fde4d1}{Draw}} (const \mbox{\hyperlink{classShader}{Shader}} \&shader, const glm\+::mat4 \&object\+Transform) const
+\begin{DoxyCompactList}\small\item\em Draws the model, and thus all its meshes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classModel_ac77b9a26e059192011ec80a15c925269}{Get\+Texture\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ID of the first loaded texture. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classModel_a745037066238551d5d4a73e3b23da6d7}{Get\+Mesh\+Transform}} (int mesh\+ID)
+\begin{DoxyCompactList}\small\item\em Gets the transformation matrix for a specific mesh. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classModel_a83e834257d91b1bbcd861cb9c288130d}{Set\+Mesh\+Transform}} (int mesh\+ID, const glm\+::mat4 \&transform)
+\begin{DoxyCompactList}\small\item\em Sets the transformation matrix for a specific mesh. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classModel_aec861806673c6434fcd70891caee5cdc}{Rotate\+Mesh}} (int mesh\+ID, float degrees, const glm\+::vec3 \&axis)
+\begin{DoxyCompactList}\small\item\em Rotates a specific mesh around a given axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ \mbox{\hyperlink{classModel_a866353fd9967b57286864fac87799ae1}{textures\+\_\+loaded}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classMesh}{Mesh}} $>$ \mbox{\hyperlink{classModel_a538e42901dcfba59471072a48a162163}{meshes}}
+\begin{DoxyCompactList}\small\item\em Vector of meshes in the model. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classModel_a5ea3aa111c7a7d179e93dcc0bb567701}{directory}}
+\begin{DoxyCompactList}\small\item\em Directory containing the model files. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classModel_ad77d358db2ff46758774b8a621f60db3}{gamma\+Correction}}
+\begin{DoxyCompactList}\small\item\em Whether to apply gamma correction. \end{DoxyCompactList}\item 
+std\+::vector$<$ glm\+::mat4 $>$ \mbox{\hyperlink{classModel_a9dd9987347b5508525df4e365fc5e717}{meshes\+Transform}}
+\begin{DoxyCompactList}\small\item\em Transformations for each mesh in the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classModel_a61957a2a0bb16d3f7010f335d4d6f1c2}{load\+Model}} (std\+::string const \&path, bool b\+Smooth\+Normals)
+\begin{DoxyCompactList}\small\item\em Loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classModel_a312215ded7c41d9699f7087ad930667c}{process\+Node}} (const ai\+Node \texorpdfstring{$\ast$}{*}node, const ai\+Scene \texorpdfstring{$\ast$}{*}scene)
+\begin{DoxyCompactList}\small\item\em Processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMesh}{Mesh}} \mbox{\hyperlink{classModel_aeb31ba40ac0298d9ab150dae2cbc2c42}{process\+Mesh}} (const std\+::string \&node\+Name, const ai\+Mesh \texorpdfstring{$\ast$}{*}mesh, const ai\+Scene \texorpdfstring{$\ast$}{*}scene)
+\begin{DoxyCompactList}\small\item\em Processes a mesh. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ \mbox{\hyperlink{classModel_a0ee205a3cb394ff68a4b73255b871415}{load\+Material\+Textures}} (const ai\+Material \texorpdfstring{$\ast$}{*}mat, const ai\+Texture\+Type \&type, const std\+::string \&type\+Name)
+\begin{DoxyCompactList}\small\item\em Checks all material textures of a given type and loads the textures if they\textquotesingle{}re not loaded yet. The required info is returned as a \doxylink{structTexture}{Texture} struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that handles loading the model, the textures, and the shaders. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classModel_a1a4a4afcaa0e8df369f99ae3c5a94ed6}\index{Model@{Model}!Model@{Model}}
+\index{Model@{Model}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{Model()}{Model()}}
+{\footnotesize\ttfamily \label{classModel_a1a4a4afcaa0e8df369f99ae3c5a94ed6} 
+Model\+::\+Model (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{path}{, }\item[{bool}]{b\+Smooth\+Normals}{, }\item[{bool}]{gamma}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{classModel}{Model} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Filepath to the 3D model. \\
+\hline
+{\em b\+Smooth\+Normals} & Whether to smooth normals. \\
+\hline
+{\em gamma} & Whether to apply gamma correction. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classModel_a2efbe4ec768191fa70ad86f260ec2fd6}\index{Model@{Model}!````~Model@{\texorpdfstring{$\sim$}{\string~}Model}}
+\index{````~Model@{\texorpdfstring{$\sim$}{\string~}Model}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Model()}{\string~Model()}}
+{\footnotesize\ttfamily \label{classModel_a2efbe4ec768191fa70ad86f260ec2fd6} 
+virtual Model\+::\texorpdfstring{$\sim$}{\string~}\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{classModel}{Model} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classModel_aada6752247aed94b18aaaa1808fde4d1}\index{Model@{Model}!Draw@{Draw}}
+\index{Draw@{Draw}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \label{classModel_aada6752247aed94b18aaaa1808fde4d1} 
+virtual void Model\+::\+Draw (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classShader}{Shader}} \&}]{shader}{, }\item[{const glm\+::mat4 \&}]{object\+Transform}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Draws the model, and thus all its meshes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & \doxylink{classShader}{Shader} to use for drawing. \\
+\hline
+{\em object\+Transform} & Transformation matrix for the object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classModel_a745037066238551d5d4a73e3b23da6d7}\index{Model@{Model}!GetMeshTransform@{GetMeshTransform}}
+\index{GetMeshTransform@{GetMeshTransform}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{GetMeshTransform()}{GetMeshTransform()}}
+{\footnotesize\ttfamily \label{classModel_a745037066238551d5d4a73e3b23da6d7} 
+glm\+::mat4 Model\+::\+Get\+Mesh\+Transform (\begin{DoxyParamCaption}\item[{int}]{mesh\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Gets the transformation matrix for a specific mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh\+ID} & ID of the mesh. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The transformation matrix of the mesh. 
+\end{DoxyReturn}
+\Hypertarget{classModel_ac77b9a26e059192011ec80a15c925269}\index{Model@{Model}!GetTextureID@{GetTextureID}}
+\index{GetTextureID@{GetTextureID}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{GetTextureID()}{GetTextureID()}}
+{\footnotesize\ttfamily \label{classModel_ac77b9a26e059192011ec80a15c925269} 
+unsigned int Model\+::\+Get\+Texture\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Gets the ID of the first loaded texture. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the first loaded texture. 
+\end{DoxyReturn}
+\Hypertarget{classModel_a0ee205a3cb394ff68a4b73255b871415}\index{Model@{Model}!loadMaterialTextures@{loadMaterialTextures}}
+\index{loadMaterialTextures@{loadMaterialTextures}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{loadMaterialTextures()}{loadMaterialTextures()}}
+{\footnotesize\ttfamily \label{classModel_a0ee205a3cb394ff68a4b73255b871415} 
+std\+::vector$<$ \mbox{\hyperlink{structTexture}{Texture}} $>$ Model\+::load\+Material\+Textures (\begin{DoxyParamCaption}\item[{const ai\+Material \texorpdfstring{$\ast$}{*}}]{mat}{, }\item[{const ai\+Texture\+Type \&}]{type}{, }\item[{const std\+::string \&}]{type\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks all material textures of a given type and loads the textures if they\textquotesingle{}re not loaded yet. The required info is returned as a \doxylink{structTexture}{Texture} struct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & Material to check. \\
+\hline
+{\em type} & Type of texture. \\
+\hline
+{\em type\+Name} & Name of the texture type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of loaded textures. 
+\end{DoxyReturn}
+\Hypertarget{classModel_a61957a2a0bb16d3f7010f335d4d6f1c2}\index{Model@{Model}!loadModel@{loadModel}}
+\index{loadModel@{loadModel}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{loadModel()}{loadModel()}}
+{\footnotesize\ttfamily \label{classModel_a61957a2a0bb16d3f7010f335d4d6f1c2} 
+void Model\+::load\+Model (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{path}{, }\item[{bool}]{b\+Smooth\+Normals}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Filepath to the 3D model. \\
+\hline
+{\em b\+Smooth\+Normals} & Whether to smooth normals. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classModel_aeb31ba40ac0298d9ab150dae2cbc2c42}\index{Model@{Model}!processMesh@{processMesh}}
+\index{processMesh@{processMesh}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{processMesh()}{processMesh()}}
+{\footnotesize\ttfamily \label{classModel_aeb31ba40ac0298d9ab150dae2cbc2c42} 
+\mbox{\hyperlink{classMesh}{Mesh}} Model\+::process\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{node\+Name}{, }\item[{const ai\+Mesh \texorpdfstring{$\ast$}{*}}]{mesh}{, }\item[{const ai\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes a mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Name} & Name of the node containing the mesh. \\
+\hline
+{\em mesh} & \doxylink{classMesh}{Mesh} to process. \\
+\hline
+{\em scene} & Scene containing the mesh. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The processed mesh. 
+\end{DoxyReturn}
+\Hypertarget{classModel_a312215ded7c41d9699f7087ad930667c}\index{Model@{Model}!processNode@{processNode}}
+\index{processNode@{processNode}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{processNode()}{processNode()}}
+{\footnotesize\ttfamily \label{classModel_a312215ded7c41d9699f7087ad930667c} 
+void Model\+::process\+Node (\begin{DoxyParamCaption}\item[{const ai\+Node \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{const ai\+Scene \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node to process. \\
+\hline
+{\em scene} & Scene containing the node. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classModel_aec861806673c6434fcd70891caee5cdc}\index{Model@{Model}!RotateMesh@{RotateMesh}}
+\index{RotateMesh@{RotateMesh}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{RotateMesh()}{RotateMesh()}}
+{\footnotesize\ttfamily \label{classModel_aec861806673c6434fcd70891caee5cdc} 
+void Model\+::\+Rotate\+Mesh (\begin{DoxyParamCaption}\item[{int}]{mesh\+ID}{, }\item[{float}]{degrees}{, }\item[{const glm\+::vec3 \&}]{axis}{}\end{DoxyParamCaption})}
+
+
+
+Rotates a specific mesh around a given axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh\+ID} & ID of the mesh. \\
+\hline
+{\em degrees} & Degrees to rotate. \\
+\hline
+{\em axis} & Axis to rotate around. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classModel_a83e834257d91b1bbcd861cb9c288130d}\index{Model@{Model}!SetMeshTransform@{SetMeshTransform}}
+\index{SetMeshTransform@{SetMeshTransform}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{SetMeshTransform()}{SetMeshTransform()}}
+{\footnotesize\ttfamily \label{classModel_a83e834257d91b1bbcd861cb9c288130d} 
+void Model\+::\+Set\+Mesh\+Transform (\begin{DoxyParamCaption}\item[{int}]{mesh\+ID}{, }\item[{const glm\+::mat4 \&}]{transform}{}\end{DoxyParamCaption})}
+
+
+
+Sets the transformation matrix for a specific mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh\+ID} & ID of the mesh. \\
+\hline
+{\em transform} & The transformation matrix to set. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classModel_a5ea3aa111c7a7d179e93dcc0bb567701}\index{Model@{Model}!directory@{directory}}
+\index{directory@{directory}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{directory}{directory}}
+{\footnotesize\ttfamily \label{classModel_a5ea3aa111c7a7d179e93dcc0bb567701} 
+std\+::string Model\+::directory}
+
+
+
+Directory containing the model files. 
+
+\Hypertarget{classModel_ad77d358db2ff46758774b8a621f60db3}\index{Model@{Model}!gammaCorrection@{gammaCorrection}}
+\index{gammaCorrection@{gammaCorrection}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{gammaCorrection}{gammaCorrection}}
+{\footnotesize\ttfamily \label{classModel_ad77d358db2ff46758774b8a621f60db3} 
+bool Model\+::gamma\+Correction}
+
+
+
+Whether to apply gamma correction. 
+
+\Hypertarget{classModel_a538e42901dcfba59471072a48a162163}\index{Model@{Model}!meshes@{meshes}}
+\index{meshes@{meshes}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{meshes}{meshes}}
+{\footnotesize\ttfamily \label{classModel_a538e42901dcfba59471072a48a162163} 
+std\+::vector$<$\mbox{\hyperlink{classMesh}{Mesh}}$>$ Model\+::meshes}
+
+
+
+Vector of meshes in the model. 
+
+\Hypertarget{classModel_a9dd9987347b5508525df4e365fc5e717}\index{Model@{Model}!meshesTransform@{meshesTransform}}
+\index{meshesTransform@{meshesTransform}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{meshesTransform}{meshesTransform}}
+{\footnotesize\ttfamily \label{classModel_a9dd9987347b5508525df4e365fc5e717} 
+std\+::vector$<$glm\+::mat4$>$ Model\+::meshes\+Transform}
+
+
+
+Transformations for each mesh in the model. 
+
+\Hypertarget{classModel_a866353fd9967b57286864fac87799ae1}\index{Model@{Model}!textures\_loaded@{textures\_loaded}}
+\index{textures\_loaded@{textures\_loaded}!Model@{Model}}
+\doxysubsubsection{\texorpdfstring{textures\_loaded}{textures\_loaded}}
+{\footnotesize\ttfamily \label{classModel_a866353fd9967b57286864fac87799ae1} 
+std\+::vector$<$\mbox{\hyperlink{structTexture}{Texture}}$>$ Model\+::textures\+\_\+loaded}
+
+Stores all the textures loaded so far, optimization to make sure textures aren\textquotesingle{}t loaded more than once. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Model_8h}{Model.\+h}}\end{DoxyCompactItemize}

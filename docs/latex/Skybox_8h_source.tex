@@ -1,0 +1,36 @@
+\doxysection{Skybox.\+h}
+\hypertarget{Skybox_8h_source}{}\label{Skybox_8h_source}\index{include/Skybox.h@{include/Skybox.h}}
+\mbox{\hyperlink{Skybox_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 02\ Jan\ 2025.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ SKYBOX\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ SKYBOX\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Shader_8h}{Shader.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <pch.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSkybox_a926219629a74e37c5286aab16f434f36}{Skybox}}\ \{}
+\DoxyCodeLine{00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classSkybox_a926219629a74e37c5286aab16f434f36}{Skybox}}(\textcolor{keyword}{const}\ std::vector<std::string>\ \&faces);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSkybox_a21d490d4559938dac7cc5b59ac44ab5c}{Draw}}(\textcolor{keyword}{const}\ glm::mat4\ \&view,\ \textcolor{keyword}{const}\ glm::mat4\ \&projection)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSkybox_a3bcf859e6c52567c0cc00876935b0feb}{SetSkyboxHue}}(\textcolor{keywordtype}{float}\ hue)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSkybox_af00f5427faa041481e204f838727707a}{LoadCubemap}}(\textcolor{keyword}{const}\ std::vector<std::string>\ \&faces);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSkybox_ac161353e749fed7e3200cab379d38368}{SetupSkybox}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classShader}{Shader}}\ \mbox{\hyperlink{classSkybox_a9651b54b3aed407b564eb9e972149076}{m\_Shader}};\ }
+\DoxyCodeLine{00048\ \ \ \ \ GLuint\ \mbox{\hyperlink{classSkybox_a435e685e3746fb20e417fcca19bc7370}{m\_SkyboxVAO}}\{\};\ }
+\DoxyCodeLine{00049\ \ \ \ \ GLuint\ \mbox{\hyperlink{classSkybox_af5976c25ba158b0cb0249e4bc964c8a4}{m\_SkyboxVBO}}\{\};\ }
+\DoxyCodeLine{00050\ \ \ \ \ GLuint\ \mbox{\hyperlink{classSkybox_a7e1d965be911726277903748d7480bc6}{m\_CubemapTexture}}\{\};\ }
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SKYBOX\_H}}
+
+\end{DoxyCode}

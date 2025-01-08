@@ -1,0 +1,78 @@
+\doxysection{include/\+Helicopter.h File Reference}
+\hypertarget{Helicopter_8h}{}\label{Helicopter_8h}\index{include/Helicopter.h@{include/Helicopter.h}}
+{\ttfamily \#include "{}Camera.\+h"{}}\newline
+{\ttfamily \#include "{}Entity.\+h"{}}\newline
+{\ttfamily \#include "{}Rocket.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classHelicopter}{Helicopter}}
+\begin{DoxyCompactList}\small\item\em A class representing a helicopter entity in the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} \{ \newline
+\mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ac9d3e887722f2bc482bcca9d41c512af}{None}}
+, \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ae204c9c3e62b1e9a6b60e40cd05256c5}{Forward}}
+, \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a67e19347f85332c3bbfd61266cecbe4e}{Backward}}
+, \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a9d4d8b0b72fc2659da772d761a3c5ecb}{Left}}
+, \newline
+\mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ad48f7af8c070184f3774c8e85854eb66}{Right}}
+, \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a57a7edcbc04d6175683383cad5c3e0a2}{Up}}
+, \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493abcf8c79e9a5f5f9d606fb35645a0fb27}{Down}}
+, \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a497d2557bc0b4abfc659f58b5bc10d80}{Spin\+Left}}
+, \newline
+\mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a99317c4c1f672c21f7e9873ff6e38dcc}{Spin\+Right}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum representing different types of movement for the \doxylink{classHelicopter}{Helicopter}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493}\index{Helicopter.h@{Helicopter.h}!MovementType@{MovementType}}
+\index{MovementType@{MovementType}!Helicopter.h@{Helicopter.h}}
+\doxysubsubsection{\texorpdfstring{MovementType}{MovementType}}
+{\footnotesize\ttfamily \label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493} 
+enum \mbox{\hyperlink{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}
+
+
+
+Enum representing different types of movement for the \doxylink{classHelicopter}{Helicopter}. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!None@{None}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ac9d3e887722f2bc482bcca9d41c512af}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ac9d3e887722f2bc482bcca9d41c512af} 
+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Forward@{Forward}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!Forward@{Forward}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ae204c9c3e62b1e9a6b60e40cd05256c5}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ae204c9c3e62b1e9a6b60e40cd05256c5} 
+Forward&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Backward@{Backward}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!Backward@{Backward}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a67e19347f85332c3bbfd61266cecbe4e}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a67e19347f85332c3bbfd61266cecbe4e} 
+Backward&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Left@{Left}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!Left@{Left}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a9d4d8b0b72fc2659da772d761a3c5ecb}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a9d4d8b0b72fc2659da772d761a3c5ecb} 
+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Right@{Right}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!Right@{Right}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ad48f7af8c070184f3774c8e85854eb66}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493ad48f7af8c070184f3774c8e85854eb66} 
+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Up@{Up}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!Up@{Up}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a57a7edcbc04d6175683383cad5c3e0a2}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a57a7edcbc04d6175683383cad5c3e0a2} 
+Up&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Down@{Down}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!Down@{Down}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493abcf8c79e9a5f5f9d606fb35645a0fb27}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493abcf8c79e9a5f5f9d606fb35645a0fb27} 
+Down&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SpinLeft@{SpinLeft}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!SpinLeft@{SpinLeft}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a497d2557bc0b4abfc659f58b5bc10d80}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a497d2557bc0b4abfc659f58b5bc10d80} 
+Spin\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SpinRight@{SpinRight}!Helicopter.h@{Helicopter.h}}\index{Helicopter.h@{Helicopter.h}!SpinRight@{SpinRight}}}\Hypertarget{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a99317c4c1f672c21f7e9873ff6e38dcc}\label{Helicopter_8h_a8a93b61bc797a7d1907f42796a252493a99317c4c1f672c21f7e9873ff6e38dcc} 
+Spin\+Right&\\
+\hline
+
+\end{DoxyEnumFields}

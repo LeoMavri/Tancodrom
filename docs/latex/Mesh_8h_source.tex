@@ -1,0 +1,46 @@
+\doxysection{Mesh.\+h}
+\hypertarget{Mesh_8h_source}{}\label{Mesh_8h_source}\index{include/Mesh.h@{include/Mesh.h}}
+\mbox{\hyperlink{Mesh_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 23.12.2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ MESH\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MESH\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Shader_8h}{Shader.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Texture_8h}{Texture.h}}>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Vertex_8h}{Vertex.h}}>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <pch.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMesh_a84de95fe009a22f0b09d7868f69e2488}{Mesh}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMesh_a4ce357c1afc5829c42412dec1dcd78fe}{numVertices}};\ }
+\DoxyCodeLine{00020\ \ \ \ \ std::shared\_ptr<Vertex>\ \mbox{\hyperlink{classMesh_a4cb9965ce709668455845e2df9f723fc}{vertices}};\ }
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMesh_ac687e9dcfc7cc60b046fc2ec634200be}{name}};\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMesh_ac763974de1dfa164ad325a4fb6cd946d}{numIndexes}};\ }
+\DoxyCodeLine{00024\ \ \ \ \ std::shared\_ptr<unsigned\ int>\ \mbox{\hyperlink{classMesh_a57ab7a6253cea92abfaaf71ac2f15936}{indices}};\ }
+\DoxyCodeLine{00025\ \ \ \ \ std::vector<Texture>\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMesh_abf1e672703bf4f8e104f3b076faaf958}{textures}};\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMesh_a79afa055e485fb65b1a7aa5b8eda2940}{VAO}};\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classMesh_a84de95fe009a22f0b09d7868f69e2488}{Mesh}}(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classMesh_ac687e9dcfc7cc60b046fc2ec634200be}{name}},\ \textcolor{keyword}{const}\ std::vector<Vertex>\ \&\mbox{\hyperlink{classMesh_a4cb9965ce709668455845e2df9f723fc}{vertices}},}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<unsigned\ int>\ \&\mbox{\hyperlink{classMesh_a57ab7a6253cea92abfaaf71ac2f15936}{indices}},\ \textcolor{keyword}{const}\ std::vector<Texture>\ \&\mbox{\hyperlink{classMesh_abf1e672703bf4f8e104f3b076faaf958}{textures}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classMesh_a72742dadb66127b1c360703c04cfe50e}{Mesh}}(\textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classMesh_ac687e9dcfc7cc60b046fc2ec634200be}{name}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMesh_a4ce357c1afc5829c42412dec1dcd78fe}{numVertices}},\ \textcolor{keyword}{const}\ std::shared\_ptr<Vertex>\ \&\mbox{\hyperlink{classMesh_a4cb9965ce709668455845e2df9f723fc}{vertices}},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMesh_ac763974de1dfa164ad325a4fb6cd946d}{numIndexes}},\ \textcolor{keyword}{const}\ std::shared\_ptr<unsigned\ int>\ \&\mbox{\hyperlink{classMesh_a57ab7a6253cea92abfaaf71ac2f15936}{indices}},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Texture>\ \&\mbox{\hyperlink{classMesh_abf1e672703bf4f8e104f3b076faaf958}{textures}});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMesh_af692a59403433544f88ae9892a7048f7}{Draw}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShader}{Shader}}\ \&shader,\ \textcolor{keyword}{const}\ glm::mat4\ \&model)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMesh_af08e5f92b0cf587817841104c16fa803}{VBO}};\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMesh_a25262f446aea3107da7c23f126a81faa}{EBO}};\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMesh_aafa4e21067a9b0c4407daf5e3c9ea991}{setupMesh}}();}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MESH\_H}}
+
+\end{DoxyCode}

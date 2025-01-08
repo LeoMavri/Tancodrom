@@ -1,0 +1,293 @@
+\doxysection{Rocket Class Reference}
+\hypertarget{classRocket}{}\label{classRocket}\index{Rocket@{Rocket}}
+
+
+Represents a rocket entity in the simulation.  
+
+
+
+
+{\ttfamily \#include $<$Rocket.\+h$>$}
+
+Inheritance diagram for Rocket\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRocket}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2}{Rocket}} (const glm\+::vec3 \&position, const glm\+::vec3 \&target, GLFWwindow \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}p\+Camera)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classRocket}{Rocket} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRocket_a7a7dc5bf65e4905b39cc43cf95e64328}{Rocket}} (const \mbox{\hyperlink{classRocket}{Rocket}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{classRocket}{Rocket} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRocket}{Rocket}} \& \mbox{\hyperlink{classRocket_a53fef240a94cdd5ab38fb24fd814f522}{operator=}} (const \mbox{\hyperlink{classRocket}{Rocket}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator for the \doxylink{classRocket}{Rocket} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRocket_abe8c1ec3fadd4dae02732325a16847ee}{\texorpdfstring{$\sim$}{\string~}\+Rocket}} () override=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classRocket}{Rocket} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRocket_a352148808cd5a068d36dce7629c14366}{Update}} (float Delta\+Time) override
+\begin{DoxyCompactList}\small\item\em Updates the state of the rocket. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRocket_ac5b37cd897258b079aca9aed152dce71}{Render}} (\mbox{\hyperlink{classShader}{Shader}} \&shader) override
+\begin{DoxyCompactList}\small\item\em Renders the rocket or its particle system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, std\+::string name, GLFWwindow \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}p\+Camera)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity_a8cee18c049f0c60ed610ca825aecd53d}{Entity}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a32c3d1b7e4029970647fa03b804e3a6b}{operator=}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEntity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEntity_a87d3f4fcf10297e08d86f69c627b26a9}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_af0ad47262e35350b2751bd3d9175ae4c}{Set\+Model}} (const std\+::string \&path, bool b\+Smooth\+Normals, int model\+Id)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ac101508c5799d48d7bd03814f2640c85}{Set\+Model}} (\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*}model)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_acc8fdd453f0357acf9325c2c7d256de2}{Get\+Model}} () const
+\begin{DoxyCompactList}\small\item\em Get the model of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a860571917682a3a64c799be1218f4073}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa7ae2557dab53a3a45468761b734f755}{Set\+Position}} (const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Set the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a12c6b6fef4a48e28db5246e94d4901b3}{Move}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Move the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ae9b5ef1f81fa295bcc926b6703534723}{Move\+Towards}} (const glm\+::vec3 \&point, float speed)
+\begin{DoxyCompactList}\small\item\em Move the entity towards a point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a96c28f0b78bfbfcc19d2789116c07693}{Get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em Get the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a2af8db2160a71fc0e89041ee203babf0}{Set\+Rotation}} (const glm\+::vec3 \&rotation)
+\begin{DoxyCompactList}\small\item\em Set the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aefef11f4380b27498e6a3d85e2f13f99}{Look\+At}} (const glm\+::vec3 \&target\+Point, const glm\+::vec3 \&up)
+\begin{DoxyCompactList}\small\item\em Make the entity look at a target point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa2c7d13484912d24880aad5f488c640b}{Rotate\+Around}} (const glm\+::vec3 \&point, float distance, const glm\+::vec3 \&axis, float speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity around a point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a53518142fb4401a3d69d43cf8dd2fa42}{Rotate}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Rotate the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aca935e9d4ebb77fad4e7d16a9f3bfd1b}{Rotate\+Towards}} (const glm\+::vec3 \&target\+Point, float rotation\+Speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity towards a target point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a4c9f9dcfdda8976bbd623ba219e89e67}{Get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the size of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ace27110281909734dcf6d28f026bb8bc}{Set\+Size}} (const glm\+::vec3 \&size)
+\begin{DoxyCompactList}\small\item\em Set the size of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a373568be202c11d9fa5cc62efbb123f4}{Get\+Forward}} () const
+\begin{DoxyCompactList}\small\item\em Get the forward vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_ab615e480330add399615a060f74cc520}{Get\+Right}} () const
+\begin{DoxyCompactList}\small\item\em Get the right vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_afe0956076d06fbda027eda0bf724fd7f}{Get\+Up}} () const
+\begin{DoxyCompactList}\small\item\em Get the up vector of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a62bdc58dee00fb544ffcbffce0c5cd64}{Set\+Selected}} (bool is\+Selected)
+\begin{DoxyCompactList}\small\item\em Set the selected state of the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a877246ea4b63ab6dc49069afbc2784ce}{Is\+Selected}} () const
+\begin{DoxyCompactList}\small\item\em Check if the entity is selected. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classEntity_a44ccd287aa36aa32586e926dd6ac4cfd}{Get\+Model\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the model matrix of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aac1d44e590422c3205ef2544702ac0d1}{Normalize\+Rotation}} ()
+\begin{DoxyCompactList}\small\item\em Normalize the rotation of the entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classRocket_a15a11d15bb002edf651d1f04b6b2d9f4}{m\+\_\+\+Exploded}} \{false\}
+\begin{DoxyCompactList}\small\item\em Indicates whether the rocket has exploded. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classParticleSystem}{Particle\+System}} \mbox{\hyperlink{classRocket_a0995f67972244b9ee8f9d7fa1371d62f}{m\+\_\+\+Particle\+System}} \{10000\}
+\begin{DoxyCompactList}\small\item\em The particle system used when the rocket explodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEntity_a51b8088b7655752e60eaa8418ca7133d}{m\+\_\+\+Should\+Render}} \{true\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{classRocket_a7af56aa65251b99459c4a90256d5f668}{m\+\_\+\+Target}}
+\begin{DoxyCompactList}\small\item\em The target position the rocket is aiming for. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classRocket_a360ff09ef9924c0eedc13d4f371af9ec}{m\+\_\+\+Speed}} = 100.\+0f
+\begin{DoxyCompactList}\small\item\em The speed of the rocket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEntity_a1404c544fe70c6f03451b2a593b226c6}{m\+\_\+\+Name}}
+\begin{DoxyCompactList}\small\item\em Name of the entity. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classModel}{Model}} $>$ \mbox{\hyperlink{classEntity_ac109c27dbb064b45593e141be14bc76b}{m\+\_\+\+Model}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classModel}{Model} of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_abfbc158802fe16e28f3841e08b5eaf00}{m\+\_\+\+Position}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Position of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_acd8b0537426a4920e4345679b384b337}{m\+\_\+\+Rotation}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Rotation of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a9bb2bbfb957ae72b0e2ddfe4d5ef546f}{m\+\_\+\+Size}} \{1, 1, 1\}
+\begin{DoxyCompactList}\small\item\em Size of the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_aee372f0118becb845fbecc08e7887f0b}{m\+\_\+p\+Camera}}
+\begin{DoxyCompactList}\small\item\em Pointer to the camera. \end{DoxyCompactList}\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_a2ad897cd1be3afe3189a6afd944b2bb8}{m\+\_\+p\+Window}}
+\begin{DoxyCompactList}\small\item\em Pointer to the GLFW window. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a7e5fe600930c10fa22489b7a7eababe1}{m\+\_\+\+Is\+Selected}} \{false\}
+\begin{DoxyCompactList}\small\item\em Whether the entity is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a rocket entity in the simulation. 
+
+The \doxylink{classRocket}{Rocket} class inherits from the \doxylink{classEntity}{Entity} class and represents a rocket that can move towards a target and explode upon reaching it, triggering a particle system. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2}\index{Rocket@{Rocket}!Rocket@{Rocket}}
+\index{Rocket@{Rocket}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{Rocket()}{Rocket()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classRocket_ae63a4be7b14f2b6dcb13e9cc9d0198b2} 
+Rocket\+::\+Rocket (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position}{, }\item[{const glm\+::vec3 \&}]{target}{, }\item[{GLFWwindow \texorpdfstring{$\ast$}{*}}]{window}{, }\item[{\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}}]{p\+Camera}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classRocket}{Rocket} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The initial position of the rocket. \\
+\hline
+{\em target} & The target position the rocket is aiming for. \\
+\hline
+{\em window} & A pointer to the GLFW window. \\
+\hline
+{\em p\+Camera} & A pointer to the camera object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRocket_a7a7dc5bf65e4905b39cc43cf95e64328}\index{Rocket@{Rocket}!Rocket@{Rocket}}
+\index{Rocket@{Rocket}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{Rocket()}{Rocket()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classRocket_a7a7dc5bf65e4905b39cc43cf95e64328} 
+Rocket\+::\+Rocket (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRocket}{Rocket}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Copy constructor for the \doxylink{classRocket}{Rocket} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{classRocket}{Rocket} object to copy from. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classRocket_abe8c1ec3fadd4dae02732325a16847ee}\index{Rocket@{Rocket}!````~Rocket@{\texorpdfstring{$\sim$}{\string~}Rocket}}
+\index{````~Rocket@{\texorpdfstring{$\sim$}{\string~}Rocket}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Rocket()}{\string~Rocket()}}
+{\footnotesize\ttfamily \label{classRocket_abe8c1ec3fadd4dae02732325a16847ee} 
+Rocket\+::\texorpdfstring{$\sim$}{\string~}\+Rocket (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+Destructor for the \doxylink{classRocket}{Rocket} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classRocket_a53fef240a94cdd5ab38fb24fd814f522}\index{Rocket@{Rocket}!operator=@{operator=}}
+\index{operator=@{operator=}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{classRocket_a53fef240a94cdd5ab38fb24fd814f522} 
+\mbox{\hyperlink{classRocket}{Rocket}} \& Rocket\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRocket}{Rocket}} \&}]{other}{}\end{DoxyParamCaption})}
+
+
+
+Copy assignment operator for the \doxylink{classRocket}{Rocket} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{classRocket}{Rocket} object to copy from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the assigned \doxylink{classRocket}{Rocket} object. 
+\end{DoxyReturn}
+\Hypertarget{classRocket_ac5b37cd897258b079aca9aed152dce71}\index{Rocket@{Rocket}!Render@{Render}}
+\index{Render@{Render}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily \label{classRocket_ac5b37cd897258b079aca9aed152dce71} 
+void Rocket\+::\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classShader}{Shader}} \&}]{shader}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Renders the rocket or its particle system. 
+
+This function renders the rocket if it has not exploded. If the rocket has exploded, it renders the particle system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader used for rendering. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classEntity_af0bf9c60dca103badde4a488a90f2f84}{Entity}}.
+
+\Hypertarget{classRocket_a352148808cd5a068d36dce7629c14366}\index{Rocket@{Rocket}!Update@{Update}}
+\index{Update@{Update}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classRocket_a352148808cd5a068d36dce7629c14366} 
+void Rocket\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the state of the rocket. 
+
+This function updates the rocket\textquotesingle{}s position and checks if it has reached its target. If the rocket has exploded, it updates the particle system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEntity_a966bf9fb7ec06b0151e7eee0db43571a}{Entity}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classRocket_a15a11d15bb002edf651d1f04b6b2d9f4}\index{Rocket@{Rocket}!m\_Exploded@{m\_Exploded}}
+\index{m\_Exploded@{m\_Exploded}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{m\_Exploded}{m\_Exploded}}
+{\footnotesize\ttfamily \label{classRocket_a15a11d15bb002edf651d1f04b6b2d9f4} 
+bool Rocket\+::m\+\_\+\+Exploded \{false\}}
+
+
+
+Indicates whether the rocket has exploded. 
+
+\Hypertarget{classRocket_a0995f67972244b9ee8f9d7fa1371d62f}\index{Rocket@{Rocket}!m\_ParticleSystem@{m\_ParticleSystem}}
+\index{m\_ParticleSystem@{m\_ParticleSystem}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{m\_ParticleSystem}{m\_ParticleSystem}}
+{\footnotesize\ttfamily \label{classRocket_a0995f67972244b9ee8f9d7fa1371d62f} 
+\mbox{\hyperlink{classParticleSystem}{Particle\+System}} Rocket\+::m\+\_\+\+Particle\+System \{10000\}}
+
+
+
+The particle system used when the rocket explodes. 
+
+\Hypertarget{classRocket_a360ff09ef9924c0eedc13d4f371af9ec}\index{Rocket@{Rocket}!m\_Speed@{m\_Speed}}
+\index{m\_Speed@{m\_Speed}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{m\_Speed}{m\_Speed}}
+{\footnotesize\ttfamily \label{classRocket_a360ff09ef9924c0eedc13d4f371af9ec} 
+float Rocket\+::m\+\_\+\+Speed = 100.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The speed of the rocket. 
+
+\Hypertarget{classRocket_a7af56aa65251b99459c4a90256d5f668}\index{Rocket@{Rocket}!m\_Target@{m\_Target}}
+\index{m\_Target@{m\_Target}!Rocket@{Rocket}}
+\doxysubsubsection{\texorpdfstring{m\_Target}{m\_Target}}
+{\footnotesize\ttfamily \label{classRocket_a7af56aa65251b99459c4a90256d5f668} 
+glm\+::vec3 Rocket\+::m\+\_\+\+Target\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The target position the rocket is aiming for. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Rocket_8h}{Rocket.\+h}}\end{DoxyCompactItemize}

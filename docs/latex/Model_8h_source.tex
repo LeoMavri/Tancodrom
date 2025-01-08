@@ -1,0 +1,54 @@
+\doxysection{Model.\+h}
+\hypertarget{Model_8h_source}{}\label{Model_8h_source}\index{include/Model.h@{include/Model.h}}
+\mbox{\hyperlink{Model_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Created\ by\ mavri\ on\ 18.12.2024.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ MODEL\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MODEL\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Mesh_8h}{Mesh.h}}>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Shader_8h}{Shader.h}}>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{Texture_8h}{Texture.h}}>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <pch.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{Model_8h_a97bcae3cda2d77ad1707c455803e711c}{TextureFromFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path,\ \textcolor{keyword}{const}\ std::string\ \&directory,\ \textcolor{keywordtype}{bool}\ gamma\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classModel_a1a4a4afcaa0e8df369f99ae3c5a94ed6}{Model}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ std::vector<Texture>\ \mbox{\hyperlink{classModel_a866353fd9967b57286864fac87799ae1}{textures\_loaded}};\ }
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<Mesh>\ \ \ \ \ \ \mbox{\hyperlink{classModel_a538e42901dcfba59471072a48a162163}{meshes}};\ }
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classModel_a5ea3aa111c7a7d179e93dcc0bb567701}{directory}};\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classModel_ad77d358db2ff46758774b8a621f60db3}{gammaCorrection}};\ }
+\DoxyCodeLine{00033\ \ \ \ \ std::vector<glm::mat4>\ \mbox{\hyperlink{classModel_a9dd9987347b5508525df4e365fc5e717}{meshesTransform}};\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classModel_a1a4a4afcaa0e8df369f99ae3c5a94ed6}{Model}}(std::string\ \textcolor{keyword}{const}\ \&path,\ \textcolor{keywordtype}{bool}\ bSmoothNormals,\ \textcolor{keywordtype}{bool}\ gamma\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classModel_a2efbe4ec768191fa70ad86f260ec2fd6}{\string~Model}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classModel_aada6752247aed94b18aaaa1808fde4d1}{Draw}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classShader}{Shader}}\ \&shader,\ \textcolor{keyword}{const}\ glm::mat4\ \&objectTransform)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classModel_ac77b9a26e059192011ec80a15c925269}{GetTextureID}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \ \ \ \ glm::mat4\ \mbox{\hyperlink{classModel_a745037066238551d5d4a73e3b23da6d7}{GetMeshTransform}}(\textcolor{keywordtype}{int}\ meshID);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classModel_a83e834257d91b1bbcd861cb9c288130d}{SetMeshTransform}}(\textcolor{keywordtype}{int}\ meshID,\ \textcolor{keyword}{const}\ glm::mat4\ \&transform);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classModel_aec861806673c6434fcd70891caee5cdc}{RotateMesh}}(\textcolor{keywordtype}{int}\ meshID,\ \textcolor{keywordtype}{float}\ degrees,\ \textcolor{keyword}{const}\ glm::vec3\ \&axis);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classModel_a61957a2a0bb16d3f7010f335d4d6f1c2}{loadModel}}(std::string\ \textcolor{keyword}{const}\ \&path,\ \textcolor{keywordtype}{bool}\ bSmoothNormals);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classModel_a312215ded7c41d9699f7087ad930667c}{processNode}}(\textcolor{keyword}{const}\ aiNode\ *node,\ \textcolor{keyword}{const}\ aiScene\ *scene);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{classMesh}{Mesh}}\ \mbox{\hyperlink{classModel_aeb31ba40ac0298d9ab150dae2cbc2c42}{processMesh}}(\textcolor{keyword}{const}\ std::string\ \&nodeName,\ \textcolor{keyword}{const}\ aiMesh\ *mesh,\ \textcolor{keyword}{const}\ aiScene\ *scene);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00117\ \ \ \ \ std::vector<Texture>\ \mbox{\hyperlink{classModel_a0ee205a3cb394ff68a4b73255b871415}{loadMaterialTextures}}(\textcolor{keyword}{const}\ aiMaterial\ *mat,\ \textcolor{keyword}{const}\ aiTextureType\ \&type,}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&typeName);}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MODEL\_H}}
+
+\end{DoxyCode}

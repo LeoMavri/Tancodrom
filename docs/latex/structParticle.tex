@@ -1,0 +1,116 @@
+\doxysection{Particle Struct Reference}
+\hypertarget{structParticle}{}\label{structParticle}\index{Particle@{Particle}}
+
+
+A structure representing a single particle in a particle system.  
+
+
+
+
+{\ttfamily \#include $<$Particle.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structParticle_a611ed46b6f07319f0e2f7bd588192a30}{Particle}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{structParticle}{Particle} struct. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structParticle_a124c38681fb8e7b09a623af3eb060f6a}{operator==}} (const \mbox{\hyperlink{structParticle}{Particle}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equality operator for comparing two particles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \mbox{\hyperlink{structParticle_a6e67fa833defd23a48949b41d7b11682}{Position}}
+\begin{DoxyCompactList}\small\item\em The position of the particle. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{structParticle_a2453080a7d5676cc481d12375061bbc3}{Velocity}}
+\begin{DoxyCompactList}\small\item\em The velocity of the particle. \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{structParticle_ad2172b343de2cc481e14534de085b3e0}{Color}}
+\begin{DoxyCompactList}\small\item\em The color of the particle. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structParticle_a983c8e384595942ebcf34539120d4a37}{Life}}
+\begin{DoxyCompactList}\small\item\em The remaining life of the particle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure representing a single particle in a particle system. 
+
+The \doxylink{structParticle}{Particle} struct contains properties for position, velocity, color, and life span. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structParticle_a611ed46b6f07319f0e2f7bd588192a30}\index{Particle@{Particle}!Particle@{Particle}}
+\index{Particle@{Particle}!Particle@{Particle}}
+\doxysubsubsection{\texorpdfstring{Particle()}{Particle()}}
+{\footnotesize\ttfamily \label{structParticle_a611ed46b6f07319f0e2f7bd588192a30} 
+Particle\+::\+Particle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default constructor for the \doxylink{structParticle}{Particle} struct. 
+
+Initializes the particle with default values. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structParticle_a124c38681fb8e7b09a623af3eb060f6a}\index{Particle@{Particle}!operator==@{operator==}}
+\index{operator==@{operator==}!Particle@{Particle}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{structParticle_a124c38681fb8e7b09a623af3eb060f6a} 
+bool Particle\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structParticle}{Particle}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+
+Equality operator for comparing two particles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other particle to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the particles are equal, false otherwise. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structParticle_ad2172b343de2cc481e14534de085b3e0}\index{Particle@{Particle}!Color@{Color}}
+\index{Color@{Color}!Particle@{Particle}}
+\doxysubsubsection{\texorpdfstring{Color}{Color}}
+{\footnotesize\ttfamily \label{structParticle_ad2172b343de2cc481e14534de085b3e0} 
+glm\+::vec4 Particle\+::\+Color}
+
+
+
+The color of the particle. 
+
+\Hypertarget{structParticle_a983c8e384595942ebcf34539120d4a37}\index{Particle@{Particle}!Life@{Life}}
+\index{Life@{Life}!Particle@{Particle}}
+\doxysubsubsection{\texorpdfstring{Life}{Life}}
+{\footnotesize\ttfamily \label{structParticle_a983c8e384595942ebcf34539120d4a37} 
+float Particle\+::\+Life}
+
+
+
+The remaining life of the particle. 
+
+\Hypertarget{structParticle_a6e67fa833defd23a48949b41d7b11682}\index{Particle@{Particle}!Position@{Position}}
+\index{Position@{Position}!Particle@{Particle}}
+\doxysubsubsection{\texorpdfstring{Position}{Position}}
+{\footnotesize\ttfamily \label{structParticle_a6e67fa833defd23a48949b41d7b11682} 
+glm\+::vec3 Particle\+::\+Position}
+
+
+
+The position of the particle. 
+
+\Hypertarget{structParticle_a2453080a7d5676cc481d12375061bbc3}\index{Particle@{Particle}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!Particle@{Particle}}
+\doxysubsubsection{\texorpdfstring{Velocity}{Velocity}}
+{\footnotesize\ttfamily \label{structParticle_a2453080a7d5676cc481d12375061bbc3} 
+glm\+::vec3 Particle\+::\+Velocity}
+
+
+
+The velocity of the particle. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Particle_8h}{Particle.\+h}}\end{DoxyCompactItemize}

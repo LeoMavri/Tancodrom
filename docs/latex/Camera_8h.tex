@@ -1,0 +1,65 @@
+\doxysection{include/\+Camera.h File Reference}
+\hypertarget{Camera_8h}{}\label{Camera_8h}\index{include/Camera.h@{include/Camera.h}}
+{\ttfamily \#include $<$pch.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCamera}{Camera}}
+\begin{DoxyCompactList}\small\item\em A class representing a camera in a 3D environment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1d}{Camera\+Movement\+Type}} \{ \newline
+\mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1da6ce26a62afab55d7606ad4e92428b30c}{UNKNOWN}}
+, \mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daa26736999186daf8146f809e863712a1}{FORWARD}}
+, \mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1dafed2fca77e454294d6b8bda1bf2c9fd6}{BACKWARD}}
+, \mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1dadb45120aafd37a973140edee24708065}{LEFT}}
+, \newline
+\mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daec8379af7490bb9eaaf579cf17876f38}{RIGHT}}
+, \mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daba595d8bca8bc5e67c37c0a9d89becfa}{UP}}
+, \mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1da9b0b4a95b99523966e0e34ffdadac9da}{DOWN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum representing the different types of camera movement. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1d}\index{Camera.h@{Camera.h}!CameraMovementType@{CameraMovementType}}
+\index{CameraMovementType@{CameraMovementType}!Camera.h@{Camera.h}}
+\doxysubsubsection{\texorpdfstring{CameraMovementType}{CameraMovementType}}
+{\footnotesize\ttfamily \label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1d} 
+enum \mbox{\hyperlink{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1d}{Camera\+Movement\+Type}}}
+
+
+
+Enum representing the different types of camera movement. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!Camera.h@{Camera.h}}\index{Camera.h@{Camera.h}!UNKNOWN@{UNKNOWN}}}\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1da6ce26a62afab55d7606ad4e92428b30c}\label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1da6ce26a62afab55d7606ad4e92428b30c} 
+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FORWARD@{FORWARD}!Camera.h@{Camera.h}}\index{Camera.h@{Camera.h}!FORWARD@{FORWARD}}}\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daa26736999186daf8146f809e863712a1}\label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daa26736999186daf8146f809e863712a1} 
+FORWARD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BACKWARD@{BACKWARD}!Camera.h@{Camera.h}}\index{Camera.h@{Camera.h}!BACKWARD@{BACKWARD}}}\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1dafed2fca77e454294d6b8bda1bf2c9fd6}\label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1dafed2fca77e454294d6b8bda1bf2c9fd6} 
+BACKWARD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!Camera.h@{Camera.h}}\index{Camera.h@{Camera.h}!LEFT@{LEFT}}}\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1dadb45120aafd37a973140edee24708065}\label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1dadb45120aafd37a973140edee24708065} 
+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!Camera.h@{Camera.h}}\index{Camera.h@{Camera.h}!RIGHT@{RIGHT}}}\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daec8379af7490bb9eaaf579cf17876f38}\label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daec8379af7490bb9eaaf579cf17876f38} 
+RIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP@{UP}!Camera.h@{Camera.h}}\index{Camera.h@{Camera.h}!UP@{UP}}}\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daba595d8bca8bc5e67c37c0a9d89becfa}\label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1daba595d8bca8bc5e67c37c0a9d89becfa} 
+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN@{DOWN}!Camera.h@{Camera.h}}\index{Camera.h@{Camera.h}!DOWN@{DOWN}}}\Hypertarget{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1da9b0b4a95b99523966e0e34ffdadac9da}\label{Camera_8h_af0ad63fbf9fd6242d7b1f510d1801c1da9b0b4a95b99523966e0e34ffdadac9da} 
+DOWN&\\
+\hline
+
+\end{DoxyEnumFields}

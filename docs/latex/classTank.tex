@@ -1,0 +1,378 @@
+\doxysection{Tank Class Reference}
+\hypertarget{classTank}{}\label{classTank}\index{Tank@{Tank}}
+
+
+Represents a tank entity in the scene, inheriting from \doxylink{classEntity}{Entity}.  
+
+
+
+
+{\ttfamily \#include $<$Tank.\+h$>$}
+
+Inheritance diagram for Tank\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classTank}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTank_ae1fe2a8efff3be3159777858d18edf2b}{Tank}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, GLFWwindow \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}p\+Camera)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classTank}{Tank} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTank_a9efab5b947b184c43ed1e5de58a96234}{\texorpdfstring{$\sim$}{\string~}\+Tank}} () override=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTank_aa22e9219cab317d416c4742a6a04c772}{Update}} (float Delta\+Time) override
+\begin{DoxyCompactList}\small\item\em Updates the tank\textquotesingle{}s state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTank_abd0114dfeb74b57ecee6bb79f9bb3b45}{Update\+Camera\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Updates the camera position based on the tank\textquotesingle{}s position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTank_ab6a31951b9e7b806d1c48e9e19ee71e4}{Control\+Tank}} (GLFWwindow \texorpdfstring{$\ast$}{*}window, float Delta\+Time)
+\begin{DoxyCompactList}\small\item\em Controls the tank\textquotesingle{}s movement and actions based on user input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTank_a7e864d1d4cdce926047789e139220128}{Mouse\+Control}} () const
+\begin{DoxyCompactList}\small\item\em Controls the tank\textquotesingle{}s camera based on mouse input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTank_ae0d270f0693b95ffc542251dd2002090}{Set\+Entities}} (const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&entities)
+\begin{DoxyCompactList}\small\item\em Sets the entities that the tank can interact with. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTank_a2baddca89d18f4fd7f84531fa800d5ff}{Render}} (\mbox{\hyperlink{classShader}{Shader}} \&shader) override
+\begin{DoxyCompactList}\small\item\em Renders the tank using the specified shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTank_a7388b1b2820ab69760406234d81f9026}{Fire}} ()
+\begin{DoxyCompactList}\small\item\em Fires a rocket from the tank. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntity_a016f3f1b4bb100a305a6548497c76a2e}{Entity}} (const glm\+::vec3 \&position, const glm\+::vec3 \&size, const glm\+::vec3 \&rotation, std\+::string name, GLFWwindow \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}p\+Camera)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity_a8cee18c049f0c60ed610ca825aecd53d}{Entity}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a32c3d1b7e4029970647fa03b804e3a6b}{operator=}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy assignment operator for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEntity_ac479d009ddde62dfb378ca0a70d81307}{\texorpdfstring{$\sim$}{\string~}\+Entity}} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classEntity}{Entity} class. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEntity_a87d3f4fcf10297e08d86f69c627b26a9}{Get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_af0ad47262e35350b2751bd3d9175ae4c}{Set\+Model}} (const std\+::string \&path, bool b\+Smooth\+Normals, int model\+Id)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ac101508c5799d48d7bd03814f2640c85}{Set\+Model}} (\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*}model)
+\begin{DoxyCompactList}\small\item\em Set the model for the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classModel}{Model}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_acc8fdd453f0357acf9325c2c7d256de2}{Get\+Model}} () const
+\begin{DoxyCompactList}\small\item\em Get the model of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a860571917682a3a64c799be1218f4073}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa7ae2557dab53a3a45468761b734f755}{Set\+Position}} (const glm\+::vec3 \&position)
+\begin{DoxyCompactList}\small\item\em Set the position of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a12c6b6fef4a48e28db5246e94d4901b3}{Move}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Move the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ae9b5ef1f81fa295bcc926b6703534723}{Move\+Towards}} (const glm\+::vec3 \&point, float speed)
+\begin{DoxyCompactList}\small\item\em Move the entity towards a point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a96c28f0b78bfbfcc19d2789116c07693}{Get\+Rotation}} () const
+\begin{DoxyCompactList}\small\item\em Get the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a2af8db2160a71fc0e89041ee203babf0}{Set\+Rotation}} (const glm\+::vec3 \&rotation)
+\begin{DoxyCompactList}\small\item\em Set the rotation of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aefef11f4380b27498e6a3d85e2f13f99}{Look\+At}} (const glm\+::vec3 \&target\+Point, const glm\+::vec3 \&up)
+\begin{DoxyCompactList}\small\item\em Make the entity look at a target point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aa2c7d13484912d24880aad5f488c640b}{Rotate\+Around}} (const glm\+::vec3 \&point, float distance, const glm\+::vec3 \&axis, float speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity around a point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a53518142fb4401a3d69d43cf8dd2fa42}{Rotate}} (const glm\+::vec3 \&direction)
+\begin{DoxyCompactList}\small\item\em Rotate the entity in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aca935e9d4ebb77fad4e7d16a9f3bfd1b}{Rotate\+Towards}} (const glm\+::vec3 \&target\+Point, float rotation\+Speed)
+\begin{DoxyCompactList}\small\item\em Rotate the entity towards a target point. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a4c9f9dcfdda8976bbd623ba219e89e67}{Get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the size of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_ace27110281909734dcf6d28f026bb8bc}{Set\+Size}} (const glm\+::vec3 \&size)
+\begin{DoxyCompactList}\small\item\em Set the size of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a373568be202c11d9fa5cc62efbb123f4}{Get\+Forward}} () const
+\begin{DoxyCompactList}\small\item\em Get the forward vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_ab615e480330add399615a060f74cc520}{Get\+Right}} () const
+\begin{DoxyCompactList}\small\item\em Get the right vector of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_afe0956076d06fbda027eda0bf724fd7f}{Get\+Up}} () const
+\begin{DoxyCompactList}\small\item\em Get the up vector of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_a62bdc58dee00fb544ffcbffce0c5cd64}{Set\+Selected}} (bool is\+Selected)
+\begin{DoxyCompactList}\small\item\em Set the selected state of the entity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a877246ea4b63ab6dc49069afbc2784ce}{Is\+Selected}} () const
+\begin{DoxyCompactList}\small\item\em Check if the entity is selected. \end{DoxyCompactList}\item 
+glm\+::mat4 \mbox{\hyperlink{classEntity_a44ccd287aa36aa32586e926dd6ac4cfd}{Get\+Model\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Get the model matrix of the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEntity_aac1d44e590422c3205ef2544702ac0d1}{Normalize\+Rotation}} ()
+\begin{DoxyCompactList}\small\item\em Normalize the rotation of the entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classTank_ad93527e17ca9a7411c95caabbcdf9bf2}{m\+\_\+p\+Camera}}
+\begin{DoxyCompactList}\small\item\em Pointer to the camera associated with the tank. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classTank_a776f0f7153b418bee7662b1114f44d22}{m\+\_\+\+Entities}}
+\begin{DoxyCompactList}\small\item\em Entities that the tank can interact with. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classRocket}{Rocket}} $>$ \mbox{\hyperlink{classTank_ac4b6245c61e26b79d86a5f10a243309b}{m\+\_\+\+Rockets}}
+\begin{DoxyCompactList}\small\item\em Rockets fired by the tank. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classTank_a6c821e1a911c61866cd38134cf2849ea}{m\+\_\+p\+Nearest\+Entity}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the nearest entity. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classTank_ac108d2436e258aaa61ff5e32cd6da6af}{m\+\_\+\+Turret\+Rotation}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em The current rotation of the turret. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr float \mbox{\hyperlink{classTank_a0b17fbef9c9de033426297cdb4d4a767}{m\+\_\+\+Turret\+Rotation\+Speed}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em The rotation speed of the turret. \end{DoxyCompactList}\item 
+static constexpr float \mbox{\hyperlink{classTank_a97315e409d102c77db76844006d277f2}{m\+\_\+\+Speed}} = 5.\+0f
+\begin{DoxyCompactList}\small\item\em The movement speed of the tank. \end{DoxyCompactList}\item 
+static constexpr float \mbox{\hyperlink{classTank_ad907a977d1ebc599e7e5a9c81940399d}{m\+\_\+\+Mouse\+Sensitivity}}
+\begin{DoxyCompactList}\small\item\em The mouse sensitivity for controlling the tank. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classEntity_a51b8088b7655752e60eaa8418ca7133d}{m\+\_\+\+Should\+Render}} \{true\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classEntity}{Entity}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classEntity_a1404c544fe70c6f03451b2a593b226c6}{m\+\_\+\+Name}}
+\begin{DoxyCompactList}\small\item\em Name of the entity. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classModel}{Model}} $>$ \mbox{\hyperlink{classEntity_ac109c27dbb064b45593e141be14bc76b}{m\+\_\+\+Model}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classModel}{Model} of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_abfbc158802fe16e28f3841e08b5eaf00}{m\+\_\+\+Position}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Position of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_acd8b0537426a4920e4345679b384b337}{m\+\_\+\+Rotation}} \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Rotation of the entity. \end{DoxyCompactList}\item 
+glm\+::vec3 \mbox{\hyperlink{classEntity_a9bb2bbfb957ae72b0e2ddfe4d5ef546f}{m\+\_\+\+Size}} \{1, 1, 1\}
+\begin{DoxyCompactList}\small\item\em Size of the entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_aee372f0118becb845fbecc08e7887f0b}{m\+\_\+p\+Camera}}
+\begin{DoxyCompactList}\small\item\em Pointer to the camera. \end{DoxyCompactList}\item 
+GLFWwindow \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classEntity_a2ad897cd1be3afe3189a6afd944b2bb8}{m\+\_\+p\+Window}}
+\begin{DoxyCompactList}\small\item\em Pointer to the GLFW window. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_a7e5fe600930c10fa22489b7a7eababe1}{m\+\_\+\+Is\+Selected}} \{false\}
+\begin{DoxyCompactList}\small\item\em Whether the entity is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a tank entity in the scene, inheriting from \doxylink{classEntity}{Entity}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTank_ae1fe2a8efff3be3159777858d18edf2b}\index{Tank@{Tank}!Tank@{Tank}}
+\index{Tank@{Tank}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{Tank()}{Tank()}}
+{\footnotesize\ttfamily \label{classTank_ae1fe2a8efff3be3159777858d18edf2b} 
+Tank\+::\+Tank (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position}{, }\item[{const glm\+::vec3 \&}]{size}{, }\item[{const glm\+::vec3 \&}]{rotation}{, }\item[{GLFWwindow \texorpdfstring{$\ast$}{*}}]{window}{, }\item[{\mbox{\hyperlink{classCamera}{Camera}} \texorpdfstring{$\ast$}{*}}]{p\+Camera}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classTank}{Tank} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The initial position of the tank. \\
+\hline
+{\em size} & The size of the tank. \\
+\hline
+{\em rotation} & The rotation of the tank. \\
+\hline
+{\em window} & The GLFW window associated with the tank. \\
+\hline
+{\em p\+Camera} & Pointer to the camera associated with the tank. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTank_a9efab5b947b184c43ed1e5de58a96234}\index{Tank@{Tank}!````~Tank@{\texorpdfstring{$\sim$}{\string~}Tank}}
+\index{````~Tank@{\texorpdfstring{$\sim$}{\string~}Tank}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Tank()}{\string~Tank()}}
+{\footnotesize\ttfamily \label{classTank_a9efab5b947b184c43ed1e5de58a96234} 
+Tank\+::\texorpdfstring{$\sim$}{\string~}\+Tank (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTank_ab6a31951b9e7b806d1c48e9e19ee71e4}\index{Tank@{Tank}!ControlTank@{ControlTank}}
+\index{ControlTank@{ControlTank}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{ControlTank()}{ControlTank()}}
+{\footnotesize\ttfamily \label{classTank_ab6a31951b9e7b806d1c48e9e19ee71e4} 
+void Tank\+::\+Control\+Tank (\begin{DoxyParamCaption}\item[{GLFWwindow \texorpdfstring{$\ast$}{*}}]{window}{, }\item[{float}]{Delta\+Time}{}\end{DoxyParamCaption})}
+
+
+
+Controls the tank\textquotesingle{}s movement and actions based on user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The GLFW window associated with the tank. \\
+\hline
+{\em Delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTank_a7388b1b2820ab69760406234d81f9026}\index{Tank@{Tank}!Fire@{Fire}}
+\index{Fire@{Fire}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{Fire()}{Fire()}}
+{\footnotesize\ttfamily \label{classTank_a7388b1b2820ab69760406234d81f9026} 
+void Tank\+::\+Fire (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Fires a rocket from the tank. 
+
+\Hypertarget{classTank_a7e864d1d4cdce926047789e139220128}\index{Tank@{Tank}!MouseControl@{MouseControl}}
+\index{MouseControl@{MouseControl}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{MouseControl()}{MouseControl()}}
+{\footnotesize\ttfamily \label{classTank_a7e864d1d4cdce926047789e139220128} 
+void Tank\+::\+Mouse\+Control (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Controls the tank\textquotesingle{}s camera based on mouse input. 
+
+\Hypertarget{classTank_a2baddca89d18f4fd7f84531fa800d5ff}\index{Tank@{Tank}!Render@{Render}}
+\index{Render@{Render}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{Render()}{Render()}}
+{\footnotesize\ttfamily \label{classTank_a2baddca89d18f4fd7f84531fa800d5ff} 
+void Tank\+::\+Render (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classShader}{Shader}} \&}]{shader}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Renders the tank using the specified shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & The shader to use for rendering. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classEntity_af0bf9c60dca103badde4a488a90f2f84}{Entity}}.
+
+\Hypertarget{classTank_ae0d270f0693b95ffc542251dd2002090}\index{Tank@{Tank}!SetEntities@{SetEntities}}
+\index{SetEntities@{SetEntities}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{SetEntities()}{SetEntities()}}
+{\footnotesize\ttfamily \label{classTank_ae0d270f0693b95ffc542251dd2002090} 
+void Tank\+::\+Set\+Entities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*} $>$ \&}]{entities}{}\end{DoxyParamCaption})}
+
+
+
+Sets the entities that the tank can interact with. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entities} & A vector of pointers to entities. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTank_aa22e9219cab317d416c4742a6a04c772}\index{Tank@{Tank}!Update@{Update}}
+\index{Update@{Update}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{classTank_aa22e9219cab317d416c4742a6a04c772} 
+void Tank\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the tank\textquotesingle{}s state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Delta\+Time} & The time elapsed since the last update. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classEntity_a966bf9fb7ec06b0151e7eee0db43571a}{Entity}}.
+
+\Hypertarget{classTank_abd0114dfeb74b57ecee6bb79f9bb3b45}\index{Tank@{Tank}!UpdateCameraPosition@{UpdateCameraPosition}}
+\index{UpdateCameraPosition@{UpdateCameraPosition}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{UpdateCameraPosition()}{UpdateCameraPosition()}}
+{\footnotesize\ttfamily \label{classTank_abd0114dfeb74b57ecee6bb79f9bb3b45} 
+void Tank\+::\+Update\+Camera\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Updates the camera position based on the tank\textquotesingle{}s position. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classTank_a776f0f7153b418bee7662b1114f44d22}\index{Tank@{Tank}!m\_Entities@{m\_Entities}}
+\index{m\_Entities@{m\_Entities}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_Entities}{m\_Entities}}
+{\footnotesize\ttfamily \label{classTank_a776f0f7153b418bee7662b1114f44d22} 
+std\+::vector$<$\mbox{\hyperlink{classEntity}{Entity}} \texorpdfstring{$\ast$}{*}$>$ Tank\+::m\+\_\+\+Entities\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Entities that the tank can interact with. 
+
+\Hypertarget{classTank_ad907a977d1ebc599e7e5a9c81940399d}\index{Tank@{Tank}!m\_MouseSensitivity@{m\_MouseSensitivity}}
+\index{m\_MouseSensitivity@{m\_MouseSensitivity}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_MouseSensitivity}{m\_MouseSensitivity}}
+{\footnotesize\ttfamily \label{classTank_ad907a977d1ebc599e7e5a9c81940399d} 
+float Tank\+::m\+\_\+\+Mouse\+Sensitivity\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ 0.1f}
+
+\end{DoxyCode}
+
+
+The mouse sensitivity for controlling the tank. 
+
+\Hypertarget{classTank_ad93527e17ca9a7411c95caabbcdf9bf2}\index{Tank@{Tank}!m\_pCamera@{m\_pCamera}}
+\index{m\_pCamera@{m\_pCamera}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_pCamera}{m\_pCamera}}
+{\footnotesize\ttfamily \label{classTank_ad93527e17ca9a7411c95caabbcdf9bf2} 
+\mbox{\hyperlink{classCamera}{Camera}}\texorpdfstring{$\ast$}{*} Tank\+::m\+\_\+p\+Camera\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the camera associated with the tank. 
+
+\Hypertarget{classTank_a6c821e1a911c61866cd38134cf2849ea}\index{Tank@{Tank}!m\_pNearestEntity@{m\_pNearestEntity}}
+\index{m\_pNearestEntity@{m\_pNearestEntity}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_pNearestEntity}{m\_pNearestEntity}}
+{\footnotesize\ttfamily \label{classTank_a6c821e1a911c61866cd38134cf2849ea} 
+\mbox{\hyperlink{classEntity}{Entity}}\texorpdfstring{$\ast$}{*} Tank\+::m\+\_\+p\+Nearest\+Entity = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the nearest entity. 
+
+\Hypertarget{classTank_ac4b6245c61e26b79d86a5f10a243309b}\index{Tank@{Tank}!m\_Rockets@{m\_Rockets}}
+\index{m\_Rockets@{m\_Rockets}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_Rockets}{m\_Rockets}}
+{\footnotesize\ttfamily \label{classTank_ac4b6245c61e26b79d86a5f10a243309b} 
+std\+::vector$<$\mbox{\hyperlink{classRocket}{Rocket}}$>$ Tank\+::m\+\_\+\+Rockets\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rockets fired by the tank. 
+
+\Hypertarget{classTank_a97315e409d102c77db76844006d277f2}\index{Tank@{Tank}!m\_Speed@{m\_Speed}}
+\index{m\_Speed@{m\_Speed}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_Speed}{m\_Speed}}
+{\footnotesize\ttfamily \label{classTank_a97315e409d102c77db76844006d277f2} 
+float Tank\+::m\+\_\+\+Speed = 5.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The movement speed of the tank. 
+
+\Hypertarget{classTank_ac108d2436e258aaa61ff5e32cd6da6af}\index{Tank@{Tank}!m\_TurretRotation@{m\_TurretRotation}}
+\index{m\_TurretRotation@{m\_TurretRotation}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_TurretRotation}{m\_TurretRotation}}
+{\footnotesize\ttfamily \label{classTank_ac108d2436e258aaa61ff5e32cd6da6af} 
+float Tank\+::m\+\_\+\+Turret\+Rotation = 0.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current rotation of the turret. 
+
+\Hypertarget{classTank_a0b17fbef9c9de033426297cdb4d4a767}\index{Tank@{Tank}!m\_TurretRotationSpeed@{m\_TurretRotationSpeed}}
+\index{m\_TurretRotationSpeed@{m\_TurretRotationSpeed}!Tank@{Tank}}
+\doxysubsubsection{\texorpdfstring{m\_TurretRotationSpeed}{m\_TurretRotationSpeed}}
+{\footnotesize\ttfamily \label{classTank_a0b17fbef9c9de033426297cdb4d4a767} 
+float Tank\+::m\+\_\+\+Turret\+Rotation\+Speed = 1.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The rotation speed of the turret. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Tank_8h}{Tank.\+h}}\end{DoxyCompactItemize}
