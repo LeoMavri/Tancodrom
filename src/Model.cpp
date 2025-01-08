@@ -4,15 +4,33 @@
 
 #include <Model.h>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "Camera.h"
+#include "stb_image.h"
+
 Model::Model(const std::string &path, const bool bSmoothNormals, const bool gamma) :
     gammaCorrection(gamma) {
     loadModel(path, bSmoothNormals);
 }
 
-void Model::Draw(const Shader &shader) {
-    for (const auto &mesh : meshes) {
-        mesh.Draw(shader);
+void Model::Draw(const Shader &shader, const glm::mat4 &objectTransform) const {
+    for (int i = 0; i < meshes.size(); i++) {
+        meshes[i].Draw(shader, objectTransform * meshesTransform[i]);
     }
+}
+
+glm::mat4 Model::GetMeshTransform(const int meshID) { return meshesTransform[meshID]; }
+
+void Model::SetMeshTransform(const int meshID, const glm::mat4 &transform) {
+    meshesTransform[meshID] = transform;
+}
+
+void Model::RotateMesh(const int meshID, const float degrees, const glm::vec3 &axis) {
+    meshesTransform[meshID] =
+            glm::translate(meshesTransform[meshID], meshes[meshID].vertices->Position);
+    meshesTransform[meshID] = glm::rotate(meshesTransform[meshID], glm::radians(degrees), axis);
+    meshesTransform[meshID] =
+            glm::translate(meshesTransform[meshID], -meshes[meshID].vertices->Position);
 }
 
 void Model::loadModel(const std::string &path, const bool bSmoothNormals) {
@@ -29,7 +47,7 @@ void Model::loadModel(const std::string &path, const bool bSmoothNormals) {
         return;
     }
     // retrieve the directory path of the filepath
-    directory = path.substr(0, path.find_last_of("/"));
+    directory = path.substr(0, path.find_last_of('/'));
 
     // process ASSIMP's root node recursively
     processNode(scene->mRootNode, scene);
@@ -43,6 +61,7 @@ void Model::processNode(const aiNode *node, const aiScene *scene) {
         // between nodes).
         const aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
         meshes.push_back(processMesh(node->mName.C_Str(), mesh, scene));
+        meshesTransform.emplace_back(1);
     }
     // after we've processed all of the meshes (if any) we then recursively process each of the
     // children nodes
@@ -60,10 +79,10 @@ Mesh Model::processMesh(const std::string &nodeName, const aiMesh *mesh, const a
     // walk through each of the mesh's vertices
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
         Vertex    vertex;
-        glm::vec3 vector;
-        // we declare a placeholder vector since assimp uses its own vector class that doesn't
-        // directly convert to glm's vec3 class so we transfer the data to this placeholder
-        // glm::vec3 first. positions
+        glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class
+                          // that doesn't directly convert to glm's vec3 class so we transfer the
+                          // data to this placeholder glm::vec3 first.
+        // positions
         vector.x        = mesh->mVertices[i].x;
         vector.y        = mesh->mVertices[i].y;
         vector.z        = mesh->mVertices[i].z;
@@ -175,6 +194,8 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
     auto filename = std::string(path);
     filename      = directory + '/' + filename;
 
+    std::cout << "Loading texture: " << filename << std::endl;
+
     unsigned int textureID;
     glGenTextures(1, &textureID);
 
@@ -193,8 +214,8 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
@@ -202,7 +223,15 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
     } else {
         std::cout << "Texture failed to load at path: " << path << std::endl;
         stbi_image_free(data);
+        return 0; // Return 0 if texture loading failed
     }
 
     return textureID;
+}
+
+unsigned int Model::GetTextureID() const {
+    if (!textures_loaded.empty()) {
+        return textures_loaded[0].id;
+    }
+    return 0;
 }

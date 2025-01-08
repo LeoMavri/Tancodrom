@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.25)
 
 project(Tancodrom)
 
@@ -7,15 +7,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include(CheckCXXCompilerFlag)
 
-check_cxx_compiler_flag("-flto=auto" COMPILER_SUPPORTS_FLTO_AUTO)
-if (COMPILER_SUPPORTS_FLTO_AUTO)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto=auto")
-else ()
-    check_cxx_compiler_flag("-flto" COMPILER_SUPPORTS_FLTO)
-    if (COMPILER_SUPPORTS_FLTO)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
+if (NOT WIN32)
+    check_cxx_compiler_flag("-flto=auto" COMPILER_SUPPORTS_FLTO_AUTO)
+    if (COMPILER_SUPPORTS_FLTO_AUTO)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto=auto")
     else ()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native")
+        check_cxx_compiler_flag("-flto" COMPILER_SUPPORTS_FLTO)
+        if (COMPILER_SUPPORTS_FLTO)
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native -flto")
+        else ()
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Wall -Wextra -march=native")
+        endif ()
     endif ()
 endif ()
 
@@ -33,8 +35,6 @@ endif ()
 
 file(GLOB SOURCES src/*.cpp)
 file(GLOB HEADERS include/*.h)
-
-include_directories(include lib)
 
 if (NOT SOURCES)
     message(FATAL_ERROR "No source files found. Please check the 'src' directory.")
@@ -65,7 +65,7 @@ else ()
         )
         FetchContent_MakeAvailable(glew)
         set(GLEW_INCLUDE_DIRS ${glew_SOURCE_DIR}/include)
-        set(GLEW_LIBRARIES ${glew_BINARY_DIR}/lib/Release/Win32/glew32.lib)
+        set(GLEW_LIBRARIES ${glew_SOURCE_DIR}/lib/Release/x64/glew32.lib)
         add_library(GLEW::GLEW UNKNOWN IMPORTED)
         set_target_properties(GLEW::GLEW PROPERTIES
                 IMPORTED_LOCATION ${GLEW_LIBRARIES}
@@ -117,14 +117,51 @@ else ()
     set(GLM_INCLUDE_DIRS ${glm_SOURCE_DIR})
 endif ()
 
-include_directories(${GLEW_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS})
+find_package(assimp QUIET)
+if (assimp_FOUND)
+    message(STATUS "Assimp found")
+else ()
+    message(STATUS "Fetching Assimp...")
+    FetchContent_Declare(
+            assimp
+            GIT_REPOSITORY https://github.com/assimp/assimp.git
+            GIT_TAG v5.4.3
+    )
+    FetchContent_MakeAvailable(assimp)
+    set(ASSIMP_INCLUDE_DIRS ${assimp_SOURCE_DIR}/include)
+    set(ASSIMP_LIBRARIES ${assimp_BINARY_DIR}/lib/libassimp.so)
+    if (NOT TARGET assimp::assimp)
+        add_library(assimp::assimp UNKNOWN IMPORTED)
+        set_target_properties(assimp::assimp PROPERTIES
+                IMPORTED_LOCATION ${ASSIMP_LIBRARIES}
+                INTERFACE_INCLUDE_DIRECTORIES ${ASSIMP_INCLUDE_DIRS}
+        )
+    endif ()
+endif ()
 
-target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW ${GLFW3_LIBRARIES} glm)
+# Assimp "insists" on treating warnings as errors.
+if (TARGET assimp)
+    get_target_property(ASSIMP_COMPILE_OPTIONS assimp COMPILE_OPTIONS)
+    list(REMOVE_ITEM ASSIMP_COMPILE_OPTIONS -Werror)
+    set_target_properties(assimp PROPERTIES COMPILE_OPTIONS "${ASSIMP_COMPILE_OPTIONS}")
+endif ()
+
+include_directories(${GLEW_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${GLM_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIRS} include lib)
+
+target_link_libraries(${PROJECT_NAME} OpenGL::GL GLEW::GLEW ${GLFW3_LIBRARIES} glm assimp::assimp)
 
 if (WIN32)
     message(STATUS "Configuring for Windows")
-    target_link_libraries(${PROJECT_NAME} glfw3dll)
+    #target_link_libraries(${PROJECT_NAME} glfw3dll)
 elseif (UNIX)
     message(STATUS "Configuring for Linux")
     target_link_libraries(${PROJECT_NAME} pthread)
+endif ()
+
+if (WIN32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${glew_SOURCE_DIR}/bin/Release/x64/glew32.dll"
+            $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    )
 endif ()

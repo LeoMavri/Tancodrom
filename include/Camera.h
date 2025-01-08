@@ -19,9 +19,9 @@ enum CameraMovementType { UNKNOWN, FORWARD, BACKWARD, LEFT, RIGHT, UP, DOWN };
  */
 class Camera {
     static constexpr float zNEAR = 0.1f; ///< Near clipping plane
-    static constexpr float zFAR  = 100.f; ///< Far clipping plane
-    static constexpr float YAW   = -90.0f; ///< Default yaw angle
-    static constexpr float PITCH = 0.0f; ///< Default pitch angle
+    static constexpr float zFAR  = 10000.f; ///< Far clipping plane
+    static constexpr float YAW   = -90.0f; ///< Default m_Yaw angle
+    static constexpr float PITCH = 0.0f; ///< Default m_Pitch angle
     static constexpr float FOV   = 45.0f; ///< Default field of view
     glm::vec3              m_StartPosition; ///< Initial position of the camera
 
@@ -94,7 +94,10 @@ public:
      */
     void ProcessMouseScroll(float yOffset);
 
-private:
+    void SetPosition(const glm::vec3 &position);
+
+    void LookAt(const glm::vec3 &targetPoint, const glm::vec3 &up);
+
     /**
      * @brief Process mouse movement.
      * @param xOffset Offset in the X direction.
@@ -102,13 +105,14 @@ private:
      */
     void ProcessMouseMovement(float xOffset, float yOffset);
 
+private:
     /**
      * @brief Update the camera vectors based on the current yaw and pitch.
      */
     void UpdateCameraVectors();
 
-protected:
-    static constexpr float m_CameraSpeed      = 2.5f; ///< Camera movement speed
+public:
+    static constexpr float m_CameraSpeed      = 60.0f; ///< Camera movement speed
     static constexpr float m_MouseSensitivity = 0.1f; ///< Mouse sensitivity
 
     float m_ZNear; ///< Near clipping plane

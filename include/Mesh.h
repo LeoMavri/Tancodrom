@@ -51,8 +51,9 @@ public:
     /**
      * @brief Draw the mesh.
      * @param shader Shader to use for drawing.
+     * @param model
      */
-    void Draw(const Shader &shader) const;
+    void Draw(const Shader &shader, const glm::mat4 &model) const;
 
 private:
     unsigned int VBO; ///< Vertex Buffer Object for the mesh

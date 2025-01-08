@@ -74,7 +74,7 @@ StyleCopReport.xml
 *_h.h
 *.ilk
 *.meta
-*.obj
+#*.obj # Lmao
 *.iobj
 *.pch
 *.pdb
@@ -407,3 +407,5 @@ CMakeFiles/
 CMakeScripts/
 Testing/
 cmake-build-*/
+out/
+build/
