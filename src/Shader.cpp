@@ -108,3 +108,17 @@ void Shader::CheckCompileErrors(const unsigned int shader, const std::string &ty
         }
     }
 }
+
+void Shader::SetLightsVec3(const std::string &name, const std::vector<glm::vec3> &vec) const {
+    for (int i = 0; i < vec.size(); ++i) {
+        std::string prefix = "lights[" + std::to_string(i) + "].";
+        glUniform3fv(glGetUniformLocation(ID, (prefix + name).c_str()), 1, glm::value_ptr(vec[i]));
+    }
+}
+
+void Shader::SetLightsFloat(const std::string &name, const std::vector<float> &vec) const {
+    for (int i = 0; i < vec.size(); ++i) {
+        std::string prefix = "lights[" + std::to_string(i) + "].";
+        SetFloat(prefix + name, vec[i]);
+    }
+}

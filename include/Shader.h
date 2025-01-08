@@ -50,12 +50,16 @@ public:
      */
     void SetFloat(const std::string &name, const float &value) const;
 
+    void SetLightsFloat(const std::string &name, const std::vector<float> &vec) const;
+
     /**
      * @brief Set a vec3 uniform in the shader.
      * @param name Name of the uniform.
      * @param value Value to set.
      */
     void SetVec3(const std::string &name, const glm::vec3 &value) const;
+
+    void SetLightsVec3(const std::string &name, const std::vector<glm::vec3> &vec) const;
 
     /**
      * @brief Set a vec3 uniform in the shader.

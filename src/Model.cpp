@@ -61,7 +61,7 @@ void Model::processNode(const aiNode *node, const aiScene *scene) {
         // between nodes).
         const aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
         meshes.push_back(processMesh(node->mName.C_Str(), mesh, scene));
-        meshesTransform.push_back(glm::mat4(1));
+        meshesTransform.emplace_back(1);
     }
     // after we've processed all of the meshes (if any) we then recursively process each of the
     // children nodes
@@ -79,10 +79,10 @@ Mesh Model::processMesh(const std::string &nodeName, const aiMesh *mesh, const a
     // walk through each of the mesh's vertices
     for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
         Vertex    vertex;
-        glm::vec3 vector;
-        // we declare a placeholder vector since assimp uses its own vector class that doesn't
-        // directly convert to glm's vec3 class so we transfer the data to this placeholder
-        // glm::vec3 first. positions
+        glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class
+                          // that doesn't directly convert to glm's vec3 class so we transfer the
+                          // data to this placeholder glm::vec3 first.
+        // positions
         vector.x        = mesh->mVertices[i].x;
         vector.y        = mesh->mVertices[i].y;
         vector.z        = mesh->mVertices[i].z;
@@ -191,8 +191,8 @@ std::vector<Texture> Model::loadMaterialTextures(const aiMaterial *mat, const ai
 }
 
 unsigned int TextureFromFile(const char *path, const std::string &directory, bool gamma) {
-    auto filename = std::string(path);
-    filename      = directory + '/' + filename;
+    std::string filename = std::string(path);
+    filename             = directory + '/' + filename;
 
     std::cout << "Loading texture: " << filename << std::endl;
 
@@ -214,12 +214,10 @@ unsigned int TextureFromFile(const char *path, const std::string &directory, boo
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
-                        format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
-                        format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         stbi_image_free(data);
     } else {

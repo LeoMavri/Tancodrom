@@ -6,14 +6,15 @@
 
 #include "Helicopter.h"
 #include "Rocket.h"
+#include "Sun.h"
 #include "Tank.h"
 #include "Terrain.h"
 
 constexpr int WIDTH  = 1920;
 constexpr int HEIGHT = 1080;
 
-std::unique_ptr<Camera>              pCamera;
-std::vector<std::unique_ptr<Entity>> entities;
+std::unique_ptr<Camera> pCamera;
+// std::vector<std::unique_ptr<Entity>> entities;
 
 double DeltaTime = 0.0f;
 double LastFrame = 0.0f;
@@ -24,18 +25,17 @@ void FrameBufferCallback(GLFWwindow * /*window*/, const int width, const int hei
 }
 
 void MouseCallback(GLFWwindow * /*window*/, const double xpos, const double ypos) {
-    for (const auto &entity : entities) {
-        if (!entity->IsSelected())
-            continue;
-        if (entity->GetName() == "tank") {
-            const auto tank = dynamic_cast<Tank *>(entity.get());
-            if (tank) {
-                std::cout << "MouseCallback: " << xpos << " " << ypos << std::endl;
-                tank->MouseControl(static_cast<float>(xpos), static_cast<float>(ypos));
-            }
-            return;
-        }
-    }
+    // for (const auto &entity : entities) {
+    //     if (!entity->IsSelected())
+    //         continue;
+    //     if (entity->GetName() == "tank") {
+    //         const auto tank = dynamic_cast<Tank *>(entity.get());
+    //         if (tank) {
+    //             tank->MouseControl(static_cast<float>(xpos), static_cast<float>(ypos));
+    //         }
+    //         return;
+    //     }
+    // }
 
     pCamera->MouseControl(static_cast<float>(xpos), static_cast<float>(ypos));
 }
@@ -52,6 +52,7 @@ void KeyboardCallback(GLFWwindow *window) {
     // for (const auto &entity : entities) {
     //     if (!entity->IsSelected())
     //         continue;
+    //
     //     if (entity->GetName() == "tank") {
     //         const auto tank = dynamic_cast<Tank *>(entity.get());
     //         if (tank) {
@@ -59,6 +60,14 @@ void KeyboardCallback(GLFWwindow *window) {
     //         }
     //         return;
     //     }
+    //
+    //     // if (entity->GetName() == "helicopter") {
+    //     //     const auto heli = dynamic_cast<Helicopter *>(entity.get());
+    //     //
+    //     //     if (heli) {
+    //     //         heli->
+    //     //     }
+    //     // }
     // }
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
@@ -124,11 +133,10 @@ int main() {
     constexpr glm::vec3 modelPosition(0.0f, 10.0f, 0.0f);
     constexpr glm::vec3 lightPosition(0.0f, 20.0f, 0.0f);
 
-    Shader phongLightingShader("../shaders/PhongVertex.glsl", "../shaders/PhongFragment.glsl");
-    Shader shadowMappingShader("../shaders/ShadowMapVertex.glsl",
-                               "../shaders/ShadowMapFragment.glsl");
-    Shader shadowMappingDepthShader("../shaders/ShadowMapDepthVertex.glsl",
-                                    "../shaders/ShadowMapDepthFragment.glsl");
+    // Shader phongLightingShader("../shaders/PhongVertex.glsl", "../shaders/PhongFragment.glsl");
+    Shader shadowShader("../shaders/ShadowMapVertex.glsl", "../shaders/ShadowMapFragment.glsl");
+    Shader shadowDepthShader("../shaders/ShadowMapDepthVertex.glsl",
+                             "../shaders/ShadowMapDepthFragment.glsl");
 
     const std::vector<std::string> faces{
             "../textures/skybox/right.jpg", "../textures/skybox/left.jpg",
@@ -137,51 +145,121 @@ int main() {
 
     const Skybox skybox(faces);
 
-    entities.push_back(std::make_unique<Tank>(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f),
-                                              window, pCamera.get()));
-    entities.push_back(std::make_unique<Helicopter>(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f),
-                                                    window, pCamera.get()));
+    // entities.push_back(std::make_unique<Tank>(glm::vec3(0.0f, -4.5f, 0.0f), glm::vec3(1.0f),
+    //                                           glm::vec3(0.0f), window, pCamera.get()));
+    // entities.push_back(std::make_unique<Helicopter>(modelPosition, glm::vec3(1.0f),
+    // glm::vec3(0.0f),
+    //                                                 window, pCamera.get()));
 
-    // auto tank = dynamic_cast<Tank *>(entities[0].get());
-    // auto heli = dynamic_cast<Helicopter *>(entities[1].get());
+    Tank       tank{glm::vec3(0.0f, -4.4f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), window,
+              pCamera.get()};
+    Helicopter heli{modelPosition, glm::vec3(1.0f), glm::vec3(0.0f), window, pCamera.get()};
 
-    Terrain terrain(glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), "terrain",
-                    window, pCamera.get());
+    Terrain terrain{glm::vec3(0.0f, -5.0f, 0.0f),
+                    glm::vec3(15.0f, 1.0f, 15.0f),
+                    glm::vec3(0.0f),
+                    "terrain",
+                    window,
+                    pCamera.get()};
 
-    auto rocket = std::make_unique<Rocket>(glm::vec3(40.0f, 30.0f, 0.0f),
-                                           glm::vec3(0.0f, -5.0f, 0.0f), window, pCamera.get());
+    // auto rocket = std::make_unique<Rocket>(glm::vec3(40.0f, 30.0f, 0.0f),
+    //                                        glm::vec3(0.0f, -5.0f, 0.0f), window, pCamera.get());
 
+    Sun sun(glm::vec3(5, 20, 0), glm::vec3(0.005), glm::vec3(0, 0, 0), "sun");
+
+    // glEnable(GL_CULL_FACE);
+    // glEnable(GL_DEPTH_TEST);
+    // glEnable(GL_COLOR_MATERIAL);
+    // glDisable(GL_LIGHTING);
+
+    // glFrontFace(GL_CCW);
+    // glCullFace(GL_BACK);
+
+    // Shadow map setup
+    constexpr unsigned int SHADOW_WIDTH = 8192, SHADOW_HEIGHT = 8192;
+    unsigned int           depthMapFBO, depthMap;
+    glGenFramebuffers(1, &depthMapFBO);
+    glGenTextures(1, &depthMap);
+    glBindTexture(GL_TEXTURE_2D, depthMap);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_WIDTH, SHADOW_HEIGHT, 0,
+                 GL_DEPTH_COMPONENT, GL_FLOAT, nullptr);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    float borderColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+    glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        std::cerr << "Framebuffer not complete!" << std::endl;
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    Rocket rocket = Rocket(glm::vec3(40.0f, 30.0f, 0.0f), glm::vec3(0.0f, 5.0f, 0.0f), window,
+                           pCamera.get());
+
+    // Game loop
     while (!glfwWindowShouldClose(window)) {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         const double currentFrame = glfwGetTime();
         DeltaTime                 = currentFrame - LastFrame;
         LastFrame                 = currentFrame;
 
         KeyboardCallback(window);
 
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        // tank.Update();
+        // heli.Update(static_cast<float>(DeltaTime));
+        // sun.Update(static_cast<float>(DeltaTime));
+        // rocket.Update(static_cast<float>(DeltaTime));
+
+        shadowDepthShader.Use();
+        shadowDepthShader.SetMat4("lightSpaceMatrix", sun.GetLightSpaceMatrix());
+
+        glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
+        glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
+        glClear(GL_DEPTH_BUFFER_BIT);
+
+        // sun.Render(shadowDepthShader);
+        // tank.Render(shadowDepthShader);
+        // heli.Render(shadowDepthShader);
+        // terrain.Render(shadowDepthShader);
+        // rocket.Render(shadowDepthShader);
+
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glActiveTexture(GL_TEXTURE0);
+
+        // Render pass
+        glViewport(0, 0, WIDTH, HEIGHT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glm::mat4      view       = pCamera->GetViewMatrix();
-        glm::mat4      projection = pCamera->GetProjectionMatrix();
-        constexpr auto model      = glm::mat4(1.0f);
+        shadowShader.Use();
+        shadowShader.SetMat4("projection", pCamera->GetProjectionMatrix());
+        shadowShader.SetMat4("view", pCamera->GetViewMatrix());
+        shadowShader.SetVec3("viewPos", pCamera->GetPosition());
+        shadowShader.SetVec3("lightPos", sun.GetPosition());
+        shadowShader.SetMat4("lightSpaceMatrix", sun.GetLightSpaceMatrix());
 
-        // Use Phong lighting shader
-        phongLightingShader.Use();
-        phongLightingShader.SetMat4("view", view);
-        phongLightingShader.SetMat4("projection", projection);
-        phongLightingShader.SetMat4("model", model);
-        phongLightingShader.SetVec3("lightPos", lightPosition);
-        phongLightingShader.SetVec3("viewPos", pCamera->GetPosition());
-        phongLightingShader.SetVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
-        phongLightingShader.SetVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+        shadowShader.SetInt("numLights", 1);
+        shadowShader.SetLightsVec3("position", {sun.GetPosition()});
+        shadowShader.SetLightsVec3("color", {sun.m_Color});
+        shadowShader.SetLightsFloat("intensity", {sun.m_Intensity});
 
-        terrain.Render(phongLightingShader);
+        glActiveTexture(GL_TEXTURE0);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, depthMap);
 
-        rocket->Update(static_cast<float>(DeltaTime));
-        rocket->Render(phongLightingShader);
+        sun.Render(shadowShader);
+        tank.Render(shadowShader);
+        heli.Render(shadowShader);
+        terrain.Render(shadowShader);
+        rocket.Render(shadowShader);
 
-        // Render the skybox
-        skybox.Draw(view, projection);
+        heli.SetSelected(true);
+
+        skybox.Draw(pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 
         glfwSwapBuffers(window);
         glfwPollEvents();

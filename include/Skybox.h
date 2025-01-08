@@ -11,7 +11,10 @@
 class Skybox {
 public:
     explicit Skybox(const std::vector<std::string> &faces);
+
     void Draw(const glm::mat4 &view, const glm::mat4 &projection) const;
+
+    void SetSkyboxHue(float hue) const;
 
 private:
     void LoadCubemap(const std::vector<std::string> &faces);

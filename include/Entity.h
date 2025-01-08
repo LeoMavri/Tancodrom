@@ -35,7 +35,7 @@ std::string name); virtual ~SceneObject();
     glm::vec3 GetRotation() const;
     void SetRotation(glm::vec3 rotation);
     void Rotate(glm::vec3 direction);
-    void RotateTowards(glm::vec3 targetPoint, float rotationSpeed);
+    void RotateTowards(glm::vec3 targetPoint, float m_RotationSpeed);
     void RotateAround(glm::vec3 point, float distance, glm::vec3 axis, float speed);
     void LookAt(glm::vec3 targetPoint, glm::vec3 up);
 

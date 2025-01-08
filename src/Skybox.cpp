@@ -97,3 +97,5 @@ void Skybox::Draw(const glm::mat4 &view, const glm::mat4 &projection) const {
     glDepthFunc(GL_LESS);
     glDepthMask(GL_TRUE);
 }
+
+void Skybox::SetSkyboxHue(const float hue) const { m_Shader.SetFloat("skyboxHue", hue); }

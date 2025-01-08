@@ -19,7 +19,7 @@ public:
     void Update(const float DeltaTime);
 
     void Render(Shader &shader) override;
-    void MoveAt(const MovementType &direction, const float DeltaTime);
+    void MoveAt(const MovementType &direction, float DeltaTime);
 
 private:
     float m_Pitch = 0;

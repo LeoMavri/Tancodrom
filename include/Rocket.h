@@ -20,7 +20,7 @@ private:
     glm::vec3      m_Target;
     float          m_Speed = 25.0f;
     bool           m_Exploded{false};
-    ParticleSystem m_ParticleSystem{10000}; // Initialize with 100 m_Particles
+    ParticleSystem m_ParticleSystem{30000}; // Initialize with 100 m_Particles
 };
 
 #endif // ROCKET_H

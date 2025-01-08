@@ -123,6 +123,8 @@ void Helicopter::MoveAt(const MovementType &direction, const float DeltaTime) {
             Rotate({0, -rotationSpeed, 0});
             m_Model->RotateMesh(19, 720 * DeltaTime, glm::vec3(-1, 0, 0));
             break;
+        default:
+            break;
     }
 }
 
