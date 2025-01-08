@@ -10,8 +10,11 @@ Tank::Tank(const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &ro
            GLFWwindow *window, Camera *pCamera) :
     Entity(position, size, rotation, "tank", window, pCamera), m_pCamera(pCamera) {
 
-    m_TankModel = new Model("../models/Tank/IS.obj", false);
-    SetModel(m_TankModel);
+    static Model *cachedModel = nullptr;
+    if (!cachedModel) {
+        cachedModel = new Model("../models/Tank/IS.obj", false);
+    }
+    m_Model = std::make_unique<Model>(*cachedModel);
 }
 
 void Tank::Update(float DeltaTime) {

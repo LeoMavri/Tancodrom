@@ -9,8 +9,15 @@ Rocket::Rocket(const glm::vec3 &position, const glm::vec3 &target, GLFWwindow *w
                Camera *pCamera) :
     Entity(position, glm::vec3(1.0f), glm::vec3(0.0f), "rocket", window, pCamera),
     m_Target(target) {
-    m_Model = std::make_unique<Model>("../models/Rocket/rocket.obj", false);
+
+    static Model *cachedModel = nullptr;
+    if (!cachedModel) {
+        cachedModel = new Model("../models/Rocket/rocket.obj", false);
+    }
+
+    m_Model = std::make_unique<Model>(*cachedModel);
 }
+
 Rocket::Rocket(const Rocket &other) = default;
 
 Rocket &Rocket::operator=(const Rocket &other) {

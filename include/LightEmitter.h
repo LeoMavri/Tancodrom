@@ -12,9 +12,9 @@ public:
     LightEmitter(const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &rotation,
                  const std::string &name);
 
-    glm::mat4 GetLightSpaceMatrix();
-    glm::mat4 GetLightProjection();
-    glm::mat4 GetLightView();
+    [[nodiscard]] glm::mat4        GetLightSpaceMatrix() const;
+    [[nodiscard]] static glm::mat4 GetLightProjection();
+    [[nodiscard]] glm::mat4        GetLightView() const;
 
     void Update(float DeltaTime) override;
 

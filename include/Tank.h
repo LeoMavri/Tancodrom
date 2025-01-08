@@ -20,7 +20,6 @@ public:
     void MouseControl(float xOffset, float yOffset) const;
 
 private:
-    Model  *m_TankModel;
     Camera *m_pCamera;
 
     static constexpr float m_TurretRotationSpeed = 1.0f;

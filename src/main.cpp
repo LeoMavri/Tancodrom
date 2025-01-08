@@ -3,8 +3,10 @@
 #include <Shader.h>
 #include <Skybox.h>
 #include <pch.h>
+#include <random>
 
 #include "Helicopter.h"
+#include "House.h"
 #include "Rocket.h"
 #include "Sun.h"
 #include "Tank.h"
@@ -13,8 +15,12 @@
 constexpr int WIDTH  = 1920;
 constexpr int HEIGHT = 1080;
 
+constexpr float TERRAIN_HEIGHT = -5.0f;
+
 std::unique_ptr<Camera> pCamera;
-// std::vector<std::unique_ptr<Entity>> entities;
+std::vector<Entity *>   entities;
+std::vector<House>      houses;
+GLFWwindow             *window;
 
 double DeltaTime = 0.0f;
 double LastFrame = 0.0f;
@@ -49,26 +55,41 @@ void KeyboardCallback(GLFWwindow *window) {
         glfwSetWindowShouldClose(window, true);
     }
 
-    // for (const auto &entity : entities) {
-    //     if (!entity->IsSelected())
-    //         continue;
-    //
-    //     if (entity->GetName() == "tank") {
-    //         const auto tank = dynamic_cast<Tank *>(entity.get());
-    //         if (tank) {
-    //             tank->ControlTank(window, static_cast<float>(DeltaTime));
-    //         }
-    //         return;
-    //     }
-    //
-    //     // if (entity->GetName() == "helicopter") {
-    //     //     const auto heli = dynamic_cast<Helicopter *>(entity.get());
-    //     //
-    //     //     if (heli) {
-    //     //         heli->
-    //     //     }
-    //     // }
-    // }
+    // todo: move this to the callback
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+        bool released = false;
+        for (const auto &entity : entities) {
+            if (entity->IsSelected()) {
+                entity->SetSelected(false); // this will release the camera
+                released = true;
+                break;
+            }
+        }
+
+        if (released) {
+            std::cout << "Released\n";
+            return;
+        }
+
+        // find the nearest entity
+        float   minDistance    = std::numeric_limits<float>::max();
+        Entity *pNearestEntity = nullptr;
+        for (const auto &entity : entities) {
+            const auto distance = glm::distance(pCamera->GetPosition(), entity->GetPosition());
+            if (distance < minDistance) {
+                minDistance    = distance;
+                pNearestEntity = entity;
+            }
+        }
+
+        if (!pNearestEntity) {
+            std::cout << "No entities found\n";
+            return;
+        }
+
+        pNearestEntity->SetSelected(true);
+        std::cout << "Selected " << pNearestEntity->GetName() << '\n';
+    }
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
         glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
@@ -91,6 +112,52 @@ void KeyboardCallback(GLFWwindow *window) {
     }
 }
 
+void CreateEntities() {
+    constexpr int   startX    = -175;
+    constexpr int   startZ    = -200;
+    constexpr int   distance  = 35;
+    constexpr float yRotation = 90.0f;
+
+    houses.reserve(15);
+
+    std::random_device               rd;
+    std::mt19937                     gen(rd());
+    std::uniform_real_distribution<> dis(0.0f, 10.0f);
+    std::uniform_real_distribution<> xDiff(-5.0f, 5.0f);
+
+    // front side
+    for (int i = 0; i < 12; ++i) {
+        const auto zOffset = dis(gen);
+        houses.emplace_back(glm::vec3(startX + xDiff(gen), -5.0f, startZ + distance * i + zOffset),
+                            glm::vec3(2.5f), glm::vec3(0.0f, yRotation, 0.0f), window,
+                            pCamera.get());
+    }
+
+    // back side
+    for (int i = 0; i < 12; ++i) {
+        const auto zOffset = dis(gen);
+        houses.emplace_back(glm::vec3(-startX + xDiff(gen), -5.0f, startZ + distance * i + zOffset),
+                            glm::vec3(2.5f), glm::vec3(0.0f, -yRotation, 0.0f), window,
+                            pCamera.get());
+    }
+
+    // left side
+    for (int i = 0; i < 10; ++i) {
+        const auto xOffset = dis(gen);
+        houses.emplace_back(
+                glm::vec3(startX + distance * i + xOffset * 5, -5.0f, startZ + xDiff(gen)),
+                glm::vec3(2.5f), glm::vec3(0.0f, 0, 0.0f), window, pCamera.get());
+    }
+
+    // right side
+    for (int i = 0; i < 10; ++i) {
+        const auto xOffset = dis(gen);
+        houses.emplace_back(
+                glm::vec3(startX + distance * i + xOffset * 5, -5.0f, -startZ + xDiff(gen)),
+                glm::vec3(2.5f), glm::vec3(0.0f, yRotation * -2.f, 0.0f), window, pCamera.get());
+    }
+}
+
 int main() {
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW" << std::endl;
@@ -101,7 +168,7 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Tancodrom", nullptr, nullptr);
+    window = glfwCreateWindow(WIDTH, HEIGHT, "Tancodrom", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
@@ -124,16 +191,17 @@ int main() {
 
     glViewport(0, 0, WIDTH, HEIGHT);
 
-    // Enable depth testing
+    glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glDisable(GL_LIGHTING);
 
-    // Enable face culling
-    // glEnable(GL_CULL_FACE);
+    glFrontFace(GL_CCW);
+    glCullFace(GL_BACK);
 
     constexpr glm::vec3 modelPosition(0.0f, 10.0f, 0.0f);
     constexpr glm::vec3 lightPosition(0.0f, 20.0f, 0.0f);
 
-    // Shader phongLightingShader("../shaders/PhongVertex.glsl", "../shaders/PhongFragment.glsl");
     Shader shadowShader("../shaders/ShadowMapVertex.glsl", "../shaders/ShadowMapFragment.glsl");
     Shader shadowDepthShader("../shaders/ShadowMapDepthVertex.glsl",
                              "../shaders/ShadowMapDepthFragment.glsl");
@@ -145,35 +213,21 @@ int main() {
 
     const Skybox skybox(faces);
 
-    // entities.push_back(std::make_unique<Tank>(glm::vec3(0.0f, -4.5f, 0.0f), glm::vec3(1.0f),
-    //                                           glm::vec3(0.0f), window, pCamera.get()));
-    // entities.push_back(std::make_unique<Helicopter>(modelPosition, glm::vec3(1.0f),
-    // glm::vec3(0.0f),
-    //                                                 window, pCamera.get()));
-
     Tank       tank{glm::vec3(0.0f, -4.4f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), window,
               pCamera.get()};
     Helicopter heli{modelPosition, glm::vec3(1.0f), glm::vec3(0.0f), window, pCamera.get()};
 
+    entities.push_back(&tank);
+    entities.push_back(&heli);
+
     Terrain terrain{glm::vec3(0.0f, -5.0f, 0.0f),
-                    glm::vec3(15.0f, 1.0f, 15.0f),
+                    glm::vec3(20.0f, 1.0f, 20.0f),
                     glm::vec3(0.0f),
                     "terrain",
                     window,
                     pCamera.get()};
 
-    // auto rocket = std::make_unique<Rocket>(glm::vec3(40.0f, 30.0f, 0.0f),
-    //                                        glm::vec3(0.0f, -5.0f, 0.0f), window, pCamera.get());
-
     Sun sun(glm::vec3(5, 160, 0), glm::vec3(0.005), glm::vec3(0, 0, 0), "sun");
-
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_COLOR_MATERIAL);
-    glDisable(GL_LIGHTING);
-
-    glFrontFace(GL_CCW);
-    glCullFace(GL_BACK);
 
     // Shadow map setup
     unsigned int depthMapFBO;
@@ -200,7 +254,12 @@ int main() {
     shadowShader.SetInt("diffuseTexture", 0);
     shadowShader.SetInt("shadowMap", 1);
 
-    heli.SetSelected(true);
+    glm::vec3 fogColor(0.5f, 0.5f, 0.5f); // Adjust the fog color as needed
+    glm::vec3 fogCenter(0.0f, 0.0f, 0.0f); // Adjust the fog center as needed
+    float     fogMaxDistance = 1000.0f; // Adjust the fog max distance as needed
+    float     fogDensity     = 0.009f; // Adjust the fog density as needed
+
+    CreateEntities();
 
     // Game loop
     while (!glfwWindowShouldClose(window)) {
@@ -227,6 +286,10 @@ int main() {
         sun.Render(shadowDepthShader);
         tank.Render(shadowDepthShader);
         heli.Render(shadowDepthShader);
+
+        for (auto &house : houses) {
+            house.Render(shadowDepthShader);
+        }
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glActiveTexture(GL_TEXTURE0);
@@ -255,9 +318,12 @@ int main() {
         sun.Render(shadowShader);
         tank.Render(shadowShader);
         heli.Render(shadowShader);
-        // rocket.Render(shadowShader);
 
-        float timeOfDay = fmod(glfwGetTime(), 0.01f); // Simulate a 24-hour cycle
+        for (auto &house : houses) {
+            house.Render(shadowShader);
+        }
+
+        float timeOfDay = std::fmod(glfwGetTime(), 0.01f); // Simulate a 24-hour cycle
         float hueShift  = (timeOfDay < 12.0f) ? timeOfDay / 12.0f : (24.0f - timeOfDay) / 12.0f;
 
         skybox.SetSkyboxHue(hueShift);

@@ -112,7 +112,7 @@ private:
     void UpdateCameraVectors();
 
 public:
-    static constexpr float m_CameraSpeed      = 10.0f; ///< Camera movement speed
+    static constexpr float m_CameraSpeed      = 60.0f; ///< Camera movement speed
     static constexpr float m_MouseSensitivity = 0.1f; ///< Mouse sensitivity
 
     float m_ZNear; ///< Near clipping plane
