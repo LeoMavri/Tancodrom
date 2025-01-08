@@ -11,6 +11,8 @@ unsigned int quadVAO = 0;
 unsigned int quadVBO;
 
 ParticleSystem::ParticleSystem(const unsigned int maxParticles) :
+    m_Shader{"../shaders/particles/particle_vertex.glsl",
+             "../shaders/particles/particle_fragment.glsl"},
     maxParticles(maxParticles), lastUsedParticle(0) {
     m_Particles.resize(maxParticles);
 

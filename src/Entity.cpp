@@ -9,7 +9,7 @@
 Entity::Entity(const glm::vec3 &position, const glm::vec3 &size, const glm::vec3 &rotation,
                std::string name, GLFWwindow *window, Camera *pCamera) :
     m_Name{std::move(name)}, m_Model{nullptr}, m_Position{position}, m_Rotation{rotation},
-    m_Size{size}, m_pWindow{window}, m_pCamera{pCamera} {}
+    m_Size{size}, m_pCamera{pCamera}, m_pWindow{window} {}
 
 void Entity::SetModel(std::string const &path, const bool bSmoothNormals, const int modelId) {
     m_Model = std::make_unique<Model>(path, bSmoothNormals, modelId);
@@ -18,7 +18,7 @@ void Entity::SetModel(std::string const &path, const bool bSmoothNormals, const 
 Entity::Entity(const Entity &other) :
     m_Name(other.m_Name), m_Model(std::make_unique<Model>(*other.m_Model)),
     m_Position(other.m_Position), m_Rotation(other.m_Rotation), m_Size(other.m_Size),
-    m_pWindow(other.m_pWindow), m_pCamera(other.m_pCamera) {}
+    m_pCamera(other.m_pCamera), m_pWindow(other.m_pWindow) {}
 
 Entity &Entity::operator=(const Entity &other) {
     if (this != &other) {
@@ -81,6 +81,9 @@ glm::vec3 Entity::GetUp() const {
 
     return glm::normalize(up);
 }
+void Entity::SetSelected(const bool isSelected) { m_IsSelected = isSelected; }
+
+bool Entity::IsSelected() const { return m_IsSelected; }
 
 void Entity::SetRotation(const glm::vec3 &rotation) {
     m_Rotation = rotation;

@@ -12,8 +12,8 @@
 
 #include "Moon.h"
 
-constexpr int WIDTH  = 1920;
-constexpr int HEIGHT = 1080;
+constexpr int WIDTH  = 2560;
+constexpr int HEIGHT = 1440;
 
 constexpr float TERRAIN_HEIGHT = -5.0f;
 
@@ -189,7 +189,10 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(WIDTH, HEIGHT, "Tancodrom", nullptr, nullptr);
+    GLFWmonitor       *primaryMonitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode *mode           = glfwGetVideoMode(primaryMonitor);
+
+    window = glfwCreateWindow(mode->width, mode->height, "Tancodrom", primaryMonitor, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window" << std::endl;
         glfwTerminate();

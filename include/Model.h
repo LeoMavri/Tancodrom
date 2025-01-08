@@ -30,7 +30,7 @@ public:
     std::vector<Mesh>      meshes; ///< Vector of meshes in the model.
     std::string            directory; ///< Directory containing the model files.
     bool                   gammaCorrection; ///< Whether to apply gamma correction.
-    std::vector<glm::mat4> meshesTransform;
+    std::vector<glm::mat4> meshesTransform; ///< Transformations for each mesh in the model.
 
     /**
      * @brief Constructor for the Model class.
@@ -48,15 +48,37 @@ public:
     /**
      * @brief Draws the model, and thus all its meshes.
      * @param shader Shader to use for drawing.
-     * @param objectTransform
+     * @param objectTransform Transformation matrix for the object.
      */
     virtual void Draw(const Shader &shader, const glm::mat4 &objectTransform) const;
 
+    /**
+     * @brief Gets the ID of the first loaded texture.
+     * @return The ID of the first loaded texture.
+     */
     [[nodiscard]] unsigned int GetTextureID() const;
 
+    /**
+     * @brief Gets the transformation matrix for a specific mesh.
+     * @param meshID ID of the mesh.
+     * @return The transformation matrix of the mesh.
+     */
     glm::mat4 GetMeshTransform(int meshID);
-    void      SetMeshTransform(int meshID, const glm::mat4 &transform);
-    void      RotateMesh(int meshID, float degrees, const glm::vec3 &axis);
+
+    /**
+     * @brief Sets the transformation matrix for a specific mesh.
+     * @param meshID ID of the mesh.
+     * @param transform The transformation matrix to set.
+     */
+    void SetMeshTransform(int meshID, const glm::mat4 &transform);
+
+    /**
+     * @brief Rotates a specific mesh around a given axis.
+     * @param meshID ID of the mesh.
+     * @param degrees Degrees to rotate.
+     * @param axis Axis to rotate around.
+     */
+    void RotateMesh(int meshID, float degrees, const glm::vec3 &axis);
 
 private:
     /**

@@ -7,18 +7,32 @@
 
 #include <pch.h>
 
+/**
+ * @struct Particle
+ * @brief A structure representing a single particle in a particle system.
+ *
+ * The Particle struct contains properties for position, velocity, color, and life span.
+ */
 struct Particle {
-    glm::vec3 Position;
-    glm::vec3 Velocity;
-    glm::vec4 Color;
-    float     Life;
+    glm::vec3 Position; ///< The position of the particle.
+    glm::vec3 Velocity; ///< The velocity of the particle.
+    glm::vec4 Color; ///< The color of the particle.
+    float     Life; ///< The remaining life of the particle.
 
-    Particle() : Position(0.0f), Velocity(0.0f), Color(1.0f), Life(0.0f) {}
+    /**
+     * @brief Default constructor for the Particle struct.
+     *
+     * Initializes the particle with default values.
+     */
+    Particle() = default;
 
-    bool operator==(const Particle &other) const {
-        return Position == other.Position && Velocity == other.Velocity && Color == other.Color &&
-               Life == other.Life;
-    }
+    /**
+     * @brief Equality operator for comparing two particles.
+     *
+     * @param other The other particle to compare with.
+     * @return True if the particles are equal, false otherwise.
+     */
+    bool operator==(const Particle &other) const;
 };
 
 #endif // PARTICLE_H

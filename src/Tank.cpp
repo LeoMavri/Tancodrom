@@ -135,7 +135,7 @@ void Tank::Fire() {
         return;
 
     glm::mat4 barrelTransform = m_Model->GetMeshTransform(1);
-    glm::vec3 barrelPosition  = glm::vec3(barrelTransform[3]);
+    auto      barrelPosition  = glm::vec3(barrelTransform[3]);
     glm::vec3 barrelDirection = glm::normalize(glm::vec3(barrelTransform[2]));
 
     Entity *closestEntity   = nullptr;
