@@ -16,7 +16,7 @@ glm::mat4 LightEmitter::GetLightSpaceMatrix() const {
 
 glm::mat4 LightEmitter::GetLightProjection() {
     constexpr float nearPlane = 0.1f;
-    constexpr float farPlane  = 200.f;
+    constexpr float farPlane  = 500.f;
     return glm::ortho(-100.0f, 100.0f, -100.0f, 100.0f, nearPlane, farPlane);
 }
 

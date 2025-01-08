@@ -1,16 +1,16 @@
 #include <Camera.h>
 #include <Entity.h>
+#include <Helicopter.h>
+#include <House.h>
 #include <Shader.h>
 #include <Skybox.h>
-#include <pch.h>
-#include <random>
+#include <Sun.h>
+#include <Tank.h>
+#include <Terrain.h>
 
-#include "Helicopter.h"
-#include "House.h"
-#include "Rocket.h"
-#include "Sun.h"
-#include "Tank.h"
-#include "Terrain.h"
+#include <pch.h>
+
+#include "Moon.h"
 
 constexpr int WIDTH  = 1920;
 constexpr int HEIGHT = 1080;
@@ -19,7 +19,6 @@ constexpr float TERRAIN_HEIGHT = -5.0f;
 
 std::unique_ptr<Camera> pCamera;
 std::vector<Entity *>   entities;
-std::vector<House>      houses;
 GLFWwindow             *window;
 
 double DeltaTime = 0.0f;
@@ -50,15 +49,14 @@ void ScrollCallback(GLFWwindow * /*window*/, const double /*xoffset*/, const dou
     pCamera->ProcessMouseScroll(static_cast<float>(yOffset));
 }
 
-void KeyboardCallback(GLFWwindow *window) {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-        glfwSetWindowShouldClose(window, true);
-    }
-
-    // todo: move this to the callback
+void KeyboardCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
         bool released = false;
         for (const auto &entity : entities) {
+            const auto name = entity->GetName();
+            if (name == "house" || name == "sun" || name == "terrain")
+                continue;
+
             if (entity->IsSelected()) {
                 entity->SetSelected(false); // this will release the camera
                 released = true;
@@ -71,10 +69,13 @@ void KeyboardCallback(GLFWwindow *window) {
             return;
         }
 
-        // find the nearest entity
         float   minDistance    = std::numeric_limits<float>::max();
         Entity *pNearestEntity = nullptr;
         for (const auto &entity : entities) {
+            const auto name = entity->GetName();
+            if (name == "house" || name == "sun" || name == "terrain")
+                continue;
+
             const auto distance = glm::distance(pCamera->GetPosition(), entity->GetPosition());
             if (distance < minDistance) {
                 minDistance    = distance;
@@ -88,7 +89,24 @@ void KeyboardCallback(GLFWwindow *window) {
         }
 
         pNearestEntity->SetSelected(true);
+
+        if (pNearestEntity->GetName() == "tank") {
+            const auto tank = dynamic_cast<Tank *>(pNearestEntity);
+            tank->SetEntities(entities);
+        }
+
+        if (pNearestEntity->GetName() == "helicopter") {
+            const auto helicopter = dynamic_cast<Helicopter *>(pNearestEntity);
+            helicopter->SetEntities(entities);
+        }
+
         std::cout << "Selected " << pNearestEntity->GetName() << '\n';
+    }
+}
+
+void UpdateKeyboard(GLFWwindow *window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, true);
     }
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS ||
@@ -112,13 +130,13 @@ void KeyboardCallback(GLFWwindow *window) {
     }
 }
 
-void CreateEntities() {
+void CreateHouses() {
     constexpr int   startX    = -175;
     constexpr int   startZ    = -200;
     constexpr int   distance  = 35;
     constexpr float yRotation = 90.0f;
 
-    houses.reserve(15);
+    entities.reserve(15);
 
     std::random_device               rd;
     std::mt19937                     gen(rd());
@@ -128,33 +146,36 @@ void CreateEntities() {
     // front side
     for (int i = 0; i < 12; ++i) {
         const auto zOffset = dis(gen);
-        houses.emplace_back(glm::vec3(startX + xDiff(gen), -5.0f, startZ + distance * i + zOffset),
-                            glm::vec3(2.5f), glm::vec3(0.0f, yRotation, 0.0f), window,
-                            pCamera.get());
+
+        entities.push_back(new House(
+                glm::vec3(startX + xDiff(gen), -5.0f, startZ + distance * i + zOffset),
+                glm::vec3(2.5f), glm::vec3(0.0f, yRotation, 0.0f), window, pCamera.get()));
     }
 
     // back side
     for (int i = 0; i < 12; ++i) {
         const auto zOffset = dis(gen);
-        houses.emplace_back(glm::vec3(-startX + xDiff(gen), -5.0f, startZ + distance * i + zOffset),
-                            glm::vec3(2.5f), glm::vec3(0.0f, -yRotation, 0.0f), window,
-                            pCamera.get());
+        entities.push_back(new House(
+                glm::vec3(-startX + xDiff(gen), -5.0f, startZ + distance * i + zOffset),
+                glm::vec3(2.5f), glm::vec3(0.0f, -yRotation, 0.0f), window, pCamera.get()));
     }
 
     // left side
     for (int i = 0; i < 10; ++i) {
         const auto xOffset = dis(gen);
-        houses.emplace_back(
+
+        entities.push_back(new House(
                 glm::vec3(startX + distance * i + xOffset * 5, -5.0f, startZ + xDiff(gen)),
-                glm::vec3(2.5f), glm::vec3(0.0f, 0, 0.0f), window, pCamera.get());
+                glm::vec3(2.5f), glm::vec3(0.0f, 0, 0.0f), window, pCamera.get()));
     }
 
     // right side
     for (int i = 0; i < 10; ++i) {
         const auto xOffset = dis(gen);
-        houses.emplace_back(
+
+        entities.push_back(new House(
                 glm::vec3(startX + distance * i + xOffset * 5, -5.0f, -startZ + xDiff(gen)),
-                glm::vec3(2.5f), glm::vec3(0.0f, yRotation * -2.f, 0.0f), window, pCamera.get());
+                glm::vec3(2.5f), glm::vec3(0.0f, yRotation * -2.f, 0.0f), window, pCamera.get()));
     }
 }
 
@@ -181,6 +202,7 @@ int main() {
     glfwSetFramebufferSizeCallback(window, FrameBufferCallback);
     glfwSetCursorPosCallback(window, MouseCallback);
     glfwSetScrollCallback(window, ScrollCallback);
+    glfwSetKeyCallback(window, KeyboardCallback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     glewExperimental = GL_TRUE;
@@ -213,21 +235,29 @@ int main() {
 
     const Skybox skybox(faces);
 
-    Tank       tank{glm::vec3(0.0f, -4.4f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), window,
-              pCamera.get()};
-    Helicopter heli{modelPosition, glm::vec3(1.0f), glm::vec3(0.0f), window, pCamera.get()};
+    CreateHouses();
 
-    entities.push_back(&tank);
-    entities.push_back(&heli);
+    entities.push_back(new Terrain(glm::vec3(0.0f, -5.0f, 0.0f), glm::vec3(20.0f, 1.0f, 20.0f),
+                                   glm::vec3(0.0f), "terrain", window, pCamera.get()));
 
-    Terrain terrain{glm::vec3(0.0f, -5.0f, 0.0f),
-                    glm::vec3(20.0f, 1.0f, 20.0f),
-                    glm::vec3(0.0f),
-                    "terrain",
-                    window,
-                    pCamera.get()};
+    entities.push_back(
+            new Helicopter(modelPosition, glm::vec3(1.0f), glm::vec3(0.0f), window, pCamera.get()));
+    entities.push_back(new Helicopter(glm::vec3(-15.0f, 10.0f, 15.0f), glm::vec3(1.0f),
+                                      glm::vec3(0.0f), window, pCamera.get()));
+    entities.push_back(new Helicopter(glm::vec3(25.0f, 10.0f, -5.0f), glm::vec3(1.0f),
+                                      glm::vec3(0.0f), window, pCamera.get()));
 
-    Sun sun(glm::vec3(5, 160, 0), glm::vec3(0.005), glm::vec3(0, 0, 0), "sun");
+    entities.push_back(new Tank(glm::vec3(0.0f, -4.4f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f),
+                                window, pCamera.get()));
+    entities.push_back(new Tank(glm::vec3(10.0f, -4.4f, 10.0f), glm::vec3(1.0f), glm::vec3(0.0f),
+                                window, pCamera.get()));
+    entities.push_back(new Tank(glm::vec3(-10.0f, -4.4f, -10.0f), glm::vec3(1.0f), glm::vec3(0.0f),
+                                window, pCamera.get()));
+    entities.push_back(new Tank(glm::vec3(20.0f, -4.4f, 5.0f), glm::vec3(1.0f), glm::vec3(0.0f),
+                                window, pCamera.get()));
+
+    Sun  sun(glm::vec3(0, 160, 0), glm::vec3(0.01), glm::vec3(0, 0, 0), "sun");
+    Moon moon(glm::vec3(0, -160, 0), glm::vec3(0.8), glm::vec3(0, 0, 0), "moon");
 
     // Shadow map setup
     unsigned int depthMapFBO;
@@ -254,13 +284,6 @@ int main() {
     shadowShader.SetInt("diffuseTexture", 0);
     shadowShader.SetInt("shadowMap", 1);
 
-    glm::vec3 fogColor(0.5f, 0.5f, 0.5f); // Adjust the fog color as needed
-    glm::vec3 fogCenter(0.0f, 0.0f, 0.0f); // Adjust the fog center as needed
-    float     fogMaxDistance = 1000.0f; // Adjust the fog max distance as needed
-    float     fogDensity     = 0.009f; // Adjust the fog density as needed
-
-    CreateEntities();
-
     // Game loop
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -269,27 +292,30 @@ int main() {
         DeltaTime                 = currentFrame - LastFrame;
         LastFrame                 = currentFrame;
 
-        KeyboardCallback(window);
+        UpdateKeyboard(window);
 
-        // tank.Update();
-        heli.Update(static_cast<float>(DeltaTime));
         sun.Update(static_cast<float>(DeltaTime));
+        moon.Update(static_cast<float>(DeltaTime));
+        for (auto &entity : entities) {
+            entity->Update(static_cast<float>(DeltaTime));
+        }
+
+        LightEmitter *activeLight      = (sun.GetPosition().y > moon.GetPosition().y)
+                                                 ? static_cast<LightEmitter *>(&sun)
+                                                 : static_cast<LightEmitter *>(&moon); // bruh
+        glm::mat4     lightSpaceMatrix = activeLight->GetLightSpaceMatrix();
 
         shadowDepthShader.Use();
-        shadowDepthShader.SetMat4("lightSpaceMatrix", sun.GetLightSpaceMatrix());
+        shadowDepthShader.SetMat4("lightSpaceMatrix", lightSpaceMatrix);
 
         glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
 
-        terrain.Render(shadowDepthShader);
-        sun.Render(shadowDepthShader);
-        tank.Render(shadowDepthShader);
-        heli.Render(shadowDepthShader);
-
-        for (auto &house : houses) {
-            house.Render(shadowDepthShader);
+        for (auto &entity : entities) {
+            entity->Render(shadowDepthShader);
         }
+        activeLight->Render(shadowDepthShader);
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glActiveTexture(GL_TEXTURE0);
@@ -302,31 +328,28 @@ int main() {
         shadowShader.SetMat4("projection", pCamera->GetProjectionMatrix());
         shadowShader.SetMat4("view", pCamera->GetViewMatrix());
         shadowShader.SetVec3("viewPos", pCamera->GetPosition());
-        shadowShader.SetVec3("lightPos", sun.GetPosition());
-        shadowShader.SetMat4("lightSpaceMatrix", sun.GetLightSpaceMatrix());
+        shadowShader.SetVec3("lightPos", activeLight->GetPosition());
+        shadowShader.SetMat4("lightSpaceMatrix", activeLight->GetLightSpaceMatrix());
 
         shadowShader.SetInt("numLights", 1);
-        shadowShader.SetLightsVec3("position", {sun.GetPosition()});
-        shadowShader.SetLightsVec3("color", {sun.m_Color});
-        shadowShader.SetLightsFloat("intensity", {sun.m_Intensity});
+        shadowShader.SetLightsVec3("position", {activeLight->GetPosition()});
+        shadowShader.SetLightsVec3("color", {activeLight->m_Color});
+        shadowShader.SetLightsFloat("intensity", {activeLight->m_Intensity});
 
         glActiveTexture(GL_TEXTURE0);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, depthMap);
 
-        terrain.Render(shadowShader);
-        sun.Render(shadowShader);
-        tank.Render(shadowShader);
-        heli.Render(shadowShader);
-
-        for (auto &house : houses) {
-            house.Render(shadowShader);
+        for (auto &entity : entities) {
+            entity->Render(shadowShader);
         }
 
-        float timeOfDay = std::fmod(glfwGetTime(), 0.01f); // Simulate a 24-hour cycle
-        float hueShift  = (timeOfDay < 12.0f) ? timeOfDay / 12.0f : (24.0f - timeOfDay) / 12.0f;
+        activeLight->Render(shadowShader);
 
-        skybox.SetSkyboxHue(hueShift);
+        // float timeOfDay = std::fmod(glfwGetTime(), 0.01f); // Simulate a 24-hour cycle
+        // float hueShift  = (timeOfDay < 12.0f) ? timeOfDay / 12.0f : (24.0f - timeOfDay) / 12.0f;
+        //
+        // skybox.SetSkyboxHue(hueShift);
         skybox.Draw(pCamera->GetViewMatrix(), pCamera->GetProjectionMatrix());
 
         glfwSwapBuffers(window);

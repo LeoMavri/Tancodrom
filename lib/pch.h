@@ -14,6 +14,7 @@
 #include <memory>
 #include <sstream>
 #include <string>
+#include <random>
 #include <vector>
 
 // This does not play nicely in a header file

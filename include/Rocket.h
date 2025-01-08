@@ -23,7 +23,7 @@ public:
 
 private:
     glm::vec3 m_Target;
-    float     m_Speed = 25.0f;
+    float     m_Speed = 100.0f;
 };
 
 #endif // ROCKET_H

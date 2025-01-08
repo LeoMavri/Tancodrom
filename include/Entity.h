@@ -10,63 +10,6 @@
 
 #include "Camera.h"
 
-/*
-* class SceneObject
-{
-public:
-    SceneObject(const glm::vec3& position, const glm::vec3& size, const glm::vec3 rotation,
-std::string name); virtual ~SceneObject();
-
-    void SetModel(std::string const& path, bool bSmoothNormals, int modelId);
-    void SetModel(Model* model);
-    Model* GetModel();
-
-    Collider* GetCollider();
-
-    std::string GetName();
-
-    virtual void Update() = 0;
-
-    glm::vec3 GetPosition() const;
-    void SetPosition(glm::vec3 position);
-    void Move(glm::vec3 direction);
-    void MoveTowards(glm::vec3 point, float speed);
-
-    glm::vec3 GetRotation() const;
-    void SetRotation(glm::vec3 rotation);
-    void Rotate(glm::vec3 direction);
-    void RotateTowards(glm::vec3 targetPoint, float m_RotationSpeed);
-    void RotateAround(glm::vec3 point, float distance, glm::vec3 axis, float speed);
-    void LookAt(glm::vec3 targetPoint, glm::vec3 up);
-
-    glm::vec3 GetSize() const;
-    void SetSize(glm::vec3 size);
-
-    glm::vec3 GetForward() const;
-    glm::vec3 GetRight() const;
-    glm::vec3 GetUp() const;
-
-    virtual void Render(Shader& shader);
-
-protected:
-    std::string m_name;
-
-    Model* m_model;
-    Collider* m_collider;
-
-    glm::vec3 m_position;
-    glm::vec3 m_rotation;
-    glm::vec3 m_size;
-
-    float RotationAngle = 0;
-    const float DegreesToRadians = 0.01745f;
-
-private:
-    void NormalizeRotation();
-};
-
- */
-
 using ModelUPtr = std::unique_ptr<Model>;
 
 class Entity {
@@ -113,6 +56,8 @@ public:
     void NormalizeRotation();
 
     virtual void Render(Shader &shader);
+
+    bool m_ShouldRender{true};
 
 protected:
     std::string            m_Name;

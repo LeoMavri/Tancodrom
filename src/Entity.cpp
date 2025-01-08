@@ -162,6 +162,9 @@ void Entity::Render(Shader &shader) {
         return;
     }
 
+    if (!m_ShouldRender)
+        return;
+
     glm::mat4 modelTransform(1.0f);
     modelTransform = glm::translate(modelTransform, m_Position);
     modelTransform =

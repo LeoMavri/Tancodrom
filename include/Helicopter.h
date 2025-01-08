@@ -16,18 +16,21 @@ public:
                GLFWwindow *window, Camera *pCamera);
     ~Helicopter() override = default;
 
-    void Update(const float DeltaTime) override;
+    void Update(float DeltaTime) override;
 
     void Render(Shader &shader) override;
     void UpdateCameraPosition() const;
-    void LaunchRocket();
+    void LaunchRocket(const glm::vec3 &position);
     void MoveAt(const MovementType &direction, float DeltaTime);
+
+    void SetEntities(const std::vector<Entity *> &entities) { m_Entities = entities; }
 
 private:
     float m_Pitch = 0;
     float m_Yaw   = 0;
 
-    std::vector<Rocket> m_Rockets;
+    std::vector<Rocket>   m_Rockets;
+    std::vector<Entity *> m_Entities;
 
     static constexpr float m_RotationSpeed = 30.0f;
     static constexpr float m_MoveSpeed     = 6.0f;

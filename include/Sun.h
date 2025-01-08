@@ -4,6 +4,7 @@
 
 #ifndef SUN_H
 #define SUN_H
+
 #include "Entity.h"
 #include "LightEmitter.h"
 
