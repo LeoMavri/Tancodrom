@@ -30,6 +30,14 @@ void Shader::SetVec3(const std::string &name, const float x, const float y, cons
     glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
 }
 
+void Shader::SetVec4(const std::string &name, const glm::vec4 &value) const {
+    glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+}
+
+void Shader::SetVec4(const std::string &name, float x, float y, float z, float w) const {
+    glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
+}
+
 void Shader::SetMat4(const std::string &name, const glm::mat4 &mat) const {
     glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
@@ -98,5 +106,19 @@ void Shader::CheckCompileErrors(const unsigned int shader, const std::string &ty
 
             std::cout << std::format("Failed to LINK '{}' shader.\nInfo Log:\n{}\n", type, infoLog);
         }
+    }
+}
+
+void Shader::SetLightsVec3(const std::string &name, const std::vector<glm::vec3> &vec) const {
+    for (int i = 0; i < vec.size(); ++i) {
+        std::string prefix = "lights[" + std::to_string(i) + "].";
+        glUniform3fv(glGetUniformLocation(ID, (prefix + name).c_str()), 1, glm::value_ptr(vec[i]));
+    }
+}
+
+void Shader::SetLightsFloat(const std::string &name, const std::vector<float> &vec) const {
+    for (int i = 0; i < vec.size(); ++i) {
+        std::string prefix = "lights[" + std::to_string(i) + "].";
+        SetFloat(prefix + name, vec[i]);
     }
 }

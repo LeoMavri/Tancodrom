@@ -67,11 +67,42 @@ public:
     void SetVec3(const std::string &name, float x, float y, float z) const;
 
     /**
+     * @brief Set a vec4 uniform in the shader.
+     * @param name Name of the uniform.
+     * @param value Value to set.
+     */
+    void SetVec4(const std::string &name, const glm::vec4 &value) const;
+
+    /**
+     * @brief Set a vec4 uniform in the shader.
+     * @param name Name of the uniform.
+     * @param x X component of the vec4.
+     * @param y Y component of the vec4.
+     * @param z Z component of the vec4.
+     * @param w W component of the vec4.
+     */
+    void SetVec4(const std::string &name, float x, float y, float z, float w) const;
+
+    /**
      * @brief Set a mat4 uniform in the shader.
      * @param name Name of the uniform.
      * @param mat Matrix to set.
      */
     void SetMat4(const std::string &name, const glm::mat4 &mat) const;
+
+    /**
+     * @brief Set a vec3 uniform for lights in the shader.
+     * @param name Name of the uniform.
+     * @param vec Vector of vec3 values to set.
+     */
+    void SetLightsVec3(const std::string &name, const std::vector<glm::vec3> &vec) const;
+
+    /**
+     * @brief Set a float uniform for lights in the shader.
+     * @param name Name of the uniform.
+     * @param vec Vector of float values to set.
+     */
+    void SetLightsFloat(const std::string &name, const std::vector<float> &vec) const;
 
     // TODO: Make a getter / setter for this
     unsigned int ID; ///< ID of the shader program
