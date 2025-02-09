@@ -12,8 +12,8 @@
 
 #include "Moon.h"
 
-constexpr int WIDTH  = 2560;
-constexpr int HEIGHT = 1440;
+constexpr int WIDTH  = 1920;
+constexpr int HEIGHT = 1080;
 
 constexpr float TERRAIN_HEIGHT = -5.0f;
 
@@ -186,7 +186,7 @@ int main() {
     }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWmonitor       *primaryMonitor = glfwGetPrimaryMonitor();
